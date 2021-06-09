@@ -1,28 +1,15 @@
-{% extends 'client/client.html.twig' %}
-
-{#{% block title %}Edit Client{% endblock %}
-
-{% block body %}
-    <h1>Edit Client</h1>
-
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('client_index') }}">back to list</a>
-
-    {{ include('client/_delete_form.html.twig') }}
-{% endblock %}#}
-
+{% extends 'zone/zone.html.twig' %}
 
 {% block content %}
 
-    <h1>Modification de catégorie</h1>
+    <h1>Modification de la zone</h1>
     <div class="col-md-10" style="background-color: #cccccc">
         {{ form_start(form) }}
-        {{ include('client/_form.html.twig') }}
+        {{ include('zone/_form.html.twig') }}
         <hr>
         <div class="row">
             <div class="col-md-2">
-                <a class="btn btn-default" href="{{ path('client_show' , {'id': client.id}) }}">
+                <a class="btn btn-default" href="{{ path('zone_show' , {'id': zone.id}) }}">
                     <i class="fa fa-chevron-left"></i>
                     Retour
                 </a>
@@ -34,7 +21,7 @@
             <div class="col-md-2"></div>
             {#{% if is_granted('ROLE_ADMIN') and is_granted('ROLE_SUP') %}#}
             <div class="col-md-2 offset-2">
-                {% include('client/_delete_form.html.twig') %}
+                {% include('zone/_delete_form.html.twig') %}
             </div>
             {# {% endif %}#}
         </div>

@@ -1,0 +1,91 @@
+         <a style="cursor: pointer"  data-toggle="modal" data-target="#{{ client.slug}}">
+    <i style="font-size: 20px" class="fa fa-eye "></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade " id="{{ client.slug}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
+    <div class="modal-dialog modal-lg" role="document"  >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Détails client</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-bordered table" style="background-color: #868e96">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ client.id}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom du client</th>
+                        <td>{{ client.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénoms</th>
+                        <td>{{ client.prenoms }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td>{{ client.datenais ? client.datenais | date('d-M-Y') : ''}}</td>
+                    </tr>
+                    <tr>
+                        <th>Lieu de naissance</th>
+                        <td>{{ client.lieu}}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone</th>
+                        <td>{{ client.telephone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Profession</th>
+                        <td>{{ client.profession }}</td>
+                    </tr>
+                    <tr>
+                        <th>Activité principale</th>
+                        <td>{{ client.activite }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quartier</th>
+                        <td>{{ client.quartier}}</td>
+                    </tr>
+                    <tr>
+                        <th>Commune</th>
+                        <td>{{ client.commune}}</td>
+                    </tr>
+                    <tr>
+                        <th>Arrondissement</th>
+                        <td>{{ client.arrondissement }}</td>
+                    </tr>
+
+                   {# <tr>
+                        <th>Enregistré le</th>
+                        <td>
+                            {{ fournisseur.createdOn ? fournisseur.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            Par {{ fournisseur.createdBy }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Modifié le </th>
+                        <td>
+                            {{ fournisseur.editedOn ? fournisseur.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            Par {{ fournisseur.editedBy }}
+                        </td>
+                    </tr>#}
+
+                    </tbody>
+                </table>
+                <div class="row" >
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <i class="fa fa-chevron-left"></i>
+                        Retour à la liste
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary">Imprimer</button>
+            </div>
+        </div>
+    </div>
+</div>

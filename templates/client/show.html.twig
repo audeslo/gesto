@@ -1,8 +1,92 @@
-{% extends 'base.html.twig' %}
+{% extends 'client/client.html.twig' %}
 
-{% block title %}Client{% endblock %}
+{% block content %}
 
-{% block body %}
+    {#{% block body %}#}
+<div class="col-lg-10">
+
+    <h1>Détail client</h1>
+
+    <table class="table-bordered table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ client.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ client.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prénoms</th>
+            <td>{{ client.prenoms }}</td>
+        </tr>
+
+        <tr>
+            <th>Date naissance</th>
+            <td>{{ client.datenais}}</td>
+        </tr>
+        <tr>
+            <th>Lieu</th>
+            <td>{{ client.lieu}}</td>
+        </tr>
+
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ client.telephone}}</td>
+        </tr>
+        <tr>
+            <th>Profession</th>
+            <td>{{ client.profession }}</td>
+        </tr>
+        <tr>
+            <th>Activité</th>
+            <td>{{ client.activite }}</td>
+        </tr>
+
+        <tr>
+            <th>Quartier</th>
+            <td>{{ client.quartier}}</td>
+        </tr>
+        <tr>
+            <th>Commune</th>
+            <td>{{ client.commune }}</td>
+        </tr>
+        <tr>
+            <th>Arrondissement</th>
+            <td>{{ client.arrondissement }}</td>
+        </tr>
+
+        {#<tr>
+            <th>CreatedOn</th>
+            <td>{{ categorie.createdOn ? categorie.createdOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>EditedOn</th>
+            <td>{{ categorie.editedOn ? categorie.editedOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>#}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <a class="btn btn-default col-md-3" href="{{ path('client_index') }}">
+            <i class="fa fa-chevron-left"></i>
+            Retour à la liste
+        </a>
+
+
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('client_edit', { 'id': client.id}) }}">
+            <i class="fa fa-pencil"></i>
+            Modifier
+        </a>
+
+    </div>
+</div>
+
+
+{#{% block title %}Client{% endblock %}#}
+
+{#{% block body %}
     <h1>Client</h1>
 
     <table class="table">
@@ -23,4 +107,6 @@
     <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
 
     {{ include('client/_delete_form.html.twig') }}
-{% endblock %}
+{% endblock %}#}
+
+

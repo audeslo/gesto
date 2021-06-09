@@ -1,0 +1,46 @@
+{% extends 'zone/zone.html.twig' %}
+
+{% block content %}
+
+    {#{% block body %}#}
+<div class="col-lg-10">
+
+    <h1>Détail zone</h1>
+
+    <table class="table-bordered table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ zone.id }}</td>
+        </tr>
+        <tr>
+            <th>Zone</th>
+            <td>{{ zone.libelle }}</td>
+        </tr>
+
+
+        {#<tr>
+            <th>CreatedOn</th>
+            <td>{{ categorie.createdOn ? categorie.createdOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>EditedOn</th>
+            <td>{{ categorie.editedOn ? categorie.editedOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>#}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <a class="btn btn-default col-md-3" href="{{ path('zone_index') }}">
+            <i class="fa fa-chevron-left"></i>
+            Retour à la liste
+        </a>
+
+
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('zone_edit', { 'id': zone.id}) }}">
+            <i class="fa fa-pencil"></i>
+            Modifier
+        </a>
+
+    </div>
+</div>

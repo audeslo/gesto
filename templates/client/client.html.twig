@@ -1,14 +1,38 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - Admin{% endblock %}
 
  {% block path %}
      <li><a href="index.html">Administration</a></li>
-    {# <li><a href="#">Branches</a></li>#}
+    #}{# <li><a href="#">Branches</a></li>#}{#
      <li class="active">Clients</li>
-     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
+     #}{#<li><a href="sign-in.html">Sign In Form</a></li>#}{#
  {% endblock %}
 
 {% block content %}
 
+{% endblock %}#}
+
+
+{% extends'base.html.twig' %}
+
+
+
+    {% set var = 'clients' %}
+
+
+{% block nav %}
+
+    {% include'nav.html.twig' %}
+
+
 {% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+

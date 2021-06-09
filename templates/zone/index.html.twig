@@ -1,0 +1,65 @@
+{% extends 'zone/zone.html.twig' %}
+
+
+{% block content %}
+    {#<h1>Liste des clients</h1>#}
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Liste des clients</h2><hr></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    {#{% include('client/viewmodal.html.twig') %}#}
+                    <a href="{{ path('zone_new') }}" class="btn btn-primary ">
+                        <i class="fa fa-chevron-right"></i>
+                        Nouveau
+                    </a>
+                </div>
+                <div class="offset-8 col-md-2 ">
+                    <a href="#" class="btn btn-success ">
+                        <i class="fa fa-print"></i>
+                        Imprimer
+                    </a>
+                </div>
+            </div>
+            <hr>
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Zone</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for zone in zones %}
+                    <tr>
+                        <td>{{ zone.id }}</td>
+                        <td>{{ zone.libelle }}</td>
+
+
+                        <td>
+
+                            {% include('zone/viewmodal.html.twig') %}
+                            {#<a  class="" href="{{ path('client_show', {'slug': client.slug}) }}"> </a>#}
+
+                            {#     <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a> #}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="14">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {#  <a href="{{ path('client_new') }}">Create new</a>#}
+
+        </div>
+    </div>
+
+{% endblock %}

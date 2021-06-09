@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="b8c203b4-f4a1-40ab-8861-aa421656bdf6">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="Mysql Local" uuid="7fd41d21-34c7-4d72-b7b8-e1260f62a6eb">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/gesto</jdbc-url>
     </data-source>
   </component>
 </project>
