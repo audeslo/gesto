@@ -1,0 +1,69 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+<hr>
+<div class="row">
+
+    <div class="col-md-5 ">
+        {{ form_label(form.toncliunik) }}
+        {{ form_widget(form.toncliunik) }}
+        {{ form_errors(form.toncliunik) }}
+
+        <hr>
+        {{ form_label(form.dateins) }}
+        {{ form_widget(form.dateins) }}
+        {{ form_errors(form.dateins) }}
+
+    </div>
+
+    <div class="col-md-5 offset-2">
+        {{ form_label(form.client) }}
+        {{ form_widget(form.client) }}
+        {{ form_errors(form.client) }}
+
+        <hr>
+        {{ form_label(form.agence) }}
+        {{ form_widget(form.agence) }}
+        {{ form_errors(form.agence) }}
+
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-5 ">
+
+        {{ form_label(form.meconomie) }}
+        {{ form_widget(form.meconomie) }}
+        {{ form_errors(form.meconomie) }}
+        <hr>
+        {{ form_label(form.nlivr) }}
+        {{ form_widget(form.nlivr) }}
+        {{ form_errors(form.nlivr) }}
+
+
+    </div>
+
+        <div class="col-md-5 offset-2">
+            {{ form_label(form.nordre) }}
+            {{ form_widget(form.nordre) }}
+            {{ form_errors(form.nordre) }}
+            <hr>
+            {{ form_label(form.feuillet) }}
+            {{ form_widget(form.feuillet) }}
+            {{ form_errors(form.feuillet) }}
+            <hr>
+            {{ form_label(form.finfeuillet) }}
+            {{ form_widget(form.finfeuillet) }}
+            {{ form_errors(form.finfeuillet) }}
+
+
+        </div>
+
+    </div>
+

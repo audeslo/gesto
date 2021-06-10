@@ -22,24 +22,57 @@
                         <span class="btn btn-default">Go</span>
                     </form>
                 </li>
-                <li class="active"><a href="#"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
+                <li class="active"><a
+                           {# {% if var == 'accueil' %}
+                            class="nav-link active" href="{{ path('Accueil') }}"
+                            {% else %}
+                            class="nav-link " href="{{ path('Accueil') }}"
+                            {%  endif %}#}
+                            href="#"><i class="fa fa-dashboard"></i>Acceuil</a>
+                </li>
                 <li class="sub open">
-                    <a href="javascript:;">
+                    <a
+                            {% if var == 'clients' or var =='agences' or var =='tontines'    %}
+                                class="nav-link dropdown-toggle active"
+                            {% else %}
+                                class="nav-link dropdown-toggle"
+                            {%  endif %}
+
+                            href="javascript:;">
                         <i class="fa fa-database"></i> Menu <div class="pull-right"><span class="caret"></span></div>
                     </a>
                     <ul class="templatemo-submenu">
                         {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
-                        <li><a href="#">Client</a></li>
-                        <li><a href="#">Zone</a></li>
-                        <li><a href="#">Comptes</a></li>
-                        <li><a href="#">Personnels</a></li>
-                        <li><a href="#">Paramètres</a></li>
+                        <li><a href="{{ path('client_index') }}">Client</a></li>
+                      <li><a href="{{ path('agence_index') }}">Agence</a></li>
+                       <li><a href="{{ path('tontine_index') }}">Tontine</a></li>
+
                     </ul>
                 </li>
+
+                <li class="sub open">
+                    <a
+                        {#    {% if var == 'clients' or var =='agences' or var =='tontines'    %}
+                                class="nav-link dropdown-toggle active"
+                            {% else %}
+                                class="nav-link dropdown-toggle"
+                            {%  endif %}#}
+
+                            href="javascript:;">
+                        <i class="fa fa-database"></i> Opération de prêts <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+
+                        <li><a href="#">Mise à jour des données de crédit</a></li>
+
+                    </ul>
+                </li>
+
+
                 <li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>
                 <li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
-                <li><a href="tables.html"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Gestionnaires utilisateurs</a></li>
-                <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>
+                <li><a href="tables.html"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Administrations</a></li>
+                <li><a href="preferences.html"><i class="fa fa-cog"></i>Applications</a></li>
                 <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
             </ul>
     </nav>

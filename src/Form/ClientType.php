@@ -57,10 +57,10 @@ class ClientType extends AbstractType
                 'attr'      =>['placeholder'    =>  'Saisissez son quartier']
             ))
 
-            ->add('datenais',dateType::class,array(
-                'widget'     => 'choice',
+            ->add('datenais',DateType::class,array(
+                'label' => 'Date de naissance',
                 'required'  => false,
-                'attr'      =>['placeholder'    =>  'Saisissez sa date de naissance']
+                'attr'      =>['placeholder'    =>  'Saisissez la date de commande']
             ))
 
             ->add('commune', ChoiceType::class, array(

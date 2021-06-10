@@ -1,0 +1,32 @@
+{% extends 'agence/agence.html.twig' %}
+
+
+{% block content %}
+
+    <h1>Modification d'agence'</h1>
+    <div class="col-md-10" style="background-color: #cccccc">
+        {{ form_start(form) }}
+        {{ include('agence/_form.html.twig') }}
+        <hr>
+        <div class="row">
+            <div class="col-md-2">
+                <a class="btn btn-default" href="{{ path('agence_show' , {'id': agence.id}) }}">
+                    <i class="fa fa-chevron-left"></i>
+                    Retour
+                </a>
+            </div>
+            <div class="col-md-2 offset-2">
+                <input class="btn btn-primary" type="submit" value="Modifier" />
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-2"></div>
+            {#{% if is_granted('ROLE_ADMIN') and is_granted('ROLE_SUP') %}#}
+            <div class="col-md-2 offset-2">
+                {% include('agence/_delete_form.html.twig') %}
+            </div>
+            {# {% endif %}#}
+        </div>
+        <br>
+    </div>
+
+{% endblock %}

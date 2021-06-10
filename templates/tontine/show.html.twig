@@ -1,0 +1,86 @@
+{% extends 'tontine/tontine.html.twig' %}
+
+{% block content %}
+
+    {#{% block body %}#}
+<div class="col-lg-10">
+
+    <h1>Détail tontine</h1>
+
+    <table class="table-bordered table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ tontine.id }}</td>
+        </tr>
+        <tr>
+            <th>Num tont</th>
+            <td>{{ tontine.toncliunik }}</td>
+        </tr>
+        <tr>
+            <th>Client</th>
+            <td>{{ tontine.client }}</td>
+        </tr>
+
+        <tr>
+            <th>Date</th>
+            <td>{{ tontine.Dateins }}</td>
+        </tr>
+
+        <tr>
+            <th>Montant eco</th>
+            <td>{{ tontine.meconomie}}</td>
+        </tr>
+        <tr>
+            <th>Agence</th>
+            <td>{{ tontine.agence}}</td>
+        </tr>
+
+        <tr>
+            <th>Num livret</th>
+            <td>{{ tontine.nlivr}}</td>
+        </tr>
+        <tr>
+            <th>Num ordre</th>
+            <td>{{ tontine.nordre }}</td>
+        </tr>
+
+        <tr>
+            <th>Feuillet</th>
+            <td>{{ tontine.feuillet}}</td>
+        </tr>
+        <tr>
+            <th>Fin feuillet</th>
+            <td>{{ tontine.finfeuillet }}</td>
+        </tr>
+
+
+        {#<tr>
+            <th>CreatedOn</th>
+            <td>{{ categorie.createdOn ? categorie.createdOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>EditedOn</th>
+            <td>{{ categorie.editedOn ? categorie.editedOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>#}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <a class="btn btn-default col-md-3" href="{{ path('tontine_index') }}">
+            <i class="fa fa-chevron-left"></i>
+            Retour à la liste
+        </a>
+
+
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('tontine_edit', { 'id': tontine.id}) }}">
+            <i class="fa fa-pencil"></i>
+            Modifier
+        </a>
+
+    </div>
+</div>
+
+
+
+

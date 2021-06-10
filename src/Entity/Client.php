@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -79,6 +81,23 @@ class Client
      */
     private $telephone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tontine::class, inversedBy="client")
+     */
+    private $tontine;
+
+    /**
+     * @ORM\OneToMany(targetEntity=DetailTon::class, mappedBy="client")
+     */
+    private $client;
+
+    public function __construct()
+    {
+        $this->client = new ArrayCollection();
+    }
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,10 +126,6 @@ class Client
 
         return $this;
     }
-
-
-
-
 
     public function getPrenoms(): ?string
     {
@@ -225,4 +240,48 @@ class Client
         return $this->nom;
         // TODO: Implement __toString() method.
     }
+
+    public function getTontine(): ?Tontine
+    {
+        return $this->tontine;
+    }
+
+    public function setTontine(?Tontine $tontine): self
+    {
+        $this->tontine = $tontine;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DetailTon[]
+     */
+    public function getClient(): Collection
+    {
+        return $this->client;
+    }
+
+    public function addClient(DetailTon $client): self
+    {
+        if (!$this->client->contains($client)) {
+            $this->client[] = $client;
+            $client->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(DetailTon $client): self
+    {
+        if ($this->client->removeElement($client)) {
+            // set the owning side to null (unless already changed)
+            if ($client->getClient() === $this) {
+                $client->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
