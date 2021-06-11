@@ -57,6 +57,9 @@
         {{ form_widget(form.commune) }}
         {{ form_errors(form.commune) }}
 
+        {{ form_label(form.file) }}
+        {{ form_widget(form.file) }}
+        {{ form_errors(form.file) }}
 
 
        {# {{ form_label(form.adresserue) }}
@@ -66,9 +69,7 @@
     </div>
 
         <div class="col-md-5 offset-2">
-           {# {{ form_label(form.telephone) }}
-            {{ form_widget(form.telephone) }}
-            {{ form_errors(form.telephone) }}#}
+
 
             {{ form_label(form.arrondissement) }}
             {{ form_widget(form.arrondissement) }}

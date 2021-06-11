@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\Client;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,12 +23,18 @@ class ClientType extends AbstractType
             ->add('nom',TextType::class,array(
                 'label'     => 'Nom :',
                 'required'  => false,
-                'attr'      =>['placeholder'    =>  'Saisissez le nom de l adherent']
+                'attr'      =>[
+                    'placeholder'    =>  'Saisissez le nom de l adherent',
+                    'oninput'   =>  'toutMajuscule(this)'
+                ]
             ))
             ->add('prenoms',TextType::class,array(
                 'label'     => 'Prénom(s) :',
                 'required'  => false,
-                'attr'      =>['placeholder'    =>  'Saisissez le prénom de l adherent']
+                'attr'      =>[
+                    'placeholder'    =>  'Saisissez le prénom de l adherent',
+                    'oninput'   =>  'premiereLettreMajuscule(this)'
+                ]
             ))
 
             ->add('lieu',TextType::class,array(
@@ -42,7 +50,10 @@ class ClientType extends AbstractType
             ->add('activite',TextType::class,array(
                 'label'     => 'Activité :',
                 'required'  => false,
-                'attr'      =>['placeholder'    =>  'Saisissez son activité']
+                'attr'      =>[
+                    'placeholder'    =>  'Saisissez son activité',
+
+                    ]
             ))
 
             ->add('telephone',TextType::class,array(
@@ -57,10 +68,10 @@ class ClientType extends AbstractType
                 'attr'      =>['placeholder'    =>  'Saisissez son quartier']
             ))
 
-            ->add('datenais',dateType::class,array(
-                'widget'     => 'choice',
+            ->add('datenais',BirthdayType::class,array(
+                'label'     => 'Date Naissance',
                 'required'  => false,
-                'attr'      =>['placeholder'    =>  'Saisissez sa date de naissance']
+//                'attr'      =>['placeholder'    =>  'Saisissez sa date de naissance']
             ))
 
             ->add('commune', ChoiceType::class, array(
@@ -142,6 +153,11 @@ class ClientType extends AbstractType
                 'label'     => 'Arrondissement :',
                 'required'  => false,
                 'placeholder'    =>  'Selectionner l arrondissement '
+            ))
+            ->add('file',           FileType::class,array(
+                'label'       =>  'Photo du client: ',
+                'required'   => false,
+                'help'          => '400x400 (taille recommandée)'
             ))
         ;
     }

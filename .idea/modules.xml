@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../ASSIARD/.idea/ASSIARD-PC-ITAZ.iml" filepath="$PROJECT_DIR$/../ASSIARD/.idea/ASSIARD-PC-ITAZ.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gesto.iml" filepath="$PROJECT_DIR$/.idea/gesto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../savoirplus/.idea/savoirplus.iml" filepath="$PROJECT_DIR$/../savoirplus/.idea/savoirplus.iml" />
     </modules>
   </component>
 </project>

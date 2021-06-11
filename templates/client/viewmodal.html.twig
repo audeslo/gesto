@@ -13,6 +13,11 @@
             <div class="modal-body">
                 <table class="table-bordered table" style="background-color: #868e96">
                     <tbody>
+                    <div class="col-xs-6 col-md-3 col-md-offset-9">
+                        <img width="80%" height="80%" src="{{ asset('uploads/images/clients/'~client.slug~'.'~client.url) }}" alt="{{ client.slug }}" class="img-circle">
+                        {#'~produit.slug~'.'~produit.url
+                value="{{ asset('uploads/images/produits/'~ chapitre.slug~'.pdf') }}#}
+                    </div>
                     <tr>
                         <th>Id</th>
                         <td>{{ client.id}}</td>
