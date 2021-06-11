@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:mysql://localhost:3306/gesto</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgres@localhost" uuid="83d3097e-f9d8-4a71-80e7-a1e96e1410bd">
+    <data-source source="LOCAL" name="gesto@localhost" uuid="83d3097e-f9d8-4a71-80e7-a1e96e1410bd">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/gesto</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

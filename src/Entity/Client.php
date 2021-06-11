@@ -29,6 +29,7 @@ class Client
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ !")
      */
     private $nom;
 
@@ -36,6 +37,7 @@ class Client
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ !")
      */
     private $prenoms;
 
@@ -71,6 +73,7 @@ class Client
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ !")
      */
     private $datenais;
 
@@ -134,6 +137,11 @@ class Client
      */
     private $tempFilename;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomcomplet;
+
 
     /**
      * @ORM\PrePersist()
@@ -141,6 +149,7 @@ class Client
     public function datecreated()
     {
         $this->setCreatedOn(new \DateTime('now'));
+        $this->setNomcomplet($this->prenoms.' '.$this->nom);
     }
 
     /**
@@ -149,6 +158,7 @@ class Client
     public function dateupdated()
     {
         $this->setEditedOn(new \DateTime('now'));
+        $this->setNomcomplet($this->prenoms.' '.$this->nom);
     }
 
 
@@ -381,7 +391,7 @@ class Client
 
         // Si on avait un ancien fichier, on le supprime
         if (null !== $this->tempFilename) {
-            $oldFile = $this->getUploadRootDir().'/'.$this->slug.'.'.$this->tempFilename;
+            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
             if (file_exists($oldFile)) {
                 unlink($oldFile);
             }
@@ -392,7 +402,7 @@ class Client
 
         $this->file->move(
             $this->getUploadRootDir(), // Le répertoire de destination
-            $this->slug.'.'.$this->url   // Le nom du fichier à créer, ici « slug.extension »
+            $this->id.'.'.$this->url   // Le nom du fichier à créer, ici « slug.extension »
 
         );
 
@@ -405,7 +415,7 @@ class Client
     public function preRemoveUpload()
     {
         // On sauvegarde temporairement le nom du fichier, car il dépend du slug
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->slug.'.'.$this->url;
+        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->url;
     }
 
 
@@ -498,6 +508,18 @@ class Client
     public function setEditedBy(?User $editedBy): self
     {
         $this->editedBy = $editedBy;
+
+        return $this;
+    }
+
+    public function getNomcomplet(): ?string
+    {
+        return $this->nomcomplet;
+    }
+
+    public function setNomcomplet(?string $nomcomplet): self
+    {
+        $this->nomcomplet = $nomcomplet;
 
         return $this;
     }
