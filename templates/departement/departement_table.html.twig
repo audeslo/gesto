@@ -1,0 +1,11 @@
+{% for departement in departements %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td><a href="{{path('departement_modification',{'slug' : departement.slug})}}">{{ departement.libelle }}</a></td>
+        <td>{{ departement.description }}</td>
+        <td>{{ departement.actif ? 'Actif' : 'Non actif' }}</td>
+        <td>
+            {% include('departement/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

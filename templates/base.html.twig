@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('templates/DataTables/datatables.min.css')}}"/>
         <link rel="stylesheet" href="{{ asset('templates/css/select2.css') }}">
         <link rel="stylesheet" href="{{ asset('templates/css/erreur.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('templates/Notification/dist/overhang.min.css') }}" />
 
     {% endblock %}
 
@@ -55,7 +56,7 @@
                             <span class="btn btn-default">Go</span>
                         </form>
                     </li>
-                    <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
+                    <li class="active"><a href="{{path('Accueil')}}"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
                     <li class="sub open">
                         <a href="javascript:;">
                             <i class="fa fa-database"></i> Menu <div class="pull-right"><span class="caret"></span></div>
@@ -72,7 +73,21 @@
                     <li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>
                     <li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
                     <li><a href="tables.html"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Gestionnaires utilisateurs</a></li>
-                    <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>
+                    <li class="sub open">
+                        <a href="javascript:;">
+                            <i class="fa fa-cog"></i> Préférences <div class="pull-right"><span class="caret"></span></div>
+                        </a>
+                        <ul class="templatemo-submenu">
+                            {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
+                            <li><a href="{{ path('departement_index') }}">Département</a></li>
+                            <li><a href="{{path('commune_index')}}">Commune</a></li>
+                            <li><a href="{{path('agence_index')}}">Agence</a></li>
+                            <li><a href="#">Paramètres</a></li>
+                        </ul>
+                    </li>
+
+
+{#                    <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>#}
                     <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
                 </ul>
             {% endblock %} {#End nav#}
@@ -368,7 +383,12 @@
         <script type="text/javascript" src="{{asset('templates/js/datatable.js')}}"></script>
 
 
+        {#Autocomplete#}
+        <script src="{{ asset('templates/js/select2.js') }}"></script>
 
+        {#Notification#}
+        <script type="text/javascript" src="{{ asset('templates/Notification/libs/jqueryui/1.10.4/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('templates/Notification/dist/overhang.min.js') }}"></script>
 
         <script type="text/javascript" src="{{ asset('templates/js/traitementMajuscule.js') }}"></script>
         <script type="text/javascript" src="{{ asset('templates/js/perso.js') }}"></script>

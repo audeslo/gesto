@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Admin{% endblock %}
+
+{% block nav %}
+    {{ parent() }}
+    {#{% set actif='parametre' %}
+    {% include 'nav_parm.html.twig' %}#}
+{% endblock %} {#End nav#}
+
+ {% block path %}
+     <li><a href="{{path('Accueil')}}">Administration</a></li>
+    {# <li><a href="#">Branches</a></li>#}
+     <li class="active">Département</li>
+     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function valide(ferme){
+            $.ajax({
+                url: "/administration/departement/nouveau",
+                method: "POST",
+                data: $('#form_departement').serialize(),
+                success: function (data) {
+                    if(ferme===true){
+                        $('#form_departemnt')[0].reset();
+                        $('.close').click();
+                        $('#departement_table').html(data);
+                    }
+                        $("body").overhang({
+                            type: "success",
+                            message: "Enregistremnt bien fait!!"
+                        });
+                },
+
+            });
+        }
+    </script>
+
+{% endblock %}

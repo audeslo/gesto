@@ -1,0 +1,11 @@
+{% for commune in communes %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td><a href="{{path('commune_modification',{'slug' : commune.slug})}}">{{ commune.libelle }}</a></td>
+        <td>{{ commune.departement }}</td>
+        <td>{{ commune.actif ? 'Actif' : 'Non actif' }}</td>
+        <td>
+            {% include('commune/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

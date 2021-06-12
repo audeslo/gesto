@@ -1,0 +1,44 @@
+{% extends 'agence/agence.html.twig' %}
+
+
+{% block content %}
+    <div class="card mb-3" >
+        <div class="card-header">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Liste des agences</h2></div>
+        <div class="card-body" >
+            <div class="row">
+                <div class="col-md-2" id="add-modal">
+                    {% include('agence/new.html.twig') %}
+                </div>
+
+                <div class="offset-8 col-md-2 ">
+                    <a href="#" class="btn btn-success ">
+                        <i class="fa fa-print"></i>
+                        Imprimer
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
+
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Agence</th>
+                    <th>Adresse</th>
+                    <th>Etat</th>
+                    <th>Vue</th>
+                </tr>
+                </thead>
+                <tbody id="agence_table">
+                {{ include('agence/agence_table.html.twig') }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-footer small text-muted">Hier à 11:59 </div>
+
+{% endblock %}

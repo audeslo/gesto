@@ -52,30 +52,27 @@
 
     <div class="col-md-5 ">
 
+        {{ form_label(form.departement) }}
+        {{ form_widget(form.departement) }}
+        {{ form_errors(form.departement) }}
 
-        {{ form_label(form.commune) }}
-        {{ form_widget(form.commune) }}
-        {{ form_errors(form.commune) }}
+        {{ form_label(form.arrondissement) }}
+        {{ form_widget(form.arrondissement) }}
+        {{ form_errors(form.arrondissement) }}
 
-        {{ form_label(form.file) }}
-        {{ form_widget(form.file) }}
-        {{ form_errors(form.file) }}
-
-
-       {# {{ form_label(form.adresserue) }}
-        {{ form_widget(form.adresserue) }}
-        {{ form_errors(form.adresserue) }}#}
 
     </div>
 
         <div class="col-md-5 offset-2">
 
 
-            {{ form_label(form.arrondissement) }}
-            {{ form_widget(form.arrondissement) }}
-            {{ form_errors(form.arrondissement) }}
+            {{ form_label(form.commune) }}
+            {{ form_widget(form.commune) }}
+            {{ form_errors(form.commune) }}
 
-
+            {{ form_label(form.file) }}
+            {{ form_widget(form.file) }}
+            {{ form_errors(form.file) }}
 
         </div>
 

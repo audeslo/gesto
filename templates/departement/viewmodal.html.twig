@@ -1,0 +1,63 @@
+<a style="cursor: pointer"  data-toggle="modal" data-target="#{{ departement.id }}">
+    <i style="font-size: 20px" class="fa fa-eye "></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade " id="{{ departement.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
+    <div class="modal-dialog modal-lg" role="document"  >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Détails departement</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-bordered table" style="background-color: #868e96">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ departement.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Libelle</th>
+                        <td>{{ departement.libelle }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ departement.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Etat</th>
+                        <td>{{ departement.actif ? 'Actif' : 'Non actif' }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Enregistré le</th>
+                        <td>
+                            {{ departement.createdOn ? departement.createdOn |date('d/m/Y H:i:s') : ''  }} <br>
+                            Par {{ departement.createdBy }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Modifié le</th>
+                        <td>
+                            {{ departement.editedOn ? departement.editedOn |date('d/m/Y H:i:s') : ''  }} <br>
+                            Par {{ departement.editedBy }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row" >
+                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                        <i class="fa fa-chevron-left"></i>
+                        Retour à la liste
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                {#<button type="button" class="btn btn-primary">Imprimer</button>#}
+            </div>
+        </div>
+    </div>
+</div>

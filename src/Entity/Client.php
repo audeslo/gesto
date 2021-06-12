@@ -66,13 +66,9 @@ class Client
      */
     private $arrondissement;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $commune;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ !")
      */
     private $datenais;
@@ -142,6 +138,21 @@ class Client
      */
     private $nomcomplet;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="clients")
+     */
+    private $departement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Commune::class, inversedBy="clients")
+     */
+    private $commune;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $Numcli;
+
 
     /**
      * @ORM\PrePersist()
@@ -162,6 +173,10 @@ class Client
     }
 
 
+    public function __construct()
+    {
+        $this->setDatenais(new \DateTime('now'));
+    }
 
     public function getId(): ?int
     {
@@ -261,30 +276,6 @@ class Client
     public function setArrondissement(string $arrondissement): self
     {
         $this->arrondissement = $arrondissement;
-
-        return $this;
-    }
-
-    public function getCommune(): ?string
-    {
-        return $this->commune;
-    }
-
-    public function setCommune(string $commune): self
-    {
-        $this->commune = $commune;
-
-        return $this;
-    }
-
-    public function getDatenais(): ?\DateTimeInterface
-    {
-        return $this->datenais;
-    }
-
-    public function setDatenais(\DateTimeInterface $datenais): self
-    {
-        $this->datenais = $datenais;
 
         return $this;
     }
@@ -520,6 +511,54 @@ class Client
     public function setNomcomplet(?string $nomcomplet): self
     {
         $this->nomcomplet = $nomcomplet;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?Departement
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?Departement $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getCommune(): ?Commune
+    {
+        return $this->commune;
+    }
+
+    public function setCommune(?Commune $commune): self
+    {
+        $this->commune = $commune;
+
+        return $this;
+    }
+
+    public function getDatenais(): ?\DateTimeInterface
+    {
+        return $this->datenais;
+    }
+
+    public function setDatenais(?\DateTimeInterface $datenais): self
+    {
+        $this->datenais = $datenais;
+
+        return $this;
+    }
+
+    public function getNumcli(): ?string
+    {
+        return $this->Numcli;
+    }
+
+    public function setNumcli(string $Numcli): self
+    {
+        $this->Numcli = $Numcli;
 
         return $this;
     }

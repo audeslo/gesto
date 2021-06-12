@@ -1,0 +1,11 @@
+{% for agence in agences %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td><a href="{{path('agence_modification',{'slug' : agence.slug})}}">{{ agence.libelle }}</a></td>
+        <td>{{ agence.adresse }}</td>
+        <td>{{ agence.actif ? 'Actif' : 'Non actif' }}</td>
+        <td>
+            {% include('agence/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}
