@@ -1,0 +1,106 @@
+{% extends 'compte/compte.html.twig' %}
+
+
+{% block content %}
+    {#<h1>Liste des clients</h1>#}
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Liste des comptes</h2><hr></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    {#{% include('client/viewmodal.html.twig') %}#}
+                    <a href="{{ path('compte_nouveau') }}" class="btn btn-primary ">
+                        <i class="fa fa-chevron-right"></i>
+                        Nouveau
+                    </a>
+                </div>
+                <div class="offset-8 col-md-2 ">
+                    <a href="#" class="btn btn-success ">
+                        <i class="fa fa-print"></i>
+                        Imprimer
+                    </a>
+                </div>
+            </div>
+            <hr>
+
+            <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    {#            <th>N°</th>#}
+                   {# <th>Client</th>#}
+                    <th>Agence</th>
+                    <th>Numero de Compte</th>
+                    <th>Intitule</th>
+                    <th>Cpcmd</th>
+                    <th>cpasld</th>
+                    <th>Vue</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for compte in comptes %}
+                    <tr>
+                        {# <td>{{ loop.index }}</td>#}
+                        <td><a href="{{ path('compte_modification', {'slug': compte.slug}) }}"> {{ compte ~' '}}}</a></td>
+                        <td>{{ compte.agence }}</td>
+                        <td>{{  compte.numcomp }}</td>
+                        <td>{{ compte.intitule }}</td>
+                        <td>{{ compte.cpcmd }}</td>
+                        <td>{{ compte.cpasld }}</td>
+                        <td>
+
+                            {% include('compte/viewmodal.html.twig') %}
+                            {#<a  class="" href="{{ path('client_show', {'slug': client.slug}) }}"> </a>#}
+
+                            {#     <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a> #}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {#  <a href="{{ path('client_new') }}">Create new</a>#}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+    <h1>Client index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>
+                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
+                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_new') }}">Create new</a>
+{% endblock %}#}

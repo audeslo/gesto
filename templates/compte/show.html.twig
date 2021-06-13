@@ -1,60 +1,75 @@
-{% extends 'client/client.html.twig' %}
+{% extends 'compte/compte.html.twig' %}
 
 {% block content %}
 
     {#{% block body %}#}
 <div class="col-lg-10">
 
-    <h1>Détail client</h1>
+    <h1>Détail du compte</h1>
 
     <table class="table-bordered table">
         <tbody>
         <tr>
             <th>Id</th>
-            <td>{{ client.id }}</td>
+            <td>{{ compte.id }}</td>
         </tr>
         <tr>
-            <th>Nom</th>
-            <td>{{ client.nom }}</td>
+            <th>Client</th>
+            <td>{{ compte.client }}</td>
         </tr>
         <tr>
-            <th>Prénoms</th>
-            <td>{{ client.prenoms }}</td>
-        </tr>
-
-        <tr>
-            <th>Date naissance</th>
-            <td>{{ client.datenais ? client.datenais | date('d-M-Y') : ''}}</td>
-        </tr>
-        <tr>
-            <th>Lieu</th>
-            <td>{{ client.lieu}}</td>
+            <th>Agence</th>
+            <td>{{ compte.agence }}</td>
         </tr>
 
         <tr>
-            <th>Téléphone</th>
-            <td>{{ client.telephone}}</td>
+            <th>Numero de compte</th>
+            <td>{{ compte.numcomp}}</td>
         </tr>
         <tr>
-            <th>Profession</th>
-            <td>{{ client.profession }}</td>
-        </tr>
-        <tr>
-            <th>Activité</th>
-            <td>{{ client.activite }}</td>
+            <th>Intitule</th>
+            <td>{{ compte.intitule}}</td>
         </tr>
 
         <tr>
-            <th>Quartier</th>
-            <td>{{ client.quartier}}</td>
+            <th>Cpcmd</th>
+            <td>{{ compte.cpcmd}}</td>
+        </tr>
+
+        <tr>
+            <th>cpasld</th>
+            <td>{{ compte.cpasld }}</td>
+        </tr>
+
+        <tr>
+            <th>cpasldj </th>
+            <td>{{ compte.cpasldj }}</td>
+        </tr>
+            <th>cpcmc</th>
+            <td>{{ compte.cpcmc }}</td>
+        </tr>
+
+        <tr>
+            <th>cpnbmvt</th>
+            <td>{{ compte.cpnbmvt}}</td>
         </tr>
         <tr>
-            <th>Commune</th>
-            <td>{{ client.commune }}</td>
+            <th>cpdtder</th>
+            <td>{{ compte.cpdtder ? compte.cpdtder | date('d-M-Y') : ''}}</td>
         </tr>
         <tr>
-            <th>Arrondissement</th>
-            <td>{{ client.arrondissement }}</td>
+            <th>mdate</th>
+            <td>{{ compte.mdate ? compte.mdate | date('d-M-Y') : ''}}</td>
+        </tr>
+
+        <tr>
+            <th>mheure</th>
+            <td>{{ compte.mheure ? compte.mheure | date('d-M-Y') : '' }}</td>
+        </tr>
+
+        <tr>
+            <th>annexe</th>
+            <td>{{ compte.annexo }}</td>
         </tr>
 
         {#<tr>
@@ -69,13 +84,13 @@
     </table>
 
     <div class="row">
-        <a class="btn btn-default col-md-3" href="{{ path('client_index') }}">
+        <a class="btn btn-default col-md-3" href="{{ path('compte_index') }}">
             <i class="fa fa-chevron-left"></i>
             Retour à la liste
         </a>
 
 
-        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('client_modification', { 'slug': client.slug}) }}">
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('compte_modification', { 'slug': compte.slug}) }}">
             <i class="fa fa-pencil"></i>
             Modifier
         </a>

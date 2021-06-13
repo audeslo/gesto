@@ -1,0 +1,44 @@
+{% extends 'compte/compte.html.twig' %}
+
+{#{% block title %}Edit Client{% endblock %}
+
+{% block body %}
+    <h1>Edit Client</h1>
+
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('client_index') }}">back to list</a>
+
+    {{ include('client/_delete_form.html.twig') }}
+{% endblock %}#}
+
+
+{% block content %}
+
+    <h1>Modification du compte</h1>
+    <div class="col-md-10" style="background-color: #cccccc">
+        {{ form_start(form) }}
+        {{ include('compte/_form.html.twig') }}
+        <hr>
+        <div class="row">
+            <div class="col-md-2">
+                <a class="btn btn-default" href="{{ path('compte_show' , {'id': compte.id}) }}">
+                    <i class="fa fa-chevron-left"></i>
+                    Retour
+                </a>
+            </div>
+            <div class="col-md-2 offset-2">
+                <input class="btn btn-primary" type="submit" value="Modifier" />
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-2"></div>
+            {#{% if is_granted('ROLE_ADMIN') and is_granted('ROLE_SUP') %}#}
+            <div class="col-md-2 offset-2">
+                {% include('compte/_delete_form.html.twig') %}
+            </div>
+            {# {% endif %}#}
+        </div>
+        <br>
+    </div>
+
+{% endblock %}

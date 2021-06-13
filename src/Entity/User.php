@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -144,12 +145,30 @@ class User
      */
     private $changedpassword;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Compte::class, mappedBy="editedBy")
+     */
+    private $comptes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Compte::class, mappedBy="createdBy")
+     */
+    private $User;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tontine::class, mappedBy="createdBy")
+     */
+    private $tontines;
+
 
     public function __construct()
     {
         $this->changedpassword = true;
         $this->configurations = new ArrayCollection();
         $this->contrats = new ArrayCollection();
+        $this->comptes = new ArrayCollection();
+        $this->User = new ArrayCollection();
+        $this->tontines = new ArrayCollection();
     }
 
     /**
@@ -483,6 +502,96 @@ class User
     public function setEditedBy(?self $editedBy): self
     {
         $this->editedBy = $editedBy;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Compte[]
+     */
+    public function getComptes(): Collection
+    {
+        return $this->comptes;
+    }
+
+    public function addCompte(Compte $compte): self
+    {
+        if (!$this->comptes->contains($compte)) {
+            $this->comptes[] = $compte;
+            $compte->setEditedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompte(Compte $compte): self
+    {
+        if ($this->comptes->removeElement($compte)) {
+            // set the owning side to null (unless already changed)
+            if ($compte->getEditedBy() === $this) {
+                $compte->setEditedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Compte[]
+     */
+    public function getUser(): Collection
+    {
+        return $this->User;
+    }
+
+    public function addUser(Compte $user): self
+    {
+        if (!$this->User->contains($user)) {
+            $this->User[] = $user;
+            $user->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(Compte $user): self
+    {
+        if ($this->User->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getCreatedBy() === $this) {
+                $user->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tontine[]
+     */
+    public function getTontines(): Collection
+    {
+        return $this->tontines;
+    }
+
+    public function addTontine(Tontine $tontine): self
+    {
+        if (!$this->tontines->contains($tontine)) {
+            $this->tontines[] = $tontine;
+            $tontine->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTontine(Tontine $tontine): self
+    {
+        if ($this->tontines->removeElement($tontine)) {
+            // set the owning side to null (unless already changed)
+            if ($tontine->getCreatedBy() === $this) {
+                $tontine->setCreatedBy(null);
+            }
+        }
 
         return $this;
     }

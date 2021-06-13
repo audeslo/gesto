@@ -1,0 +1,103 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+<hr>
+<div class="row">
+
+    <div class="col-md-5 ">
+        {{ form_label(form.numton) }}
+        {{ form_widget(form.numton) }}
+        {{ form_errors(form.numton) }}
+
+        {{ form_label(form.client) }}
+        {{ form_widget(form.client) }}
+        {{ form_errors(form.client) }}
+
+        {{ form_label(form.agence) }}
+        {{ form_widget(form.agence) }}
+        {{ form_errors(form.agence) }}
+
+        {{ form_label(form.compte) }}
+        {{ form_widget(form.compte) }}
+        {{ form_errors(form.compte) }}
+    </div>
+
+    <div class="col-md-5 offset-2">
+
+        {{ form_label(form.meconomie) }}
+        {{ form_widget(form.meconomie) }}
+        {{ form_errors(form.meconomie) }}
+
+        {{ form_label(form.numordre) }}
+        {{ form_widget(form.numordre) }}
+        {{ form_errors(form.numordre) }}
+
+        {{ form_label(form.dateinscr) }}
+        {{ form_widget(form.dateinsc) }}
+        {{ form_errors(form.dateinsc) }}
+
+        {{ form_label(form.numlivret) }}
+        {{ form_widget(form.numlivret) }}
+        {{ form_errors(form.numlivret) }}
+
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-5 ">
+
+        {{ form_label(form.nbmois) }}
+        {{ form_widget(form.nbmois) }}
+        {{ form_errors(form.nbmois) }}
+
+        {{ form_label(form.mcredit) }}
+        {{ form_widget(form.mcredit) }}
+        {{ form_errors(form.mcredit) }}
+
+        {{ form_label(form.remboursement) }}
+        {{ form_widget(form.remboursement) }}
+        {{ form_errors(form.remboursement) }}
+
+        {{ form_label(form.avance) }}
+        {{ form_widget(form.avance) }}
+        {{ form_errors(form.avance) }}
+        {{ form_label(form.interet) }}
+        {{ form_widget(form.interet) }}
+        {{ form_errors(form.interet) }}
+
+        {{ form_label(form.feuillet) }}
+        {{ form_widget(form.feuillet) }}
+        {{ form_errors(form.feuillet) }}
+
+
+    </div>
+
+        <div class="col-md-5 offset-2">
+
+            {{ form_label(form.finfeuillet) }}
+            {{ form_widget(form.finfeuillet) }}
+            {{ form_errors(form.finfeuilet) }}
+
+            {{ form_label(form.numcreditencours) }}
+            {{ form_widget(form.numcreditencours) }}
+            {{ form_errors(form.numcreditencours) }}
+
+            {{ form_label(form.nbmaxappoint) }}
+            {{ form_widget(form.nbmaxappoint) }}
+            {{ form_errors(form.nbmaxappoint) }}
+
+            {{ form_label(form.daterappoint) }}
+            {{ form_widget(form.daterappoint) }}
+            {{ form_errors(form.daterappoint) }}
+
+
+        </div>
+
+    </div>
+
