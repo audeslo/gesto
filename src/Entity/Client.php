@@ -165,6 +165,11 @@ class Client
      */
     private $tontines;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="client")
+     */
+    private $operations;
+
 
     /**
      * @ORM\PrePersist()
@@ -190,6 +195,7 @@ class Client
         $this->setDatenais(new \DateTime('now'));
         $this->comptes = new ArrayCollection();
         $this->tontines = new ArrayCollection();
+        $this->operations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -631,6 +637,36 @@ class Client
             // set the owning side to null (unless already changed)
             if ($tontine->getClient() === $this) {
                 $tontine->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->removeElement($operation)) {
+            // set the owning side to null (unless already changed)
+            if ($operation->getClient() === $this) {
+                $operation->setClient(null);
             }
         }
 

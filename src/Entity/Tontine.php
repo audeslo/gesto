@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TontineRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -133,6 +135,16 @@ class Tontine
      * @ORM\ManyToOne(targetEntity=Compte::class, inversedBy="tontines")
      */
     private $compte;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="tontine")
+     */
+    private $operations;
+
+    public function __construct()
+    {
+        $this->operations = new ArrayCollection();
+    }
 
 
     /**
@@ -435,5 +447,35 @@ class Tontine
     }
     public function __toString(){
         return $this ->numlivret;
+    }
+
+    /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setTontine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->removeElement($operation)) {
+            // set the owning side to null (unless already changed)
+            if ($operation->getTontine() === $this) {
+                $operation->setTontine(null);
+            }
+        }
+
+        return $this;
     }
 }

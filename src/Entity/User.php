@@ -160,6 +160,11 @@ class User
      */
     private $tontines;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="createdBy")
+     */
+    private $operations;
+
 
     public function __construct()
     {
@@ -169,6 +174,7 @@ class User
         $this->comptes = new ArrayCollection();
         $this->User = new ArrayCollection();
         $this->tontines = new ArrayCollection();
+        $this->operations = new ArrayCollection();
     }
 
     /**
@@ -590,6 +596,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($tontine->getCreatedBy() === $this) {
                 $tontine->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->removeElement($operation)) {
+            // set the owning side to null (unless already changed)
+            if ($operation->getCreatedBy() === $this) {
+                $operation->setCreatedBy(null);
             }
         }
 
