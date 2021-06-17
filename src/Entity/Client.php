@@ -149,7 +149,7 @@ class Client
     private $commune;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $Numcli;
 
