@@ -1,0 +1,88 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+<hr>
+<div class="row">
+
+    <div class="col-md-5 ">
+        {{ form_label(form.numop) }}
+        {{ form_widget(form.numop) }}
+        {{ form_errors(form.numop) }}
+
+        {{ form_label(form.agence) }}
+        {{ form_widget(form.agence) }}
+        {{ form_errors(form.agence) }}
+
+        {{ form_label(form.client) }}
+        {{ form_widget(form.client) }}
+        {{ form_errors(form.client) }}
+
+
+
+
+    </div>
+
+    <div class="col-md-5 offset-2">
+
+        {{ form_label(form.tontine) }}
+        {{ form_widget(form.tontine) }}
+        {{ form_errors(form.tontine) }}
+
+        {{ form_label(form.numpiece) }}
+        {{ form_widget(form.numpiece) }}
+        {{ form_errors(form.numpiece) }}
+
+        {{ form_label(form.libelleop) }}
+        {{ form_widget(form.libelleop) }}
+        {{ form_errors(form.libelleop) }}
+
+
+
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-5 ">
+
+        {{ form_label(form.dateop) }}
+        {{ form_widget(form.dateop) }}
+        {{ form_errors(form.dateop) }}
+
+        {{ form_label(form.refpiece) }}
+        {{ form_widget(form.refpiece) }}
+        {{ form_errors(form.refpiece) }}
+
+        {{ form_label(form.montantop) }}
+        {{ form_widget(form.montantop) }}
+        {{ form_errors(form.montantop) }}
+
+    </div>
+
+    <div class="col-md-5 offset-2">
+
+        {{ form_label(form.genere) }}
+        {{ form_widget(form.genere) }}
+        {{ form_errors(form.genere) }}
+
+
+        {{ form_label(form.datecomptabilisation) }}
+        {{ form_widget(form.datecomptabilisation) }}
+        {{ form_errors(form.datecomptabilisation) }}
+
+
+
+        {{ form_label(form.valide) }}
+        {{ form_widget(form.valide) }}
+        {{ form_errors(form.valide) }}
+
+
+    </div>
+
+</div>
+

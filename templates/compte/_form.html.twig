@@ -1,0 +1,86 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+<hr>
+<div class="row">
+
+    <div class="col-md-5 ">
+        {{ form_label(form.numcomp) }}
+        {{ form_widget(form.numcomp) }}
+        {{ form_errors(form.numcomp) }}
+
+        {{ form_label(form.agence) }}
+        {{ form_widget(form.agence) }}
+        {{ form_errors(form.agence) }}
+
+        {{ form_label(form.client) }}
+        {{ form_widget(form.client) }}
+        {{ form_errors(form.client) }}
+
+
+        {{ form_label(form.intitule) }}
+        {{ form_widget(form.intitule) }}
+        {{ form_errors(form.intitule) }}
+
+    </div>
+
+    <div class="col-md-5 offset-2">
+
+        {{ form_label(form.cpcmd) }}
+        {{ form_widget(form.cpcmd) }}
+        {{ form_errors(form.cpcmd) }}
+
+        {{ form_label(form.cpcmc) }}
+        {{ form_widget(form.cpcmc) }}
+        {{ form_errors(form.cpcmc) }}
+
+        {{ form_label(form.cpasld) }}
+        {{ form_widget(form.cpasld) }}
+        {{ form_errors(form.cpasld) }}
+
+        {{ form_label(form.cpnbmvt) }}
+        {{ form_widget(form.cpnbmvt) }}
+        {{ form_errors(form.cpnbmvt) }}
+
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-5 ">
+        {{ form_label(form.cpasldj) }}
+        {{ form_widget(form.cpasldj) }}
+        {{ form_errors(form.cpasldj) }}
+
+        {{ form_label(form.cpdtder) }}
+        {{ form_widget(form.cpdtder) }}
+        {{ form_errors(form.cpdtder) }}
+
+        {{ form_label(form.mdate) }}
+        {{ form_widget(form.mdate) }}
+        {{ form_errors(form.mdate) }}
+
+
+
+    </div>
+
+    <div class="col-md-5 offset-2">
+
+
+        {{ form_label(form.mheure) }}
+        {{ form_widget(form.mheure) }}
+        {{ form_errors(form.mheure) }}
+
+        {{ form_label(form.annexo) }}
+        {{ form_widget(form.annexo) }}
+        {{ form_errors(form.annexo) }}
+
+    </div>
+
+</div>
+

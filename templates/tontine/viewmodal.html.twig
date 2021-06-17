@@ -1,0 +1,137 @@
+         <a style="cursor: pointer"  data-toggle="modal" data-target="#{{ tontine.slug}}">
+    <i style="font-size: 20px" class="fa fa-eye "></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade " id="{{ tontine.slug}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
+    <div class="modal-dialog modal-lg" role="document"  >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Détails des paramètres tontines</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-bordered table" style="background-color: #868e96">
+                    <tbody>
+                    <div class="col-xs-6 col-md-3 col-md-offset-9">
+                        {#'~produit.slug~'.'~produit.url
+                value="{{ asset('uploads/images/produits/'~ chapitre.slug~'.pdf') }}#}
+                    </div>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ tontine.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numéro tontine</th>
+                        <td>{{ tontine.numton }}</td>
+                    </tr>
+                    <tr>
+                        <th>Client</th>
+                        <td>{{ tontine.client }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Agence</th>
+                        <td>{{ tontine.agence}}</td>
+                    </tr>
+                    <tr>
+                        <th>compte</th>
+                        <td>{{ tontine.compte}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Economie</th>
+                        <td>{{ tontine.meconomie}}</td>
+                    </tr>
+                    <tr>
+                        <th>Numero d'ordre</th>
+                        <td>{{ tontine.numordre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date d'inscription</th>
+                        <td>{{ tontine.dateinsc ? tontine.dateinsc | date('d-M-Y') : ''}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Numero livret</th>
+                        <td>{{ tontine.numlivret}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de mois</th>
+                        <td>{{ tontine.nbmois }}</td>
+                    </tr>
+                    <tr>
+                        <th>remboursement</th>
+                        <td>{{ tontine.remboursement }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Avance</th>
+                        <td>{{ tontine.avance}}</td>
+                    </tr>
+                    <tr>
+                        <th>interet</th>
+                        <td>{{ tontine.interet }}</td>
+                    </tr>
+                    <tr>
+                        <th>montant de credit</th>
+                        <td>{{ tontine.mcredit }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>feuillet</th>
+                        <td>{{ tontine.feuillet}}</td>
+                    </tr>
+                    <tr>
+                        <th>fin de feuillet</th>
+                        <td>{{ tontine.finfeuillet }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numero credit en cours</th>
+                        <td>{{ tontine.numcretencours }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Nombre appoint </th>
+                        <td>{{ tontine.nbmaxappoint}}</td>
+                    </tr>
+                    <tr>
+                        <th>dateraappoint</th>
+                        <td>{{ tontine.daterappoint ? tontine.daterappoint | date('d-M-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numero credit en cours</th>
+                        <td>{{ tontine.numcretencours }}</td>
+                    </tr>
+
+                   {# <tr>
+                        <th>Enregistré le</th>
+                        <td>
+                            {{ fournisseur.createdOn ? fournisseur.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            Par {{ fournisseur.createdBy }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Modifié le </th>
+                        <td>
+                            {{ fournisseur.editedOn ? fournisseur.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            Par {{ fournisseur.editedBy }}
+                        </td>
+                    </tr>#}
+
+                    </tbody>
+                </table>
+                <div class="row" >
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <i class="fa fa-chevron-left"></i>
+                        Retour à la liste
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary">Imprimer</button>
+            </div>
+        </div>
+    </div>
+</div>

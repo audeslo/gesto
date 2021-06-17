@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AgenceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -69,6 +71,28 @@ class Agence
      * @ORM\Column(type="boolean")
      */
     private $actif;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Compte::class, mappedBy="agence")
+     */
+    private $comptes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tontine::class, mappedBy="agence")
+     */
+    private $tontines;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="agence")
+     */
+    private $operations;
+
+    public function __construct()
+    {
+        $this->comptes = new ArrayCollection();
+        $this->tontines = new ArrayCollection();
+        $this->operations = new ArrayCollection();
+    }
 
     /**
      * @ORM\PrePersist()
@@ -198,6 +222,12 @@ class Agence
 
         return $this;
     }
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+      /*  return $this->nom.' '.$this->prenoms;*/
+        return $this->libelle ;
+    }
 
     public function getEditedBy(): ?User
     {
@@ -207,6 +237,96 @@ class Agence
     public function setEditedBy(?User $editedBy): self
     {
         $this->editedBy = $editedBy;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Compte[]
+     */
+    public function getComptes(): Collection
+    {
+        return $this->comptes;
+    }
+
+    public function addCompte(Compte $compte): self
+    {
+        if (!$this->comptes->contains($compte)) {
+            $this->comptes[] = $compte;
+            $compte->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompte(Compte $compte): self
+    {
+        if ($this->comptes->removeElement($compte)) {
+            // set the owning side to null (unless already changed)
+            if ($compte->getAgence() === $this) {
+                $compte->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tontine[]
+     */
+    public function getTontines(): Collection
+    {
+        return $this->tontines;
+    }
+
+    public function addTontine(Tontine $tontine): self
+    {
+        if (!$this->tontines->contains($tontine)) {
+            $this->tontines[] = $tontine;
+            $tontine->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTontine(Tontine $tontine): self
+    {
+        if ($this->tontines->removeElement($tontine)) {
+            // set the owning side to null (unless already changed)
+            if ($tontine->getAgence() === $this) {
+                $tontine->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->removeElement($operation)) {
+            // set the owning side to null (unless already changed)
+            if ($operation->getAgence() === $this) {
+                $operation->setAgence(null);
+            }
+        }
 
         return $this;
     }

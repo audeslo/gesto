@@ -1,60 +1,62 @@
-{% extends 'client/client.html.twig' %}
+{% extends 'opeation/operation.html.twig' %}
 
 {% block content %}
 
     {#{% block body %}#}
 <div class="col-lg-10">
 
-    <h1>Détail client</h1>
+    <h1>Détail de l'opération</h1>
 
     <table class="table-bordered table">
         <tbody>
         <tr>
             <th>Id</th>
-            <td>{{ client.id }}</td>
-        </tr>
-        <tr>
-            <th>Nom</th>
-            <td>{{ client.nom }}</td>
-        </tr>
-        <tr>
-            <th>Prénoms</th>
-            <td>{{ client.prenoms }}</td>
+            <td>{{ operation.id }}</td>
         </tr>
 
         <tr>
-            <th>Date naissance</th>
-            <td>{{ client.datenais ? client.datenais | date('d-M-Y') : ''}}</td>
+            <th>Date operation</th>
+            <td>{{ operation.dateop ? operation.dateop | date('d-M-Y') : '' }}</td>
         </tr>
         <tr>
-            <th>Lieu</th>
-            <td>{{ client.lieu}}</td>
-        </tr>
-
-        <tr>
-            <th>Téléphone</th>
-            <td>{{ client.telephone}}</td>
+            <th>Numero operation</th>
+            <td>{{ operation.numop }}</td>
         </tr>
         <tr>
-            <th>Profession</th>
-            <td>{{ client.profession }}</td>
-        </tr>
-        <tr>
-            <th>Activité</th>
-            <td>{{ client.activite }}</td>
+            <th>Agence</th>
+            <td>{{ operation.agence }}</td>
         </tr>
 
         <tr>
-            <th>Quartier</th>
-            <td>{{ client.quartier}}</td>
+            <th>Tontine</th>
+            <td>{{ operation.tontine}}</td>
         </tr>
         <tr>
-            <th>Commune</th>
-            <td>{{ client.commune }}</td>
+            <th>Numero pièce</th>
+            <td>{{ operation.numpiece}}</td>
         </tr>
+
         <tr>
-            <th>Arrondissement</th>
-            <td>{{ client.arrondissement }}</td>
+            <th>libelle d'operation</th>
+            <td>{{ operation.libelleop}}</td>
+        </tr>
+
+        <tr>
+            <th>montant operation</th>
+            <td>{{ operation.montantop }}</td>
+        </tr>
+
+        <tr>
+            <th>reference pièce </th>
+            <td>{{ operation.refpiece }}</td>
+        </tr>
+            <th>genere</th>
+            <td>{{ operation.genere }}</td>
+        </tr>
+
+        <tr>
+            <th>date de comptabilisation</th>
+            <td>{{ operation.datecomptabilisation ? operation.datecomptabilisation | date('d-M-Y') : ''}}</td>
         </tr>
 
         {#<tr>
@@ -69,13 +71,13 @@
     </table>
 
     <div class="row">
-        <a class="btn btn-default col-md-3" href="{{ path('client_index') }}">
+        <a class="btn btn-default col-md-3" href="{{ path('operation_index') }}">
             <i class="fa fa-chevron-left"></i>
             Retour à la liste
         </a>
 
 
-        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('client_modification', { 'slug': client.slug}) }}">
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('compte_modification', { 'slug': compte.slug}) }}">
             <i class="fa fa-pencil"></i>
             Modifier
         </a>
