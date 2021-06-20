@@ -10,6 +10,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=TontineRepository::class)
+ * @ORM\Table (
+ *     name="tontine",
+ *      uniqueConstraints={@ORM\UniqueConstraint(columns={"numcomp", "ranglivret"})}
+ * )
+ * @ORM\HasLifecycleCallbacks()
  */
 class Tontine
 {
@@ -26,29 +31,30 @@ class Tontine
     private $meconomie;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $numordre;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date" , nullable=true)
      */
     private $dateinscr;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="integer")
      */
-    private $numlivret;
+    private $ranglivret;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="string")
+     */
+    private $reflivret;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true))
      */
     private $nbmois;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $numton;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -58,7 +64,7 @@ class Tontine
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $remboursement;
+    private $mdebit;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -66,24 +72,15 @@ class Tontine
     private $avance;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $interet;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $feuillet;
+    private $nbfeuillet;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $finfeuillet;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $numcreditencours;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -97,7 +94,7 @@ class Tontine
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"feuillet"})
+     * @Gedmo\Slug(fields={"reflivret","ranglivret","nbfeuillet","nbmaxappoint"})
      */
     private $slug;
 
@@ -107,7 +104,7 @@ class Tontine
     private $createdBy;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="date")
      */
     private $createdOn;
 
@@ -141,8 +138,43 @@ class Tontine
      */
     private $operations;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $Note;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $actif;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $bloqueravance;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $feuillet;
+
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    private $numcomp;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Detailtontine::class, mappedBy="tontine")
+     */
+    private $detailtontines;
+
     public function __construct()
     {
+        $this->setDateinscr(new \DateTime('now'));
+        $this->actif=true;
+        $this->feuillet=1;
+        $this->numordre=0;
+        $this->detailtontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
     }
 
@@ -153,7 +185,6 @@ class Tontine
     public function datecreated()
     {
         $this->setCreatedOn(new \DateTime('now'));
-      /*  $this->setNomcomplet($this->prenoms.' '.$this->nom);*/
     }
 
     /**
@@ -162,7 +193,6 @@ class Tontine
     public function dateupdated()
     {
         $this->setEditedOn(new \DateTime('now'));
-       /* $this->setNomcomplet($this->prenoms.' '.$this->nom);*/
     }
 
     public function getId(): ?int
@@ -199,24 +229,14 @@ class Tontine
         return $this->dateinscr;
     }
 
-    public function setDateinscr(\DateTimeInterface $dateinscr): self
+    public function setDateinscr( $dateinscr): self
     {
         $this->dateinscr = $dateinscr;
 
         return $this;
     }
 
-    public function getNumlivret(): ?int
-    {
-        return $this->numlivret;
-    }
 
-    public function setNumlivret(int $numlivret): self
-    {
-        $this->numlivret = $numlivret;
-
-        return $this;
-    }
 
     public function getNbmois(): ?int
     {
@@ -226,18 +246,6 @@ class Tontine
     public function setNbmois(int $nbmois): self
     {
         $this->nbmois = $nbmois;
-
-        return $this;
-    }
-
-    public function getNumton(): ?int
-    {
-        return $this->numton;
-    }
-
-    public function setNumton(?int $numton): self
-    {
-        $this->numton = $numton;
 
         return $this;
     }
@@ -254,17 +262,6 @@ class Tontine
         return $this;
     }
 
-    public function getRemboursement(): ?int
-    {
-        return $this->remboursement;
-    }
-
-    public function setRemboursement(?int $remboursement): self
-    {
-        $this->remboursement = $remboursement;
-
-        return $this;
-    }
 
     public function getAvance(): ?int
     {
@@ -278,29 +275,6 @@ class Tontine
         return $this;
     }
 
-    public function getInteret(): ?int
-    {
-        return $this->interet;
-    }
-
-    public function setInteret(?int $interet): self
-    {
-        $this->interet = $interet;
-
-        return $this;
-    }
-
-    public function getFeuillet(): ?string
-    {
-        return $this->feuillet;
-    }
-
-    public function setFeuillet(?string $feuillet): self
-    {
-        $this->feuillet = $feuillet;
-
-        return $this;
-    }
 
     public function getFinfeuillet(): ?string
     {
@@ -314,17 +288,6 @@ class Tontine
         return $this;
     }
 
-    public function getNumcreditencours(): ?string
-    {
-        return $this->numcreditencours;
-    }
-
-    public function setNumcreditencours(?string $numcreditencours): self
-    {
-        $this->numcreditencours = $numcreditencours;
-
-        return $this;
-    }
 
     public function getNbmaxappoint(): ?int
     {
@@ -446,7 +409,7 @@ class Tontine
         return $this;
     }
     public function __toString(){
-        return $this ->numlivret;
+        return $this ->reflivret;
     }
 
     /**
@@ -475,6 +438,145 @@ class Tontine
                 $operation->setTontine(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReflivret(): ?string
+    {
+        return $this->reflivret;
+    }
+
+    public function setReflivret(string $reflivret): self
+    {
+        $this->reflivret = $reflivret;
+
+        return $this;
+    }
+
+    public function getMdebit(): ?int
+    {
+        return $this->mdebit;
+    }
+
+    public function setMdebit(?int $mdebit): self
+    {
+        $this->mdebit = $mdebit;
+
+        return $this;
+    }
+
+
+    public function getNote(): ?string
+    {
+        return $this->Note;
+    }
+
+    public function setNote(?string $Note): self
+    {
+        $this->Note = $Note;
+
+        return $this;
+    }
+
+    public function getActif(): ?bool
+    {
+        return $this->actif;
+    }
+
+    public function setActif(bool $actif): self
+    {
+        $this->actif = $actif;
+
+        return $this;
+    }
+
+    public function getBloqueravance(): ?bool
+    {
+        return $this->bloqueravance;
+    }
+
+    public function setBloqueravance(?bool $bloqueravance): self
+    {
+        $this->bloqueravance = $bloqueravance;
+
+        return $this;
+    }
+
+    public function getNbfeuillet(): ?int
+    {
+        return $this->nbfeuillet;
+    }
+
+    public function setNbfeuillet(int $nbfeuillet): self
+    {
+        $this->nbfeuillet = $nbfeuillet;
+
+        return $this;
+    }
+
+    public function getFeuillet(): ?int
+    {
+        return $this->feuillet;
+    }
+
+    public function setFeuillet(?int $feuillet): self
+    {
+        $this->feuillet = $feuillet;
+
+        return $this;
+    }
+
+    public function getNumcomp(): ?string
+    {
+        return $this->numcomp;
+    }
+
+    public function setNumcomp(string $numcomp): self
+    {
+        $this->numcomp = $numcomp;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Detailtontine[]
+     */
+    public function getDetailtontines(): Collection
+    {
+        return $this->detailtontines;
+    }
+
+    public function addDetailtontine(Detailtontine $detailtontine): self
+    {
+        if (!$this->detailtontines->contains($detailtontine)) {
+            $this->detailtontines[] = $detailtontine;
+            $detailtontine->setTontine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailtontine(Detailtontine $detailtontine): self
+    {
+        if ($this->detailtontines->removeElement($detailtontine)) {
+            // set the owning side to null (unless already changed)
+            if ($detailtontine->getTontine() === $this) {
+                $detailtontine->setTontine(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRanglivret(): ?int
+    {
+        return $this->ranglivret;
+    }
+
+    public function setRanglivret(int $ranglivret): self
+    {
+        $this->ranglivret = $ranglivret;
 
         return $this;
     }

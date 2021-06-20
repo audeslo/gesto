@@ -12,15 +12,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class TontineController
+ * @package App\Controller
+ * @Route ("/tontine")
+ */
 class TontineController extends AbstractController
 {
     /**
-     * @Route("/", name="tontine_index", methods={"GET"})
+     * @Route("/", name="tontine_index", methods={"GET","POST"})
      */
-    public function index(TontineRepository $tontineRepository): Response
+    public function index(TontineRepository $tontineRepository,Request $request): Response
     {
+        $tontine = new Tontine();
+        $form = $this->createForm(TontineType::class, $tontine);
+        $form->handleRequest($request);
+
         return $this->render('tontine/index.html.twig', [
             'tontines' => $tontineRepository->findAll(),
+            'form' => $form->createView(),
+            'tontine' => $tontine
         ]);
     }
 
@@ -35,6 +46,7 @@ class TontineController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $tontine->setNumcomp($form['compte']->getData()->getNumcomp());
             $entityManager->persist($tontine);
             $entityManager->flush();
             $request->getSession()->getFlashBag()->add('success', 'Enregistrement bien effectué.');

@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="{{ asset('templates/css/templatemo_main.css') }}">
         <link rel="stylesheet" type="text/css" href="{{asset('templates/DataTables/datatables.min.css')}}"/>
         <link rel="stylesheet" href="{{ asset('templates/css/select2.css') }}">
-        <link rel="stylesheet" href="{{ asset('templates/css/erreur.css') }}">
+        <link rel="stylesheet" href="{{ asset('templates/css/erreur.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('templates/Notification/dist/overhang.min.css') }}" />
-
+        {#<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />#}
     {% endblock %}
 
 </head>
@@ -49,7 +49,8 @@
 
         <div class="navbar-collapse collapse templatemo-sidebar">
             {% block nav %}
-                <ul class="templatemo-sidebar-menu">
+                {{ include('nav.html.twig') }}
+                {#<ul class="templatemo-sidebar-menu">
                     <li>
                         <form class="navbar-form">
                             <input type="text" class="form-control" id="templatemo_search_box" placeholder="Search...">
@@ -62,7 +63,8 @@
                             <i class="fa fa-database"></i> Menu <div class="pull-right"><span class="caret"></span></div>
                         </a>
                         <ul class="templatemo-submenu">
-                       {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
+                            <li><a href="{{path('tontine_index')}}">Tontine</a></li>
+                            <li><a href="{{path('operation_index')}}">Operation Ton.</a></li>
                             <li><a href="{{ path('client_index') }}">Client</a></li>
                             <li><a href="{{ path('zone_index') }}">Zone</a></li>
                             <li><a href="{{ path('compte_index') }}">Comptes</a></li>
@@ -77,21 +79,19 @@
                             <i class="fa fa-cog"></i> Préférences <div class="pull-right"><span class="caret"></span></div>
                         </a>
                         <ul class="templatemo-submenu">
-                            {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
+                            #}{#     <li><a href="{{ path('client_index') }}">Client</a></li>#}{#
                             <li><a href="{{ path('departement_index') }}">Département</a></li>
                             <li><a href="{{path('commune_index')}}">Commune</a></li>
                             <li><a href="{{path('agence_index')}}">Agence</a></li>
-                            <li><a href="{{path('tontine_index')}}">Tontine</a></li>
-                            <li><a href="{{path('operation_index')}}">Operations</a></li>
 
                             <li><a href="#">Paramètres</a></li>
                         </ul>
                     </li>
 
 
-{#                    <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>#}
+#}{#                    <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>#}{#
                     <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
-                </ul>
+                </ul>#}
             {% endblock %} {#End nav#}
         </div><!--/.navbar-collapse -->
 
@@ -386,7 +386,9 @@
 
 
         {#Autocomplete#}
+{#        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>#}
         <script src="{{ asset('templates/js/select2.js') }}"></script>
+        {#<script src="{{ asset('vendor/select2/dist/js/select2.min.js') }}"></script>#}
 
         {#Notification#}
         <script type="text/javascript" src="{{ asset('templates/Notification/libs/jqueryui/1.10.4/jquery-ui.min.js') }}"></script>
@@ -396,7 +398,7 @@
         <script type="text/javascript" src="{{ asset('templates/js/perso.js') }}"></script>
 
         <script type="text/javascript">
-            // Line chart
+                       // Line chart
             var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
             var lineChartData = {
                 labels : ["January","February","March","April","May","June","July"],

@@ -27,29 +27,31 @@
             </div>
             <hr>
 
-            <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     {#            <th>N°</th>#}
-                   {# <th>Client</th>#}
-                    <th>Agence</th>
-                    <th>Numero de Compte</th>
-                    <th>Intitule</th>
-                    <th>Cpcmd</th>
-                    <th>cpasld</th>
+                    <th>N° Compte</th>
+                    <th>Intitulé</th>
+                    <th>Client</th>
+                    <th>Type</th>
+                    <th>Solde</th>
+                    <th>Statut</th>
                     <th>Vue</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for compte in comptes %}
                     <tr>
-                        {# <td>{{ loop.index }}</td>#}
-                        <td><a href="{{ path('compte_modification', {'slug': compte.slug}) }}"> {{ compte ~' '}}}</a></td>
-                        <td>{{ compte.agence }}</td>
-                        <td>{{  compte.numcomp }}</td>
-                        <td>{{ compte.intitule }}</td>
-                        <td>{{ compte.cpcmd }}</td>
-                        <td>{{ compte.cpasld }}</td>
+                        <td>{{ compte.numcomp }}</td>
+                        <td><a href="{{ path('compte_modification',{'slug': compte.slug}) }}">
+                                {{ compte.intitule }}
+                            </a>
+                        </td>
+                        <td>{{ compte.client }}</td>
+                        <td>{{ compte.type }}</td>
+                        <td>{{ compte.solde | number_format(0,0,' ')~' '~compte.devis}}</td>
+                        <td>{{ compte.actif ? 'ouvert' : 'fermé' }}</td>
                         <td>
 
                             {% include('compte/viewmodal.html.twig') %}

@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/compte")
+ */
 class CompteController extends AbstractController
 {
     /**
@@ -28,13 +31,18 @@ class CompteController extends AbstractController
     /**
      * @Route("/nouveau", name="compte_nouveau", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CompteRepository $compteRepository): Response
     {
         $compte = new Compte();
         $form = $this->createForm(CompteType::class, $compte);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récuperer l'iD du dernier compte pour en créer le nouveau
+            $numCompte=$form['type']->getData().getNextIdCompte($compteRepository->findLastCompteId());
+            $compte->setNumcomp($numCompte);
+            //$compte->setCreatedBy($this->getUser());
+            //$compte->setAgence($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($compte);
             $entityManager->flush();
@@ -92,4 +100,28 @@ class CompteController extends AbstractController
 
         return $this->redirectToRoute('compte_index');
     }
+}
+
+function getNextIdCompte($value)
+{
+    $autom = (int) $value;
+    $autom++;
+
+    if ($autom<10) {
+        return '0000'.$autom;
+    }
+
+    if ($autom<100) {
+        return '000'.$autom;
+    }
+
+    if ($autom<1000) {
+        return '00'.$autom;
+    }
+
+    if($autom<10000) {
+        return '0'.$autom;
+    }
+
+    return $autom;
 }

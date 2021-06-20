@@ -28,14 +28,18 @@ class ClientController extends AbstractController
     /**
      * @Route("/nouveau", name="client_nouveau", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ClientRepository $clientRepository): Response
     {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récuperer l'iD du dernier client pour en créer le nouveau
+            $numClient=getNextIdClient($clientRepository->findLastClientId());
+
             $entityManager = $this->getDoctrine()->getManager();
+            $client->setNumcli($numClient);
             $entityManager->persist($client);
             $entityManager->flush();
             $request->getSession()->getFlashBag()->add('success', 'Enregistrement bien effectué.');
@@ -92,4 +96,29 @@ class ClientController extends AbstractController
 
         return $this->redirectToRoute('client_index');
     }
+
+}
+
+function getNextIdClient($value)
+{
+    $autom = (int) $value;
+    $autom++;
+
+    if ($autom<10) {
+        return '0000'.$autom;
+    }
+
+    if ($autom<100) {
+        return '000'.$autom;
+    }
+
+    if ($autom<1000) {
+        return '00'.$autom;
+    }
+
+    if($autom<10000) {
+        return '0'.$autom;
+    }
+
+    return $autom;
 }

@@ -33,7 +33,15 @@
 {% endblock %}
 
 {% block javascripts %}
-    {#{{ parent() }}
+    {{ parent() }}
+    <script>
+        $('select[data-select="true"]').select2(
+            {
+                width: '100%'
+            }
+        );
+    </script>
+    {#
         <script>
             var departement=document.getElementById('client_departement');
             var commune=document.getElementById('client_commune');

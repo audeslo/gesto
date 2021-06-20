@@ -1,63 +1,71 @@
-{#{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - Admin{% endblock %}
 
+{% block nav %}
+    {{ parent() }}
+    {#{% set actif='parametre' %}
+    {% include 'nav_parm.html.twig' %}#}
+{% endblock %} {#End nav#}
+
  {% block path %}
-     <li><a href="index.html">Administration</a></li>
-    #}{# <li><a href="#">Branches</a></li>#}{#
-     <li class="active">Clients</li>
-     #}{#<li><a href="sign-in.html">Sign In Form</a></li>#}{#
+     <li><a href="{{path('Accueil')}}">Traitement</a></li>
+    {# <li><a href="#">Branches</a></li>#}
+     <li class="active">Tontine</li>
+     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
  {% endblock %}
 
-{% block content %}
-
-{% endblock %}#}
-
-
-{% extends'base.html.twig' %}
-
-
-
-    {% set var = 'tontines' %}
-
-
-{% block nav %}
-
-    {% include'nav.html.twig' %}
-
-
-{% endblock %}
-
-{% block content %}
-
-{% endblock %}
-
 {% block javascripts %}
-{#{{ parent() }}
+    {{ parent() }}
     <script>
-        var departement=document.getElementById('client_departement');
-        var commune=document.getElementById('client_commune');
+        function valide(ferme){
+            $.ajax({
+                url: "/tontine/nouveau",
+                method: "POST",
+                data: $('#form_tontine').serialize(),
+                success: function (data) {
+                    if(ferme===true){
+                        $('#form_tontine')[0].reset();
+                        $('.close').click();
+                        $('#tontine_table').html(data);
+                    }
+                        $("body").overhang({
+                            type: "success",
+                            message: "Enregistremnt bien fait!!"
+                        });
+                },
+
+            });
+        }
+    </script>
+
+    <script>
+        $('select[data-select="true"]').select2(
+            {
+                dropdownParent: $("#myModal"),
+                width: '100%'
+            }
+        );
+
+        var client=document.getElementById('tontine_client');
+        var compte=document.getElementById('tontine_compte');
 
 
-        if (!(departement !== null)) {
+        if (!(client !== null)) {
         } else {
-            $(document).on('change','#client_departement',function(){
+            $(document).on('change','#tontine_client',function(){
                 let $field=$(this)
                 let $form=$field.closest('form')
                 let data={}
                 data[$field.attr('name')]=$field.val()
                 $.post($form.attr('action'),data).then(function(data) {
-                    let  $input = $(data).find('#client_commune')
+                    let  $input = $(data).find('#tontine_compte')
                     //language=JQuery-CSS
-                    $('#client_commune').replaceWith($input)
+                    $('#tontine_compte').replaceWith($input)
 
                 })
             })
         }
-    </script>#}
+    </script>
+
 {% endblock %}
-
-
-
-
-

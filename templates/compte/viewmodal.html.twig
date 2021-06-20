@@ -18,61 +18,38 @@
                 value="{{ asset('uploads/images/produits/'~ chapitre.slug~'.pdf') }}#}
                     </div>
                     <tr>
-                        <th>Id</th>
-                        <td>{{ compte.id }}</td>
+                        <th>N° de compte</th>
+                        <td>{{ compte.numcomp}}</td>
                     </tr>
                     <tr>
                         <th>Client</th>
                         <td>{{ compte.client }}</td>
                     </tr>
                     <tr>
-                        <th>Agence</th>
-                        <td>{{ compte.agence }}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Numero de compte</th>
-                        <td>{{ compte.numcomp}}</td>
-                    </tr>
-                    <tr>
-                        <th>Intitule</th>
+                        <th>Intitulé</th>
                         <td>{{ compte.intitule}}</td>
                     </tr>
-
                     <tr>
-                        <th>Cpcmd</th>
-                        <td>{{ compte.cpcmd}}</td>
+                        <th>Débit</th>
+                        <td>{{ compte.cpcmd }}</td>
                     </tr>
                     <tr>
-                        <th>cpasld</th>
-                        <td>{{ compte.cpasld }}</td>
-                    </tr>
-
-                    <tr>
-                        <th>cpasld</th>
-                        <td>{{ compte.cpasldj }}</td>
-                    </tr>
-                    <tr>
-                        <th>cpcmc</th>
+                        <th>Crédit</th>
                         <td>{{ compte.cpcmc }}</td>
                     </tr>
 
                     <tr>
-                        <th>cpnbmvt</th>
-                        <td>{{ compte.cpnbmvt}}</td>
+                        <th>Solde</th>
+                        <td>{{ compte.solde}}</td>
                     </tr>
                     <tr>
-                        <th>cpdtder</th>
-                        <td>{{ compte.cpdtder ? compte.cpdtder | date('d-M-Y') : ''}}</td>
-                    </tr>
-                    <tr>
-                        <th>mdate</th>
-                        <td>{{ compte.mdate ? compte.mdate | date('d-M-Y') : ''}}</td>
+                        <th>Date dernière opération</th>
+                        <td>{{ compte.derniereop ? compte.derniereop | date('d-M-Y') : 'Jamais'}}</td>
                     </tr>
 
                     <tr>
-                        <th>mheure</th>
-                        <td>{{ compte.mheure ? compte.mheure | date('d-M-Y') : ''}} }}</td>
+                        <th>Date Comptable</th>
+                        <td>{{ compte.datecompt ? compte.datecompt | date('d-M-Y') : ''}} }}</td>
                     </tr>
 
                     <tr>

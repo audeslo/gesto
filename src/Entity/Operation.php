@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OperationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,7 +30,7 @@ class Operation
     private $numpiece;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateop;
 
@@ -103,6 +105,32 @@ class Operation
     private $tontine;
 
     /**
+     * @ORM\OneToMany(targetEntity=Detailtontine::class, mappedBy="operation")
+     */
+    private $detailtontines;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $note;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomcomplet;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $operant;
+
+    public function __construct()
+    {
+        $this->detailtontines = new ArrayCollection();
+        $this->dateop = new \DateTime('now');
+    }
+
+    /**
      * @ORM\PrePersist()
      */
     public function datecreated()
@@ -145,18 +173,6 @@ class Operation
     public function setNumpiece(?int $numpiece): self
     {
         $this->numpiece = $numpiece;
-
-        return $this;
-    }
-
-    public function getDateop(): ?\DateTimeInterface
-    {
-        return $this->dateop;
-    }
-
-    public function setDateop(?\DateTimeInterface $dateop): self
-    {
-        $this->dateop = $dateop;
 
         return $this;
     }
@@ -328,7 +344,87 @@ class Operation
 
         return $this;
     }
+
     public function __toString(){
         return $this ->libelleop;
     }
+
+    /**
+     * @return Collection|Detailtontine[]
+     */
+    public function getDetailtontines(): Collection
+    {
+        return $this->detailtontines;
+    }
+
+    public function addDetailtontine(Detailtontine $detailtontine): self
+    {
+        if (!$this->detailtontines->contains($detailtontine)) {
+            $this->detailtontines[] = $detailtontine;
+            $detailtontine->setOperation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailtontine(Detailtontine $detailtontine): self
+    {
+        if ($this->detailtontines->removeElement($detailtontine)) {
+            // set the owning side to null (unless already changed)
+            if ($detailtontine->getOperation() === $this) {
+                $detailtontine->setOperation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getNomcomplet(): ?string
+    {
+        return $this->nomcomplet;
+    }
+
+    public function setNomcomplet(?string $nomcomplet): self
+    {
+        $this->nomcomplet = $nomcomplet;
+
+        return $this;
+    }
+
+    public function getOperant(): ?string
+    {
+        return $this->operant;
+    }
+
+    public function setOperant(?string $operant): self
+    {
+        $this->operant = $operant;
+
+        return $this;
+    }
+
+    public function getDateop(): ?\DateTimeInterface
+    {
+        return $this->dateop;
+    }
+
+    public function setDateop(?\DateTimeInterface $dateop): self
+    {
+        $this->dateop = $dateop;
+
+        return $this;
+    }
+
 }

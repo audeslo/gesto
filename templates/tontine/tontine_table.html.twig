@@ -1,0 +1,14 @@
+{% for tontine in tontines %}
+    <tr>
+        <td>{{ tontine.compte.numcomp }}</td>
+        <td>{{ tontine.compte.client }}</td>
+        <td><a href="{{path('tontine_modification',{'slug' : tontine.slug})}}">{{ tontine.reflivret }}</a></td>
+        <td>{{ tontine.meconomie }}</td>
+        <td>{{ tontine.feuillet }}</td>
+        <td>{{ tontine.numordre }}</td>
+        <td>{{ tontine.actif ? 'En cours' : 'Terminé' }}</td>
+        <td>
+            {% include('tontine/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

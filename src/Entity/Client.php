@@ -151,7 +151,7 @@ class Client
     private $commune;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=20)
      */
     private $Numcli;
 
@@ -169,6 +169,16 @@ class Client
      * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="client")
      */
     private $operations;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $actif;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Detailtontine::class, mappedBy="client")
+     */
+    private $detailtontines;
 
 
     /**
@@ -196,6 +206,8 @@ class Client
         $this->comptes = new ArrayCollection();
         $this->tontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
+        $this->actif = true;
+        $this->detailtontines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -667,6 +679,48 @@ class Client
             // set the owning side to null (unless already changed)
             if ($operation->getClient() === $this) {
                 $operation->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getActif(): ?bool
+    {
+        return $this->actif;
+    }
+
+    public function setActif(?bool $actif): self
+    {
+        $this->actif = $actif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Detailtontine[]
+     */
+    public function getDetailtontines(): Collection
+    {
+        return $this->detailtontines;
+    }
+
+    public function addDetailtontine(Detailtontine $detailtontine): self
+    {
+        if (!$this->detailtontines->contains($detailtontine)) {
+            $this->detailtontines[] = $detailtontine;
+            $detailtontine->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailtontine(Detailtontine $detailtontine): self
+    {
+        if ($this->detailtontines->removeElement($detailtontine)) {
+            // set the owning side to null (unless already changed)
+            if ($detailtontine->getClient() === $this) {
+                $detailtontine->setClient(null);
             }
         }
 

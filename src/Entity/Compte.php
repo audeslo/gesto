@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CompteRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Compte
 {
@@ -40,20 +41,11 @@ class Compte
      */
     private $cpcmc;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $cpasld;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $cpasldj;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $cpnbmvt;
+    private $solde;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -63,12 +55,12 @@ class Compte
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $mdate;
+    private $datecompt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $mheure;
+    private $derniereop;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -101,7 +93,7 @@ class Compte
     private $createdBy;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $createdOn;
 
@@ -117,6 +109,21 @@ class Compte
      */
     private $tontines;
 
+    /**
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $actif;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $devis;
+
 
     /**
      * @ORM\PrePersist()
@@ -124,7 +131,6 @@ class Compte
     public function datecreated()
     {
         $this->setCreatedOn(new \DateTime('now'));
-     /*   $this->setNomcomplet($this->prenoms.' '.$this->nom);*/
     }
 
     /**
@@ -133,11 +139,11 @@ class Compte
     public function dateupdated()
     {
         $this->setEditedOn(new \DateTime('now'));
-       /* $this->setNomcomplet($this->prenoms.' '.$this->nom);*/
     }
     public function __construct()
     {
         $this->tontines = new ArrayCollection();
+        $this->actif=true;
     }
 
     public function getId(): ?int
@@ -193,41 +199,6 @@ class Compte
         return $this;
     }
 
-    public function getCpasld(): ?int
-    {
-        return $this->cpasld;
-    }
-
-    public function setCpasld(int $cpasld): self
-    {
-        $this->cpasld = $cpasld;
-
-        return $this;
-    }
-
-    public function getCpasldj(): ?int
-    {
-        return $this->cpasldj;
-    }
-
-    public function setCpasldj(?int $cpasldj): self
-    {
-        $this->cpasldj = $cpasldj;
-
-        return $this;
-    }
-
-    public function getCpnbmvt(): ?int
-    {
-        return $this->cpnbmvt;
-    }
-
-    public function setCpnbmvt(?int $cpnbmvt): self
-    {
-        $this->cpnbmvt = $cpnbmvt;
-
-        return $this;
-    }
 
     public function getCpdtder(): ?\DateTimeInterface
     {
@@ -237,30 +208,6 @@ class Compte
     public function setCpdtder(?\DateTimeInterface $cpdtder): self
     {
         $this->cpdtder = $cpdtder;
-
-        return $this;
-    }
-
-    public function getMdate(): ?\DateTimeInterface
-    {
-        return $this->mdate;
-    }
-
-    public function setMdate(?\DateTimeInterface $mdate): self
-    {
-        $this->mdate = $mdate;
-
-        return $this;
-    }
-
-    public function getMheure(): ?\DateTimeInterface
-    {
-        return $this->mheure;
-    }
-
-    public function setMheure(?\DateTimeInterface $mheure): self
-    {
-        $this->mheure = $mheure;
 
         return $this;
     }
@@ -393,5 +340,77 @@ class Compte
 
     public function __toString(){
         return $this ->intitule;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getActif(): ?bool
+    {
+        return $this->actif;
+    }
+
+    public function setActif(?bool $actif): self
+    {
+        $this->actif = $actif;
+
+        return $this;
+    }
+
+    public function getSolde(): ?int
+    {
+        return $this->solde;
+    }
+
+    public function setSolde(?int $solde): self
+    {
+        $this->solde = $solde;
+
+        return $this;
+    }
+
+    public function getDerniereop(): ?\DateTimeInterface
+    {
+        return $this->derniereop;
+    }
+
+    public function setDerniereop(?\DateTimeInterface $derniereop): self
+    {
+        $this->derniereop = $derniereop;
+
+        return $this;
+    }
+
+    public function getDatecompt(): ?\DateTimeInterface
+    {
+        return $this->datecompt;
+    }
+
+    public function setDatecompt(?\DateTimeInterface $datecompt): self
+    {
+        $this->datecompt = $datecompt;
+
+        return $this;
+    }
+
+    public function getDevis(): ?string
+    {
+        return $this->devis;
+    }
+
+    public function setDevis(?string $devis): self
+    {
+        $this->devis = $devis;
+
+        return $this;
     }
 }

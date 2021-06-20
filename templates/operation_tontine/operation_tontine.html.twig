@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Admin{% endblock %}
+
+{% block nav %}
+    {{ parent() }}
+    {#{% set actif='parametre' %}
+    {% include 'nav_parm.html.twig' %}#}
+{% endblock %} {#End nav#}
+
+ {% block path %}
+     <li><a href="{{path('Accueil')}}">Traitement</a></li>
+    {# <li><a href="#">Branches</a></li>#}
+     <li class="active">Tontine</li>
+     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function valide(ferme){
+            $.ajax({
+                url: "/tontine/nouveau",
+                method: "POST",
+                data: $('#form_tontine').serialize(),
+                success: function (data) {
+                    if(ferme===true){
+                        $('#form_tontine')[0].reset();
+                        $('.close').click();
+                        $('#tontine_table').html(data);
+                    }
+                        $("body").overhang({
+                            type: "success",
+                            message: "Enregistremnt bien fait!!"
+                        });
+                },
+
+            });
+        }
+    </script>
+
+    <script>
+        $('select[data-select="true"]').select2(
+            {
+                dropdownParent: $("#myModal"),
+                width: '100%',
+            }
+        );
+
+        var client=document.getElementById('tontine_client');
+        var compte=document.getElementById('tontine_compte');
+
+
+        if (!(client !== null)) {
+        } else {
+            $(document).on('change','#tontine_client',function(){
+                let $field=$(this)
+                let $form=$field.closest('form')
+                let data={}
+                data[$field.attr('name')]=$field.val()
+                $.post($form.attr('action'),data).then(function(data) {
+                    let  $input = $(data).find('#tontine_compte')
+                    //language=JQuery-CSS
+                    $('#tontine_compte').replaceWith($input)
+
+                })
+            })
+        }
+    </script>
+
+{% endblock %}
