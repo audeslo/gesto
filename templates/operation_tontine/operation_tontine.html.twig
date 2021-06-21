@@ -37,6 +37,35 @@
 
             });
         }
+
+
+        // Calcul de prime
+        function remplirChamps() {
+            if( document.getElementById('operation_tontine_tontine').value !== ''
+            ){
+
+                $.ajax({
+                    url: "/operation/tontine/remplirchamp",
+                    method: "POST",
+                    data: $('#form_operation_tontine').serialize(),
+                    success: function (data) {
+                        //console.log(data);
+                        // Remplir les champ après avoir recuperer la reference
+                        document.getElementById('operation_tontine_nomcomplet').value=data.nomcomplet;
+                        document.getElementById('form_tontine_meconomie').value=data.meconomie;
+                        document.getElementById('form_tontine_ranglivret').value=data.ranglivret;
+                        document.getElementById('form_tontine_numordre').value=data.numordre;
+                        document.getElementById('form_tontine_feuillet').value=data.feuillet;
+
+                    },
+
+                })
+                /* });*/
+            }
+
+        }
+
+
     </script>
 
     <script>

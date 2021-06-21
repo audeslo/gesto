@@ -28,7 +28,10 @@ class OperationTontineType extends AbstractType
                     return $jc->createQueryBuilder('t')
                         ->orderBy('t.reflivret', 'ASC');
                 },
-                'attr' => ['data-select' => 'true']
+                'attr' => [
+                    /*'data-select' => 'true',*/
+                    'onchange'      => 'remplirChamps()'
+                ]
             ))
             ->add('nomcomplet',TextType::class,array(
                 'label' => 'Client :',
@@ -48,7 +51,7 @@ class OperationTontineType extends AbstractType
 
             ))
             ->add('dateop',DateTimeType::class,array(
-                'label' => 'Date/heure Opé.',
+                'label' => 'Date/heure Opération.',
                 'required' => false,
 
             ))
