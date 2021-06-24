@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210618175253 extends AbstractMigration
+final class Version20210624051738 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,15 +20,16 @@ final class Version20210618175253 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE tontine ADD numcomp VARCHAR(32) NOT NULL');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_3F164B7F96E6776EC1AE4FED ON tontine (numcomp, numlivret)');
+        $this->addSql('ALTER TABLE user ADD agent_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D6493414710B FOREIGN KEY (agent_id) REFERENCES agent (id)');
+        $this->addSql('CREATE INDEX IDX_8D93D6493414710B ON user (agent_id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP INDEX UNIQ_3F164B7F96E6776EC1AE4FED');
-        $this->addSql('ALTER TABLE tontine DROP numcomp');
+        $this->addSql('ALTER TABLE `user` DROP FOREIGN KEY FK_8D93D6493414710B');
+        $this->addSql('DROP INDEX IDX_8D93D6493414710B ON `user`');
+        $this->addSql('ALTER TABLE `user` DROP agent_id');
     }
 }

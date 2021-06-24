@@ -25,34 +25,59 @@
             <li class="active"><a href="{{path('Accueil')}}"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
             <li class="sub open">
                 <a href="javascript:;">
-                    <i class="fa fa-database"></i> Menu <div class="pull-right"><span class="caret"></span></div>
+                    <i class="fa fa-child fa-3x"></i> Agenda <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
+                    <li><a href="{{ path('client_index') }}">Fiche client</a></li>
+                    <li><a href="{{ path('departement_index') }}">Fiche département</a></li>
+                    <li><a href="{{path('commune_index')}}">Fiche commune</a></li>
+                    <li><a href="{{path('agence_index')}}">Fiche agence</a></li>
+                    <li><a href="{{ path('agent_index') }}">Fiche agent</a></li>
                     {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
-                    <li><a href="{{path('operation_tontine_index')}}">Operations Tontine</a></li>
-                    <li><a href="{{path('tontine_index')}}">Tontine</a></li>
-                    <li><a href="{{ path('client_index') }}">Client</a></li>
-                    <li><a href="{{ path('zone_index') }}">Zone</a></li>
-                    <li><a href="{{ path('compte_index') }}">Comptes</a></li>
-                    <li><a href="#">Paramètres</a></li>
+                   {# <li><a href="{{path('operation_tontine_index')}}">Operations Tontine</a></li>
+                    <li><a href="{{path('tontine_index')}}">Tontine</a></li>#}
+                   {# <li><a href="{{ path('zone_index') }}">Zone</a></li>#}
+                   {# <li><a href="#">Paramètres</a></li>#}
                 </ul>
             </li>
+
+            <li class="sub open">
+                <a href="javascript:;">
+                   
+                    <i class="fa fa-cog"></i> Opérations <div class="pull-right"><span class="caret"></span></div>
+                </a>
+                <ul class="templatemo-submenu">
+                    <li><a href="{{path('tontine_index')}}">Fiche tontine</a></li>
+                    <li><a href="{{ path('compte_index') }}">Fiche de comptes</a></li>
+                    <li><a href="{{path('operation_index')}}">Fiche d'operations</a></li>
+                    <li><a href="{{path('operation_tontine_index')}}">Fiche d'opérations Tontine</a></li>
+
+
+
+                    {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
+                    {# <li><a href="{{ path('departement_index') }}">Département</a></li>
+                     <li><a href="{{path('commune_index')}}">Commune</a></li>
+                     <li><a href="{{path('agence_index')}}">Agence</a></li>#}
+                   {# <li><a href="#">Paramètres</a></li>#}
+                </ul>
+            </li>
+
             <li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>
             <li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
-            <li><a href="tables.html"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Gestionnaires utilisateurs</a></li>
-            <li class="sub open">
+            <li><a href="{{ path('user_index') }}"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Gestionnaires utilisateurs</a></li>
+           {# <li class="sub open">
                 <a href="javascript:;">
                     <i class="fa fa-cog"></i> Préférences <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
-                    {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
-                    <li><a href="{{ path('departement_index') }}">Département</a></li>
+                    #}{#     <li><a href="{{ path('client_index') }}">Client</a></li>#}{#
+                   #}{# <li><a href="{{ path('departement_index') }}">Département</a></li>
                     <li><a href="{{path('commune_index')}}">Commune</a></li>
-                    <li><a href="{{path('agence_index')}}">Agence</a></li>
+                    <li><a href="{{path('agence_index')}}">Agence</a></li>#}{#
                     <li><a href="{{path('operation_index')}}">Operation</a></li>
                     <li><a href="#">Paramètres</a></li>
                 </ul>
-            </li>
+            </li>#}
 
 
             {#                    <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>#}

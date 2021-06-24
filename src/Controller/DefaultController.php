@@ -10,9 +10,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/test", name="Accueil")
+     * @Route("/", name="Accueil")
      */
-    public function index(OperationRepository $operationRepository): Response
+    public function index(): Response
+    {
+
+
+        return $this->render('base.html.twig', [
+            'controller_name' => 'DefaultController',
+        ]);
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test(OperationRepository $operationRepository): Response
     {
         dump($operationRepository->findOperationTontine());
         return false;
@@ -21,4 +33,5 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
 }

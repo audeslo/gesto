@@ -1,0 +1,90 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+<hr>
+<div class="row">
+
+    <div class="col-md-5 ">
+        {{ form_label(form.nomag) }}
+        {{ form_widget(form.nomag) }}
+        {{ form_errors(form.nomag) }}
+
+        {{ form_label(form.prenomag) }}
+        {{ form_widget(form.prenomag) }}
+        {{ form_errors(form.prenomag) }}
+
+        {{ form_label(form.sexe) }}
+        {{ form_widget(form.sexe) }}
+        {{ form_errors(form.sexe) }}
+
+        {{ form_label(form.datenaiss) }}
+        {{ form_widget(form.datenaiss) }}
+        {{ form_errors(form.datenaiss) }}
+
+        {{ form_label(form.lieunaiss) }}
+        {{ form_widget(form.lieunaiss) }}
+        {{ form_errors(form.lieunaiss) }}
+    </div>
+
+    <div class="col-md-5 offset-2">
+
+        {{ form_label(form.telag) }}
+        {{ form_widget(form.telag) }}
+        {{ form_errors(form.telag) }}
+
+        {{ form_label(form.bpag) }}
+        {{ form_widget(form.bpag) }}
+        {{ form_errors(form.bpag) }}
+
+        {{ form_label(form.dateembaucheag) }}
+        {{ form_widget(form.dateembaucheag) }}
+        {{ form_errors(form.dateembaucheag) }}
+
+        {{ form_label(form.adressevilleag) }}
+        {{ form_widget(form.adressevilleag) }}
+        {{ form_errors(form.adressevilleag) }}
+
+        {{ form_label(form.adresserueag) }}
+        {{ form_widget(form.adresserueag) }}
+        {{ form_errors(form.adresserueag) }}
+
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-5 ">
+
+        {{ form_label(form.situationmatri) }}
+        {{ form_widget(form.situationmatri) }}
+        {{ form_errors(form.situationmatri) }}
+
+        {{ form_label(form.nbreenft) }}
+        {{ form_widget(form.nbreenft) }}
+        {{ form_errors(form.nbreenft) }}
+
+
+
+
+    </div>
+
+        <div class="col-md-5 offset-2">
+
+
+            {{ form_label(form.numerocompte) }}
+            {{ form_widget(form.numerocompte) }}
+            {{ form_errors(form.numerocompte) }}
+
+            {{ form_label(form.file) }}
+            {{ form_widget(form.file) }}
+            {{ form_errors(form.file) }}
+
+        </div>
+
+    </div>
+

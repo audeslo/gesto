@@ -165,6 +165,16 @@ class User
      */
     private $operations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Agent::class, mappedBy="editedBy")
+     */
+    private $agents;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Agent::class, inversedBy="users")
+     */
+    private $agent;
+
 
     public function __construct()
     {
@@ -175,6 +185,7 @@ class User
         $this->User = new ArrayCollection();
         $this->tontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
+        $this->agents = new ArrayCollection();
     }
 
     /**
@@ -628,6 +639,48 @@ class User
                 $operation->setCreatedBy(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Agent[]
+     */
+    public function getAgents(): Collection
+    {
+        return $this->agents;
+    }
+
+    public function addAgent(Agent $agent): self
+    {
+        if (!$this->agents->contains($agent)) {
+            $this->agents[] = $agent;
+            $agent->setEditedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgent(Agent $agent): self
+    {
+        if ($this->agents->removeElement($agent)) {
+            // set the owning side to null (unless already changed)
+            if ($agent->getEditedBy() === $this) {
+                $agent->setEditedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAgent(): ?Agent
+    {
+        return $this->agent;
+    }
+
+    public function setAgent(?Agent $agent): self
+    {
+        $this->agent = $agent;
 
         return $this;
     }

@@ -1,0 +1,128 @@
+{% extends 'agent/agent.html.twig' %}
+
+{% block content %}
+
+    {#{% block body %}#}
+<div class="col-lg-10">
+
+    <h1>Détails agents</h1>
+
+    <table class="table-bordered table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ agent.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ agent.nomag }}</td>
+        </tr>
+        <tr>
+            <th>Prénoms</th>
+            <td>{{ agent.prenomag }}</td>
+        </tr>
+
+        <tr>
+            <th>Sexe</th>
+            <td>{{ agent.sexe }}</td>
+        </tr>
+
+        <tr>
+            <th>Date naissance</th>
+            <td>{{ agent.datenaiss ? agent.datenaiss | date('d-M-Y') : ''}}</td>
+        </tr>
+        <tr>
+            <th>Lieu</th>
+            <td>{{ agent.lieunaiss}}</td>
+        </tr>
+
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ agent.telag}}</td>
+        </tr>
+        <tr>
+            <th>Boite postale</th>
+            <td>{{ agent.bpag }}</td>
+        </tr>
+
+        <tr>
+            <th>Date d'embauche</th>
+            <td>{{ agent.dateembaucheag ? agent.dateembaucheag | date('d-M-Y') : ''}}</td>
+        </tr>
+
+
+        <tr>
+            <th>Adresse  de ville</th>
+            <td>{{ agent.adressevilleag }}</td>
+        </tr>
+
+        <tr>
+            <th>Adresse de rue</th>
+            <td>{{ agent.adresserueag}}</td>
+        </tr>
+        <tr>
+            <th>Situation matrimoniale</th>
+            <td>{{ agent.situationmatri }}</td>
+        </tr>
+        <tr>
+            <th>Nombre d'enfant</th>
+            <td>{{ agent.nbreenft }}</td>
+        </tr>
+
+        <tr>
+            <th>Numéro de compte</th>
+            <td>{{ agent.numerocompte }}</td>
+        </tr>
+        {#<tr>
+            <th>CreatedOn</th>
+            <td>{{ categorie.createdOn ? categorie.createdOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>EditedOn</th>
+            <td>{{ categorie.editedOn ? categorie.editedOn|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>#}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <a class="btn btn-default col-md-3" href="{{ path('agent_index') }}">
+            <i class="fa fa-chevron-left"></i>
+            Retour à la liste
+        </a>
+
+
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('agent_modification', { 'slug': agent.slug}) }}">
+            <i class="fa fa-pencil"></i>
+            Modifier
+        </a>
+
+    </div>
+</div>
+
+
+{#{% block title %}Client{% endblock %}#}
+
+{#{% block body %}
+    <h1>Client</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ client.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_index') }}">back to list</a>
+
+    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+
+    {{ include('client/_delete_form.html.twig') }}#}
+{% endblock %}
+
+

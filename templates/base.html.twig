@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-    <title>{% block title %} GESTO {% endblock %}</title>
+    <title>{% block title %} ONG-HDB - Système de Tontine{% endblock %}</title>
 
 
 
@@ -24,16 +24,18 @@
 <body>
 
 {% block body %}
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="navbar-header">
-            <div class="logo"><h1>GESTO</h1></div>
+    <div class="navbar navbar-inverse " role="navigation">
+       <div class="navbar-header">
+
+            <div class="logo"><h1>ONG-HDB</h1>  </div>
+
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-        </div>
+       </div>
     </div>
     <div class=" row">
         {% for label, messages in app.flashes %}

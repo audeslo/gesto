@@ -1,0 +1,115 @@
+         <a style="cursor: pointer"  data-toggle="modal" data-target="#{{ agent.slug}}">
+    <i style="font-size: 20px" class="fa fa-eye "></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade " id="{{ agent.slug}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
+    <div class="modal-dialog modal-lg" role="document"  >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Détails agents</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-bordered table" style="background-color: #868e96">
+                    <tbody>
+                    <div class="col-xs-6 col-md-3 col-md-offset-9">
+                        <img width="80%" height="80%" src="{{ asset('uploads/images/agents/'~agent.id~'.'~agent.url) }}" alt="{{ agent.slug }}" class="img-circle">
+                        {#'~produit.slug~'.'~produit.url
+                value="{{ asset('uploads/images/produits/'~ chapitre.slug~'.pdf') }}#}
+                    </div>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ agent.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ agent.nomag }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénoms</th>
+                        <td>{{ agent.prenomag }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Sexe</th>
+                        <td>{{ agent.sexe }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Date naissance</th>
+                        <td>{{ agent.datenaiss ? agent.datenaiss | date('d-M-Y') : ''}}</td>
+                    </tr>
+                    <tr>
+                        <th>Lieu</th>
+                        <td>{{ agent.lieunaiss}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Téléphone</th>
+                        <td>{{ agent.telag}}</td>
+                    </tr>
+                    <tr>
+                        <th>Boite postale</th>
+                        <td>{{ agent.bpag }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Date d'embauche</th>
+                        <td>{{ agent.dateembaucheag ? agent.dateembaucheag | date('d-M-Y') : ''}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <th>Adresse  de ville</th>
+                        <td>{{ agent.adressevilleag }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Adresse de rue</th>
+                        <td>{{ agent.adresserueag}}</td>
+                    </tr>
+                    <tr>
+                        <th>Situation matrimoniale</th>
+                        <td>{{ agent.situationmatri }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre d'enfant</th>
+                        <td>{{ agent.nbreenft }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Numéro de compte</th>
+                        <td>{{ agent.numerocompte }}</td>
+                    </tr>
+                   {# <tr>
+                        <th>Enregistré le</th>
+                        <td>
+                            {{ fournisseur.createdOn ? fournisseur.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            Par {{ fournisseur.createdBy }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Modifié le </th>
+                        <td>
+                            {{ fournisseur.editedOn ? fournisseur.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            Par {{ fournisseur.editedBy }}
+                        </td>
+                    </tr>#}
+
+                    </tbody>
+                </table>
+                <div class="row" >
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <i class="fa fa-chevron-left"></i>
+                        Retour à la liste
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary">Imprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
