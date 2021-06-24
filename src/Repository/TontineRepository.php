@@ -19,6 +19,19 @@ class TontineRepository extends ServiceEntityRepository
         parent::__construct($registry, Tontine::class);
     }
 
+    public function updateSoldeTontine($tontine,$solde)
+    {
+        return $this->createQueryBuilder('t')
+            ->update()
+            ->set('t.solde', '?1')
+            ->where('t.id =?2')
+            ->setParameter(1, $solde)
+            ->setParameter(2, $tontine)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     // /**
     //  * @return Tontine[] Returns an array of Tontine objects
     //  */

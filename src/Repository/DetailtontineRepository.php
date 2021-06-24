@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Detailtontine;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,6 +20,54 @@ class DetailtontineRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Detailtontine::class);
     }
+
+    public function findAllDebit($tontine)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.tontine = :val')
+            ->setParameter('val', $tontine)
+            ->orderBy('d.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findEtatCompteTontine($tontine)
+    {
+        $em=$this->getEntityManager();
+        $query=$em->createQuery(
+       "SELECT IDENTITY (op.compte) compte,SUM (CASE WHEN op.sens='D' 
+            THEN dt.meconomie ELSE 0 END) debit,SUM(CASE WHEN op.sens='C' 
+            THEN dt.meconomie ELSE 0 END) credit,tt.avance,-1*((SUM (CASE WHEN 
+            op.sens='D' THEN dt.meconomie ELSE 0 END)-SUM(CASE WHEN op.sens='C' 
+	        THEN dt.meconomie ELSE 0 END)) + tt.avance ) soldecli
+       FROM App\Entity\Operation op, App\Entity\Detailtontine dt,
+            App\Entity\Tontine tt
+       WHERE dt.operation=op
+       AND tt=dt.tontine
+       AND dt.tontine =:idtontine
+       GROUP BY op.compte,tt.avance"
+        )->setParameter('idtontine',$tontine);
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+        }
+    }
+
+
+/*$em=$this->getEntityManager();
+$query=$em->createQuery(
+'SELECT p.nomFrFr, n.nationalite
+                FROM App\Entity\Nationalite n, App\Entity\Pays p
+                WHERE p.alpha2=n.code
+                AND   n.id =:idNationalite
+                ORDER BY p.nomFrFr ASC'
+)->setParameter('idNationalite',$tontine);
+return $query->getResult();*/
+
+
+
 
     // /**
     //  * @return Detailtontine[] Returns an array of Detailtontine objects

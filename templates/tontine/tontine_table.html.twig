@@ -6,6 +6,7 @@
         <td>{{ tontine.meconomie }}</td>
         <td>{{ tontine.feuillet }}</td>
         <td>{{ tontine.numordre }}</td>
+        <td>{{ tontine.solde | number_format(0,0,' ') }}</td>
         <td>{{ tontine.actif ? 'En cours' : 'Terminé' }}</td>
         <td>
             {% include('tontine/viewmodal.html.twig') %}

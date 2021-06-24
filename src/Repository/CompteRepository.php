@@ -34,6 +34,25 @@ class CompteRepository extends ServiceEntityRepository
         }
     }
 
+    public function updateCompte($debit,$credit,$solde,$compte)
+    {
+        return $this->createQueryBuilder('c')
+            ->update()
+            ->set('c.cpcmd', '?1')
+            ->set('c.cpcmc','?2')
+            ->set ('c.solde','?3')
+            ->set ('c.derniereop','?4')
+            ->where('c.id =?5')
+            ->setParameter(1,$debit )
+            ->setParameter(2, $credit)
+            ->setParameter(3, $solde)
+            ->setParameter(4,new \DateTimeImmutable("now"))
+            ->setParameter(5, $compte)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     // /**
     //  * @return Compte[] Returns an array of Compte objects
     //  */
