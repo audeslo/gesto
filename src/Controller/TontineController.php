@@ -47,6 +47,7 @@ class TontineController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $tontine->setNumcomp($form['compte']->getData()->getNumcomp());
+            $tontine->setAppointrest($tontine->getNbfeuillet()*$tontine->getNbmaxappoint());
             $entityManager->persist($tontine);
             $entityManager->flush();
             $request->getSession()->getFlashBag()->add('success', 'Enregistrement bien effectué.');
@@ -79,6 +80,8 @@ class TontineController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $tontine->setAppointrest($tontine->getNbfeuillet()
+                *$tontine->getNbmaxappoint());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('tontine_index');

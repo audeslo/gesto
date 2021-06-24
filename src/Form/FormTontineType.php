@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Tontine;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,6 +39,13 @@ class FormTontineType extends AbstractType
             ))
             ->add('feuillet',TextType::class,array(
                 'label'     => 'N° Feuillet :',
+                'required'  => false,
+                'attr'      =>[
+                    'readonly'   =>  'readonly'
+                ]
+            ))
+            ->add('appointrest',IntegerType::class,array(
+                'label'     => 'Appointement restant :',
                 'required'  => false,
                 'attr'      =>[
                     'readonly'   =>  'readonly'

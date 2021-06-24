@@ -124,6 +124,11 @@ class Compte
      */
     private $devis;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="compte")
+     */
+    private $operations;
+
 
     /**
      * @ORM\PrePersist()
@@ -144,6 +149,7 @@ class Compte
     {
         $this->tontines = new ArrayCollection();
         $this->actif=true;
+        $this->operations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -410,6 +416,36 @@ class Compte
     public function setDevis(?string $devis): self
     {
         $this->devis = $devis;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setCompte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->removeElement($operation)) {
+            // set the owning side to null (unless already changed)
+            if ($operation->getCompte() === $this) {
+                $operation->setCompte(null);
+            }
+        }
 
         return $this;
     }

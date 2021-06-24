@@ -20,19 +20,7 @@ class OperationTontineType extends AbstractType
     {
         $builder
 
-            ->add('tontine', EntityType::class, array(
-                'required' => false,
-                'label' => 'Référence (N°) Livret:',
-                'class' => Tontine::class,
-                'query_builder' => function (EntityRepository $jc) {
-                    return $jc->createQueryBuilder('t')
-                        ->orderBy('t.reflivret', 'ASC');
-                },
-                'attr' => [
-                    /*'data-select' => 'true',*/
-                    'onchange'      => 'remplirChamps()'
-                ]
-            ))
+
             ->add('nomcomplet',TextType::class,array(
                 'label' => 'Client :',
                 'required' => false,

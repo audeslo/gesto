@@ -168,6 +168,11 @@ class Tontine
      */
     private $detailtontines;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $appointrest;
+
     public function __construct()
     {
         $this->setDateinscr(new \DateTime('now'));
@@ -412,35 +417,35 @@ class Tontine
         return $this ->reflivret;
     }
 
-    /**
-     * @return Collection|Operation[]
-     */
-    public function getOperations(): Collection
-    {
-        return $this->operations;
-    }
-
-    public function addOperation(Operation $operation): self
-    {
-        if (!$this->operations->contains($operation)) {
-            $this->operations[] = $operation;
-            $operation->setTontine($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOperation(Operation $operation): self
-    {
-        if ($this->operations->removeElement($operation)) {
-            // set the owning side to null (unless already changed)
-            if ($operation->getTontine() === $this) {
-                $operation->setTontine(null);
-            }
-        }
-
-        return $this;
-    }
+//    /**
+//     * @return Collection|Operation[]
+//     */
+//    public function getOperations(): Collection
+//    {
+//        return $this->operations;
+//    }
+//
+//    public function addOperation(Operation $operation): self
+//    {
+//        if (!$this->operations->contains($operation)) {
+//            $this->operations[] = $operation;
+//            $operation->setTontine($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeOperation(Operation $operation): self
+//    {
+//        if ($this->operations->removeElement($operation)) {
+//            // set the owning side to null (unless already changed)
+//            if ($operation->getTontine() === $this) {
+//                $operation->setTontine(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     public function getReflivret(): ?string
     {
@@ -577,6 +582,48 @@ class Tontine
     public function setRanglivret(int $ranglivret): self
     {
         $this->ranglivret = $ranglivret;
+
+        return $this;
+    }
+
+    public function getAppointrest(): ?int
+    {
+        return $this->appointrest;
+    }
+
+    public function setAppointrest(?int $appointrest): self
+    {
+        $this->appointrest = $appointrest;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setTontine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->removeElement($operation)) {
+            // set the owning side to null (unless already changed)
+            if ($operation->getTontine() === $this) {
+                $operation->setTontine(null);
+            }
+        }
 
         return $this;
     }

@@ -40,7 +40,7 @@ class Detailtontine
     /**
      * @ORM\Column(type="smallint")
      */
-    private $numlivret;
+    private $ranglivret;
 
     /**
      * @ORM\Column(type="smallint")
@@ -53,7 +53,7 @@ class Detailtontine
     private $feuillet;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Operation::class, inversedBy="detailtontines")
+     * @ORM\ManyToOne(targetEntity=Operation::class, inversedBy="detailtontines",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $operation;
@@ -122,17 +122,6 @@ class Detailtontine
         return $this;
     }
 
-    public function getNumlivret(): ?int
-    {
-        return $this->numlivret;
-    }
-
-    public function setNumlivret(int $numlivret): self
-    {
-        $this->numlivret = $numlivret;
-
-        return $this;
-    }
 
     public function getNumordre(): ?int
     {
@@ -190,6 +179,18 @@ class Detailtontine
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getRanglivret(): ?int
+    {
+        return $this->ranglivret;
+    }
+
+    public function setRanglivret(int $ranglivret): self
+    {
+        $this->ranglivret = $ranglivret;
 
         return $this;
     }

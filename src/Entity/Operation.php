@@ -6,9 +6,11 @@ use App\Repository\OperationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=OperationRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Operation
 {
@@ -75,7 +77,7 @@ class Operation
     private $createdBy;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $createdOn;
 
@@ -91,6 +93,7 @@ class Operation
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Slug(fields={"libelleop","note"})
      */
     private $slug;
 
@@ -99,10 +102,10 @@ class Operation
      */
     private $client;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Tontine::class, inversedBy="operations")
-     */
-    private $tontine;
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Tontine::class, inversedBy="operations")
+//     */
+//    private $tontine;
 
     /**
      * @ORM\OneToMany(targetEntity=Detailtontine::class, mappedBy="operation")
@@ -123,6 +126,17 @@ class Operation
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $operant;
+
+    /**
+     * @ORM\Column(type="string", length=16)
+     */
+    private $sens;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Compte::class, inversedBy="operations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $compte;
 
     public function __construct()
     {
@@ -333,17 +347,6 @@ class Operation
         return $this;
     }
 
-    public function getTontine(): ?Tontine
-    {
-        return $this->tontine;
-    }
-
-    public function setTontine(?Tontine $tontine): self
-    {
-        $this->tontine = $tontine;
-
-        return $this;
-    }
 
     public function __toString(){
         return $this ->libelleop;
@@ -423,6 +426,30 @@ class Operation
     public function setDateop(?\DateTimeInterface $dateop): self
     {
         $this->dateop = $dateop;
+
+        return $this;
+    }
+
+    public function getSens(): ?string
+    {
+        return $this->sens;
+    }
+
+    public function setSens(string $sens): self
+    {
+        $this->sens = $sens;
+
+        return $this;
+    }
+
+    public function getCompte(): ?Compte
+    {
+        return $this->compte;
+    }
+
+    public function setCompte(?Compte $compte): self
+    {
+        $this->compte = $compte;
 
         return $this;
     }

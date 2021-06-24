@@ -1,15 +1,14 @@
 {% for operation_tontine in operation_tontines %}
     <tr>
-        <td>{{ operation_tontine.reflivret }}</td>
-        <td>{{ operation_tontine.compte.client }}</td>
-        <td><a href="{{path('operation_tontine_modification',{'slug' : operation_tontine.slug})}}">{{ operation_tontine.reflivret }}</a></td>
-        <td>{{ operation_tontine.meconomie }}</td>
-        <td>{{ operation_tontine.feuillet }}</td>
-        <td>{{ operation_tontine.numordre }}</td>
-        <td>{{ operation_tontine.numordre }}</td>
-        <td>{{ operation_tontine.actif ? 'En cours' : 'Terminé' }}</td>
+        <td>{{ operation_tontine.compte.numcomp }}</td>
+        <td>{{ operation_tontine.libelleop }}</td>
+        <td>{{ operation_tontine.dateop | date('d/m/Y H:m') }}</td>
+        <td>{{ operation_tontine.montantop | number_format(0,0,' ') }}</td>
+        <td>{{ operation_tontine.sens  }}</td>
+        <td>{{ operation_tontine.client }}</td>
+        <td></td>
         <td>
-            {% include('operation_tontine/viewmodal.html.twig') %}
+            {#{% include('operation_tontine/viewmodal.html.twig') %}#}
         </td>
     </tr>
 {% endfor %}

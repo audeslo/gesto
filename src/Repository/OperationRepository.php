@@ -19,6 +19,20 @@ class OperationRepository extends ServiceEntityRepository
         parent::__construct($registry, Operation::class);
     }
 
+    public function findAllOperationTontine()
+    {
+        return $this->createQueryBuilder('o')
+            ->join('o.compte','cpt')
+            ->andWhere('cpt.type = :val')
+            ->setParameter('val', '01')
+            ->orderBy('o.dateop', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     // /**
     //  * @return Operation[] Returns an array of Operation objects
     //  */
