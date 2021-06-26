@@ -231,6 +231,23 @@ class OperationTontineController extends AbstractController
             $donneeTontine->setAppointrest($appointRest);
             $em->flush();
 
+            // Mise à jour des compte et Tontine
+            $entityManager=$this->getDoctrine()->getManager();
+                // Recuperer le l'etat du compte
+            $etatTontine=$entityManager->getRepository('App:Detailtontine')
+                                ->findEtatCompteTontine($donneeTontine->getId());
+
+                // Mise à jout Tontine
+            $entityManager->getRepository('App:Tontine')
+                                ->updateSoldeTontine($donneeTontine->getId(),
+                                  $etatTontine['soldecli']);
+
+                //Mise à jour Compte
+            $entityManager->getRepository('App:Compte')
+                ->updateCompte($etatTontine['debit'],$etatTontine['credit'],
+                    $etatTontine['soldecli'],$donneeTontine->getCompte()->getId());
+
+
             return $this->json([
 
                 'nomcomplet'             => $feuillet,

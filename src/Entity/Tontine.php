@@ -173,12 +173,18 @@ class Tontine
      */
     private $appointrest;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $solde;
+
     public function __construct()
     {
         $this->setDateinscr(new \DateTime('now'));
         $this->actif=true;
         $this->feuillet=1;
         $this->numordre=0;
+        $this->avance=0; // Sinon la rêquête de solde va envoyer 0
         $this->detailtontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
     }
@@ -624,6 +630,18 @@ class Tontine
                 $operation->setTontine(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSolde(): ?int
+    {
+        return $this->solde;
+    }
+
+    public function setSolde(?int $solde): self
+    {
+        $this->solde = $solde;
 
         return $this;
     }
