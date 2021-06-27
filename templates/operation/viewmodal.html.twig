@@ -8,7 +8,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Détails du compte</h4>
+                <h4 class="modal-title" id="myModalLabel">Détails de l'opération</h4>
             </div>
             <div class="modal-body">
                 <table class="table-bordered table" style="background-color: #868e96">
@@ -23,11 +23,11 @@
                     </tr>
 
                     <tr>
-                        <th>Date operation</th>
+                        <th>Date d'opération</th>
                         <td>{{ operation.dateop ? operation.dateop | date('d-M-Y') : '' }}</td>
                     </tr>
                     <tr>
-                        <th>Numero operation</th>
+                        <th>Numéro d'opération</th>
                         <td>{{ operation.numop }}</td>
                     </tr>
                     <tr>
@@ -36,34 +36,36 @@
                     </tr>
 
                     <tr>
-                        <th>Tontine</th>
-                        <td>{{ operation.tontine}}</td>
+                        <th>Compte</th>
+                        <td>{{ operation.compte}}</td>
                     </tr>
                     <tr>
-                        <th>Numero pièce</th>
+                        <th>Numéro de pièce</th>
                         <td>{{ operation.numpiece}}</td>
                     </tr>
 
                     <tr>
-                        <th>libelle d'operation</th>
+                        <th>Libellé d'opération</th>
                         <td>{{ operation.libelleop}}</td>
                     </tr>
 
                     <tr>
-                        <th>montant operation</th>
+                        <th>Montant d'opération</th>
                         <td>{{ operation.montantop }}</td>
                     </tr>
 
                     <tr>
-                        <th>reference pièce </th>
+                        <th>Réference de la pièce </th>
                         <td>{{ operation.refpiece }}</td>
                     </tr>
-                    <th>genere</th>
+
+                    <tr>
+                    <th>Génere</th>
                     <td>{{ operation.genere }}</td>
                     </tr>
 
                     <tr>
-                        <th>date de comptabilisation</th>
+                        <th>Date de comptabilisation</th>
                         <td>{{ operation.datecomptabilisation ? operation.datecomptabilisation | date('d-M-Y') : ''}}</td>
                     </tr>
 

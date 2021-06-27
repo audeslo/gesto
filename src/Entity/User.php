@@ -170,10 +170,11 @@ class User
      */
     private $agents;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=Agent::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Agence::class, inversedBy="users")
      */
-    private $agent;
+    private $agence;
 
 
     public function __construct()
@@ -673,14 +674,16 @@ class User
         return $this;
     }
 
-    public function getAgent(): ?Agent
+
+
+    public function getAgence(): ?Agence
     {
-        return $this->agent;
+        return $this->agence;
     }
 
-    public function setAgent(?Agent $agent): self
+    public function setAgence(?Agence $agence): self
     {
-        $this->agent = $agent;
+        $this->agence = $agence;
 
         return $this;
     }

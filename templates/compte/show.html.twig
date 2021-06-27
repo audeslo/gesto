@@ -5,7 +5,7 @@
     {#{% block body %}#}
 <div class="col-lg-10">
 
-    <h1>Détail du compte</h1>
+    <h1>Détails du compte</h1>
 
     <table class="table-bordered table">
         <tbody>
@@ -23,7 +23,7 @@
         </tr>
 
         <tr>
-            <th>Numero de compte</th>
+            <th>Numéro de compte</th>
             <td>{{ compte.numcomp}}</td>
         </tr>
         <tr>
@@ -32,40 +32,40 @@
         </tr>
 
         <tr>
-            <th>Cpcmd</th>
+            <th>Débit</th>
             <td>{{ compte.cpcmd}}</td>
         </tr>
 
-        <tr>
+        {#<tr>
             <th>cpasld</th>
             <td>{{ compte.cpasld }}</td>
         </tr>
 
         <tr>
             <th>cpasldj </th>
-            <td>{{ compte.cpasldj }}</td>
-        </tr>
-            <th>cpcmc</th>
+            <td>{{ compte.cpasldj }}</td>#}
+        <tr>
+            <th>Crédit</th>
             <td>{{ compte.cpcmc }}</td>
         </tr>
 
-        <tr>
+        {#<tr>
             <th>cpnbmvt</th>
             <td>{{ compte.cpnbmvt}}</td>
         </tr>
-        <tr>
+#}        <tr>
             <th>cpdtder</th>
             <td>{{ compte.cpdtder ? compte.cpdtder | date('d-M-Y') : ''}}</td>
         </tr>
         <tr>
-            <th>mdate</th>
-            <td>{{ compte.mdate ? compte.mdate | date('d-M-Y') : ''}}</td>
+            <th>Date comptable</th>
+            <td>{{ compte.datecompt ? compte.datecompt | date('d-M-Y') : ''}}</td>
         </tr>
 
-        <tr>
+       {# <tr>
             <th>mheure</th>
             <td>{{ compte.mheure ? compte.mheure | date('d-M-Y') : '' }}</td>
-        </tr>
+        </tr>#}
 
         <tr>
             <th>annexe</th>

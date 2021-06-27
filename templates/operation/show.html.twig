@@ -1,11 +1,11 @@
-{% extends 'opeation/operation.html.twig' %}
+{% extends 'operation/operation.html.twig' %}
 
 {% block content %}
 
     {#{% block body %}#}
 <div class="col-lg-10">
 
-    <h1>Détail de l'opération</h1>
+    <h1>Détails des opérations</h1>
 
     <table class="table-bordered table">
         <tbody>
@@ -15,11 +15,11 @@
         </tr>
 
         <tr>
-            <th>Date operation</th>
+            <th>Date d'operation</th>
             <td>{{ operation.dateop ? operation.dateop | date('d-M-Y') : '' }}</td>
         </tr>
         <tr>
-            <th>Numero operation</th>
+            <th>Numéro operation</th>
             <td>{{ operation.numop }}</td>
         </tr>
         <tr>
@@ -29,33 +29,33 @@
 
         <tr>
             <th>Tontine</th>
-            <td>{{ operation.tontine}}</td>
+            <td>{{ operation.compte}}</td>
         </tr>
         <tr>
-            <th>Numero pièce</th>
+            <th>Numéro pièce</th>
             <td>{{ operation.numpiece}}</td>
         </tr>
 
         <tr>
-            <th>libelle d'operation</th>
+            <th>Libellé d'opération</th>
             <td>{{ operation.libelleop}}</td>
         </tr>
 
         <tr>
-            <th>montant operation</th>
+            <th>Montant opération</th>
             <td>{{ operation.montantop }}</td>
         </tr>
 
         <tr>
-            <th>reference pièce </th>
+            <th>Réference pièce </th>
             <td>{{ operation.refpiece }}</td>
         </tr>
-            <th>genere</th>
+            <th>Génere</th>
             <td>{{ operation.genere }}</td>
         </tr>
 
         <tr>
-            <th>date de comptabilisation</th>
+            <th>Date de comptabilisation</th>
             <td>{{ operation.datecomptabilisation ? operation.datecomptabilisation | date('d-M-Y') : ''}}</td>
         </tr>
 
@@ -77,7 +77,7 @@
         </a>
 
 
-        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('compte_modification', { 'slug': compte.slug}) }}">
+        <a class="btn btn-primary col-md-2 offset-6" href="{{ path('operation_modification', { 'slug': operation.slug}) }}">
             <i class="fa fa-pencil"></i>
             Modifier
         </a>

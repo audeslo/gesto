@@ -4,27 +4,14 @@
 {{ form_end(form) }}#}
 <hr>
 <div class="row">
-   <div class="col-md-6">
-
-    {{ form_label(form.roles) }}
-    {{ form_widget(form.roles) }}
-    {{ form_errors(form.roles) }}
-
-   </div>
-    <div class="col-md-6">
-
-    {{ form_label(form.roles) }}
-    {{ form_widget(form.roles) }}
-    {{ form_errors(form.roles) }}
-
-   </div>
-
-</div>
-
-<hr>
-<div class="row">
 
     <div class="col-md-5 ">
+        {{ form_label(form.agence) }}
+        {{ form_widget(form.agence) }}
+        {{ form_errors(form.agence) }}
+
+
+
         {{ form_label(form.nom) }}
         {{ form_widget(form.nom) }}
         {{ form_errors(form.nom) }}
@@ -33,42 +20,37 @@
         {{ form_widget(form.prenom) }}
         {{ form_errors(form.prenom) }}
 
+        {{ form_label(form.sexe) }}
+        {{ form_widget(form.sexe, {attr:{class:'d-inline-block'}})  }}
+        {{ form_errors(form.sexe, {attr:{class:'d-inline-block'}})  }}
+
         {{ form_label(form.telephone) }}
         {{ form_widget(form.telephone) }}
         {{ form_errors(form.telephone) }}
-
     </div>
 
     <div class="col-md-5 offset-2">
 
-        {{ form_label(form.sexe) }}
-        {{ form_widget(form.sexe, {attr:{class:'d-inline-block'}})  }}
-        {{ form_errors(form.sexe, {attr:{class:'d-inline-block'}})  }}
-        <br><br>
+        {{ form_label(form.roles) }}
+        {{ form_widget(form.roles) }}
+        {{ form_errors(form.roles) }}
+
         {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
         {{ form_errors(form.email) }}
-    </div>
-
-</div>
-<hr>
-
-<div class="row">
-
-    <div class="col-md-5 ">
 
         {{ form_label(form.username) }}
         {{ form_widget(form.username) }}
         {{ form_errors(form.username) }}
 
-    </div>
-
-    <div class="col-md-5 offset-2">
-
         {{ form_label(form.password) }}
         {{ form_widget(form.password) }}
         {{ form_errors(form.password) }}
 
+
     </div>
 
 </div>
+
+
+

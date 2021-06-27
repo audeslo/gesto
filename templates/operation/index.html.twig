@@ -32,12 +32,12 @@
                 <tr>
                     {#            <th>N°</th>#}
                    {# <th>Client</th>#}
-                    <th>Numero de Compte</th>
+                    <th>Référence</th>
                     <th>Agence</th>
                     <th>Client</th>
-                    <th>tontine</th>
-                    <th>libelleop</th>
-                    <th>montantop</th>
+                    <th>Compte</th>
+                   {# <th>libelleop</th>#}
+                    <th>Montant</th>
                     <th>Vue</th>
                 </tr>
                 </thead>
@@ -45,12 +45,12 @@
                 {% for operation in operations %}
                     <tr>
                         {# <td>{{ loop.index }}</td>#}
-                        <td><a href="{{ path('operation_modification', {'slug': operation.slug}) }}"> {{ operation ~' '}}}</a></td>
-                        <td>{{  operation.numop }}</td>
-                        <td>{{ opeation.agence }}</td>
+                        <td><a href="{{ path('operation_modification', {'slug': operation.slug}) }}"> {{ operation ~' '}}</a></td>
+                       {# <td>{{  operation.numop }}</td>#}
+                        <td>{{ operation.agence }}</td>
                         <td>{{  operation.client }}</td>
-                        <td>{{ operation.tontine }}</td>
-                        <td>{{ operation.libelleop }}</td>
+                        <td>{{ operation.compte}}</td>
+                      {#  <td>{{ operation.libelleop }}</td>#}
                         <td>{{ operation.montantop }}</td>
                         <td>
 

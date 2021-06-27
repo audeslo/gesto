@@ -87,11 +87,17 @@ class Agence
      */
     private $operations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="agence")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->comptes = new ArrayCollection();
         $this->tontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -325,6 +331,36 @@ class Agence
             // set the owning side to null (unless already changed)
             if ($operation->getAgence() === $this) {
                 $operation->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getAgence() === $this) {
+                $user->setAgence(null);
             }
         }
 
