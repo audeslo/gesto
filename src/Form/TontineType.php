@@ -197,19 +197,6 @@ class TontineType extends AbstractType
             }
         );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         /*->add('compte')
         ->add('meconomie')
         ->add('ranglivret')

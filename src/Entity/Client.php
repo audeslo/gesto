@@ -180,6 +180,11 @@ class Client
      */
     private $detailtontines;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="client")
+     */
+    private $prets;
+
 
     /**
      * @ORM\PrePersist()
@@ -208,6 +213,7 @@ class Client
         $this->operations = new ArrayCollection();
         $this->actif = true;
         $this->detailtontines = new ArrayCollection();
+        $this->prets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -721,6 +727,36 @@ class Client
             // set the owning side to null (unless already changed)
             if ($detailtontine->getClient() === $this) {
                 $detailtontine->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pret[]
+     */
+    public function getPrets(): Collection
+    {
+        return $this->prets;
+    }
+
+    public function addPret(Pret $pret): self
+    {
+        if (!$this->prets->contains($pret)) {
+            $this->prets[] = $pret;
+            $pret->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePret(Pret $pret): self
+    {
+        if ($this->prets->removeElement($pret)) {
+            // set the owning side to null (unless already changed)
+            if ($pret->getClient() === $this) {
+                $pret->setClient(null);
             }
         }
 

@@ -1,0 +1,11 @@
+{% for pret in prets %}
+    <tr>
+
+        <td>{{ pret.client }}</td>
+        <td><a href="{{path('pret_modification',{'slug' : pret.slug})}}">{{ pret.libellepret }}</a></td>
+        <td>{{ pret.datepret }}</td>
+        <td>
+            {% include('pret/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

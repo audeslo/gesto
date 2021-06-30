@@ -176,6 +176,11 @@ class User
      */
     private $agence;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="createdBy")
+     */
+    private $prets;
+
 
     public function __construct()
     {
@@ -187,6 +192,7 @@ class User
         $this->tontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
         $this->agents = new ArrayCollection();
+        $this->prets = new ArrayCollection();
     }
 
     /**
@@ -684,6 +690,36 @@ class User
     public function setAgence(?Agence $agence): self
     {
         $this->agence = $agence;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pret[]
+     */
+    public function getPrets(): Collection
+    {
+        return $this->prets;
+    }
+
+    public function addPret(Pret $pret): self
+    {
+        if (!$this->prets->contains($pret)) {
+            $this->prets[] = $pret;
+            $pret->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removePret(Pret $pret): self
+    {
+        if ($this->prets->removeElement($pret)) {
+            // set the owning side to null (unless already changed)
+            if ($pret->getCreatedBy() === $this) {
+                $pret->setCreatedBy(null);
+            }
+        }
 
         return $this;
     }

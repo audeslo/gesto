@@ -92,12 +92,24 @@ class Agence
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Detailcaisse::class, mappedBy="agence")
+     */
+    private $detailcaisses;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="agence")
+     */
+    private $prets;
+
     public function __construct()
     {
         $this->comptes = new ArrayCollection();
         $this->tontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->detailcaisses = new ArrayCollection();
+        $this->prets = new ArrayCollection();
     }
 
     /**
@@ -361,6 +373,66 @@ class Agence
             // set the owning side to null (unless already changed)
             if ($user->getAgence() === $this) {
                 $user->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Detailcaisse[]
+     */
+    public function getDetailcaisses(): Collection
+    {
+        return $this->detailcaisses;
+    }
+
+    public function addDetailcaiss(Detailcaisse $detailcaiss): self
+    {
+        if (!$this->detailcaisses->contains($detailcaiss)) {
+            $this->detailcaisses[] = $detailcaiss;
+            $detailcaiss->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailcaiss(Detailcaisse $detailcaiss): self
+    {
+        if ($this->detailcaisses->removeElement($detailcaiss)) {
+            // set the owning side to null (unless already changed)
+            if ($detailcaiss->getAgence() === $this) {
+                $detailcaiss->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pret[]
+     */
+    public function getPrets(): Collection
+    {
+        return $this->prets;
+    }
+
+    public function addPret(Pret $pret): self
+    {
+        if (!$this->prets->contains($pret)) {
+            $this->prets[] = $pret;
+            $pret->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removePret(Pret $pret): self
+    {
+        if ($this->prets->removeElement($pret)) {
+            // set the owning side to null (unless already changed)
+            if ($pret->getAgence() === $this) {
+                $pret->setAgence(null);
             }
         }
 

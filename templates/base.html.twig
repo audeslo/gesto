@@ -12,10 +12,13 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width">
     {% block stylesheets %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('uploads/images/logo/Sans titre-2 copie.jpg') }}">
+
         <link rel="stylesheet" href="{{ asset('templates/css/templatemo_main.css') }}">
         <link rel="stylesheet" type="text/css" href="{{asset('templates/DataTables/datatables.min.css')}}"/>
         <link rel="stylesheet" href="{{ asset('templates/css/select2.css') }}">
         <link rel="stylesheet" href="{{ asset('templates/css/erreur.css')}}">
+        <link rel="stylesheet" href="{{ asset('templates/css/test.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('templates/Notification/dist/overhang.min.css') }}" />
         {#<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />#}
     {% endblock %}
@@ -24,10 +27,31 @@
 <body>
 
 {% block body %}
-    <div class="navbar navbar-inverse " role="navigation">
-       <div class="navbar-header">
+   <div class="navbar navbar-inverse " role="navigation">
+       {#   <div class="navbar-header">#}
 
-            <div class="logo"><h1>ONG-HDB</h1>  </div>
+           <div class="container-fluid">
+               <div class="row">
+                   <div class="bon">
+
+                       <div class="col-md-2">
+                           <img src="{{ asset('uploads/images/logo/logoj.jpg')}}" alt="" class="img-responsive" >
+                       </div>
+                       <div class="col-md-9  lien ">
+                           <h3 class="text-center"> ONG-HDB</h3>
+                           <p class="text-center"> <br>Siège : Bantè quartier Basson derrière le marché </em><br>
+                                                        2017/N°059/MISP/DC/SGM/DAIC/SAAP-ASSOC/SA du 26 Mai 2017 N° IFU:6201710045243  <br>
+                                                            BP: 108 Bantè, Tel : 97 50 30 94 / 94 64 87 96
+                               <a class="shapenew-angle" href="mailto:ojiguelecossi@gmail.com"><i class="fa fa-envelope"></i> ojiguelecossi@gmail.com</a> </p>
+                       </div>
+                       <div class="col-md-1">
+
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+           {# <div class="logo"><h1>ONG-HDB</h1>  </div>#}
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -35,7 +59,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-       </div>
+      {# </div>#}
     </div>
     <div class=" row">
         {% for label, messages in app.flashes %}

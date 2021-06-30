@@ -43,7 +43,9 @@
                 <tbody>
                 {% for compte in comptes %}
                     <tr>
+
                         <td>{{ compte.numcomp }}</td>
+
                         <td><a href="{{ path('compte_modification',{'slug': compte.slug}) }}">
                                 {{ compte.intitule }}
                             </a>
