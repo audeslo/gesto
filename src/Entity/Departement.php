@@ -46,6 +46,7 @@ class Departement
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 

@@ -15,7 +15,6 @@ class DetailtontineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             ->add('tontine', EntityType::class, array(
                 'required' => false,
                 'label' => 'Référence (N°) Livret:',

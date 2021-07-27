@@ -1,34 +1,31 @@
-{#{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}#}
-<hr>
-<div class="row">
+<div class="row" style="margin-left: auto">
 
-    <div class="col-md-5 ">
+   <div class="col-md-5 ">
 
-        {{ form_label(form.client) }}
-        {{ form_widget(form.client) }}
-        {{ form_errors(form.client) }}
+      {{ form_label(form.client) }}
+      {{ form_widget(form.client) }}
+      {{ form_errors(form.client) }}
 
 
-        {{ form_label(form.intitule) }}
-        {{ form_widget(form.intitule) }}
-        {{ form_errors(form.intitule) }}
+      {{ form_label(form.intitule) }}
+      {{ form_widget(form.intitule) }}
+      {{ form_errors(form.intitule) }}
 
-    </div>
+   </div>
 
-    <div class="col-md-5 offset-2">
+   <div class="col-md-5 offset-2">
+      {{ form_label(form.type) }}
+      {% if (donnee_type is  defined) %}
+      {{ form_widget(form.type,{'attr': {'disabled':'disabled'}}) }}
+      {% else %}
+       {{ form_widget(form.type) }}
+      {% endif %}
+      {{ form_errors(form.type) }}
 
-        {{ form_label(form.type) }}
-        {{ form_widget(form.type) }}
-        {{ form_errors(form.type) }}
 
-
-        {{ form_label(form.datecompt) }}
-        {{ form_widget(form.datecompt) }}
-        {{ form_errors(form.datecompt) }}
-    </div>
+      {{ form_label(form.datecompt) }}
+      {{ form_widget(form.datecompt) }}
+      {{ form_errors(form.datecompt) }}
+   </div>
 
 </div>
-

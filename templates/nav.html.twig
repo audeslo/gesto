@@ -17,23 +17,26 @@
        {# {% block nav %} #}
         <ul class="templatemo-sidebar-menu">
             <li>
-                <form class="navbar-form">
+                {#<form class="navbar-form">
                     <input type="text" class="form-control" id="templatemo_search_box" placeholder="Search...">
                     <span class="btn btn-default">Go</span>
-                </form>
+                </form>#}
             </li>
-            <li class="active"><a href="{{path('Accueil')}}"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
-            <li class="sub open">
+
+            <li {% if actif is not defined %} class="active" {% endif %}><a href="{{path('Accueil')}}"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
+            <li{% if actif is defined and actif is same as('operations') %} class="sub open active" {% else%} class="sub open" {% endif %}>
                 <a href="javascript:;">
                     <i class="fa fa-cog "></i> Opérations <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
-                    <li><a href="{{ path('compte_index') }}">Comptes</a></li>
+                    <li><a href="{{path('appointement_index')}}">Appointements</a></li>
+                    <li><a href="{{path('avancement_index')}}">Avancements</a></li>
+                    <li><a href="{{path('collecte_index')}}">Collecte</a></li>
                     <li><a href="{{path('tontine_index')}}">Tontine</a></li>
-                    <li><a href="{{path('operation_tontine_index')}}">Opérations Tontine</a></li>
-                    <li><a href="{{path('operation_index')}}">Opérations</a></li>
+                    <li><a href="{{ path('compte_index') }}">Comptes</a></li>
+                    <li><a href="{{ path('client_index') }}">Client</a></li>
                     {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
-                   {# <li><a href="{{path('operation_tontine_index')}}">Operations Tontine</a></li>
+                   {# <li><a href="{{path('appointement_index')}}">Operations Tontine</a></li>
                     <li><a href="{{path('tontine_index')}}">Tontine</a></li>#}
                    {# <li><a href="{{ path('zone_index') }}">Zone</a></li>#}
                    {# <li><a href="#">Paramètres</a></li>#}
@@ -43,23 +46,14 @@
             <li class="sub open">
                 <a href="javascript:;">
                    
-                    <i class="fa fa-child fa-3x"></i> Agenda <div class="pull-right"><span class="caret"></span></div>
+                    <i class="fa fa-database fa-3x"></i> Traitements <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
 
-                    <li><a href="{{ path('client_index') }}">Client</a></li>
                     <li><a href="{{ path('departement_index') }}">Département</a></li>
                     <li><a href="{{path('commune_index')}}">Commune</a></li>
                     <li><a href="{{path('agence_index')}}">Agence</a></li>
                     <li><a href="{{ path('pret_index') }}">Prêt</a></li>
-
-
-
-                    {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
-                    {# <li><a href="{{ path('departement_index') }}">Département</a></li>
-                     <li><a href="{{path('commune_index')}}">Commune</a></li>
-                     <li><a href="{{path('agence_index')}}">Agence</a></li>#}
-                   {# <li><a href="#">Paramètres</a></li>#}
                 </ul>
             </li>
 
@@ -69,11 +63,14 @@
             <li class="sub open">
                 <a href="javascript:;">
 
-                    <i class="fa fa-users"></i> Gestonnaires utilisateurs <div class="pull-right"><span class="caret"></span></div>
+                    <i class="fa fa-cogs"></i> Configurations <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
+
                     <li><a href="{{ path('agent_index') }}">Agent</a></li>
+                    <li><a href="{{ path('periode_index') }}">Périodes</a></li>
                     <li><a href="{{ path('user_index') }}">Utilisateurs</a></li>
+                    <li><a href="{{ path('parametre_index') }}">Paramètres</a></li>
 
 
                 </ul>

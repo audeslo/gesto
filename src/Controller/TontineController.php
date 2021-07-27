@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class TontineController
  * @package App\Controller
- * @Route ("/tontine")
+ * @Route ("/operations/tontine")
  */
 class TontineController extends AbstractController
 {
@@ -55,6 +55,8 @@ class TontineController extends AbstractController
             return $this->redirectToRoute('tontine_index');
         }
 
+
+
         return $this->render('tontine/new.html.twig', [
             'tontine' => $tontine,
             'form' => $form->createView(),
@@ -78,8 +80,14 @@ class TontineController extends AbstractController
     {
         $form = $this->createForm(TontineType::class, $tontine);
         $form->handleRequest($request);
-
+        $solde=$tontine->getSolde();
         if ($form->isSubmitted() && $form->isValid()) {
+            // enleve la tontine de brouillon
+            if ($tontine->getNiveau()==='draft') {
+                $tontine->setNiveau('progress');
+                // Enregistrer le solde restant
+                $tontine->setAppointrest($tontine->getNbfeuillet()*$tontine->getNbmaxappoint());
+            }
             $tontine->setAppointrest($tontine->getNbfeuillet()
                 *$tontine->getNbmaxappoint());
             $this->getDoctrine()->getManager()->flush();
@@ -90,6 +98,7 @@ class TontineController extends AbstractController
         return $this->render('tontine/edit.html.twig', [
             'tontine' => $tontine,
             'form' => $form->createView(),
+            'solde'=>1
         ]);
     }
 

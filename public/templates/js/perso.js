@@ -103,3 +103,23 @@ function surligneAvecMessage(champ, erreur,message) {
     }
 
 }
+
+
+function readOnlyOnData(champ)
+{
+
+    alert('Salut');
+
+    /*var regex = /^[A-Z]?(2)[0-9](\s|\S)(\d[0-9]{8,10})$/;
+    /!*var regex = /^[A-Z]{2}' '[0-9]{4}' '[A-Z]{2}/;*!/
+    if(!regex.test(champ.value) && champ.value.length>0)
+    {
+        champ.style.border = "1px solid red";
+        return true;
+    }
+    else
+    {
+        champ.style.border = "";
+        return false;
+    }*/
+}

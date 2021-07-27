@@ -1,0 +1,13 @@
+{% for user in users %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ user }}</td>
+        <td><a href="{{path('user_modification',{'slug' : user.slug})}}">{{ user.userIdentifier }}</a></td>
+        <td>{{ user.lastLogin | date('d/m/Y H:m') }}</td>
+        <td>{{ user.ipaddress }}</td>
+        <td>{{ user.enabled ? 'Actif' : 'Non actif' }}</td>
+        <td>
+            {% include('user/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

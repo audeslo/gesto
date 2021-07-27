@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/administration/departement")
+ * @Route("/configuration/departement")
  */
 class DepartementController extends AbstractController
 {
@@ -42,7 +42,7 @@ class DepartementController extends AbstractController
 
         if ($request->isXmlHttpRequest() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            //$departement->setCreatedBy($this->getUser());
+            $departement->setCreatedBy($this->getUser());
             $entityManager->persist($departement);
             $entityManager->flush();
 
@@ -73,6 +73,7 @@ class DepartementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $departement->setEditedBy($this->getUser());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('departement_index');

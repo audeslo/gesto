@@ -32,6 +32,47 @@ class TontineRepository extends ServiceEntityRepository
             ;
     }
 
+    public function clotureTontine($tontine)
+    {
+        return $this->createQueryBuilder('t')
+            ->update()
+            ->set('t.solde', '?1')
+            ->set('t.actif',false)
+            ->set('t.niveau','closed')
+            ->where('t.id =?2')
+            ->setParameter(1, 0)
+            ->setParameter(2, $tontine)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+    public function updateNbAppointement($tontine,$reste)
+    {
+        return $this->createQueryBuilder('t')
+            ->update()
+            ->set('t.appointrest', '?1')
+            ->where('t.id =?2')
+            ->setParameter(1, $reste)
+            ->setParameter(2, $tontine)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+    public function updateAvance($tontine,$avance)
+    {
+        return $this->createQueryBuilder('t')
+            ->update()
+            ->set('t.avance', '?1')
+            ->where('t.id =?2')
+            ->setParameter(1, $avance)
+            ->setParameter(2, $tontine)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     // /**
     //  * @return Tontine[] Returns an array of Tontine objects
     //  */

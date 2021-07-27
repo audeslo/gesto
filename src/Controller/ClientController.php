@@ -40,6 +40,7 @@ class ClientController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $client->setNumcli($numClient);
+            $client->setCreatedBy($this->getUser());
             $entityManager->persist($client);
             $entityManager->flush();
             $request->getSession()->getFlashBag()->add('success', 'Enregistrement bien effectué.');
@@ -72,6 +73,8 @@ class ClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $client->setEditedBy($this->getUser());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('client_index');

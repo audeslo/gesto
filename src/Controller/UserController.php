@@ -22,41 +22,54 @@ class UserController extends AbstractController
      * @param UserRepository $userRepository
      * @return Response
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, Request $request): Response
     {
+
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 
     /**
-     * @Route("/nouvel", name="user_new", methods={"GET","POST"})
+     * @Route("/nouvel", name="user_nouvel", methods={"POST"})
      * @param Request $request
-     * @param UserPasswordEncoderInterface $encoder
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder,
+    UserRepository $userRepository
+    ): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $user->setCreatedBy($this->getUser());
-            $passEncoder=$encoder->encodePassword($user, $form->getData()->getPassword());
-            $user->setPassword($passEncoder);
+        if ($request->isXmlHttpRequest() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
 
+            $entityManager = $this->getDoctrine()->getManager();
+            $user->setCreatedBy($this->getUser());
+            $entityManager->persist($user);
             $entityManager->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Enregistrement bien effectué.');
-            return $this->redirectToRoute('user_index');
+            //$request->getSession()->getFlashBag()->add('success', 'Enregistrement bien effectué.');
+            return $this->render('user/user_table.html.twig', [
+                'users' => $userRepository->findAll()
+            ]);
         }
 
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+        return $this->json(['message' => 'cpas bon'],200);
     }
 
     /**
@@ -70,20 +83,25 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/{slug}/modification", name="user_modification", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setEditedBy($this->getUser());
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_index', [
-                'id' => $user->getId(),
-            ]);
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('user/edit.html.twig', [

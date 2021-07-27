@@ -1,0 +1,25 @@
+{% for collecte in collectes %}
+    <tr>
+        <td>{{ collecte.numcomp }}</td>
+        <td>
+           {# L'annuation serait possible lorsqu'elle intervient le même jour que l'operation#}
+            {% if collecte.cancel is same as true %}
+                {{ collecte.libelleop }}
+            {% elseif
+                "now" | date('Y-m-d') is same as(collecte.datecomptabilisation|date('Y-m-d'))
+                and collecte.sens is same as ('C')
+            %}
+                {% include('collecte/annuler.html.twig') %}
+            {% else %}
+            {{ collecte.libelleop }}
+            {% endif %}
+        </td>
+        <td>{{ collecte.dateop | date('d/m/Y H:m') }}</td>
+        <td>{{ collecte.montantop | number_format(0,0,' ') }}</td>
+        <td>{{ collecte.sens  }}</td>
+        <td>{{ collecte.client }}</td>
+        <td>
+            {#{% include('collecte/viewmodal.html.twig') %}#}
+        </td>
+    </tr>
+{% endfor %}

@@ -4,10 +4,6 @@
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
     <title>{% block title %} ONG-HDB - Système de Tontine{% endblock %}</title>
 
-
-
-
-
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width">
@@ -35,15 +31,16 @@
                    <div class="bon">
 
                        <div class="col-md-2">
-                           <img src="{{ asset('uploads/images/logo/logoj.jpg')}}" alt="" class="img-responsive" >
+                           <img src="{{ asset('uploads/images/logo/logoj.jpg')}}" alt="logo"
+                                class="img-responsive" width="40%">
                        </div>
-                       <div class="col-md-9  lien ">
+                       {#<div class="col-md-9  lien ">
                            <h3 class="text-center"> ONG-HDB</h3>
                            <p class="text-center"> <br>Siège : Bantè quartier Basson derrière le marché </em><br>
                                                         2017/N°059/MISP/DC/SGM/DAIC/SAAP-ASSOC/SA du 26 Mai 2017 N° IFU:6201710045243  <br>
                                                             BP: 108 Bantè, Tel : 97 50 30 94 / 94 64 87 96
                                <a class="shapenew-angle" href="mailto:ojiguelecossi@gmail.com"><i class="fa fa-envelope"></i> ojiguelecossi@gmail.com</a> </p>
-                       </div>
+                       </div>#}
                        <div class="col-md-1">
 
                        </div>
@@ -382,10 +379,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Are you sure you want to sign out?</h4>
+                        <h4 class="modal-title" id="myModalLabel">Etes-vous sûrs de se déconnecter ?</h4>
                     </div>
                     <div class="modal-footer">
-                        <a href="sign-in.html" class="btn btn-primary">Yes</a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-primary">Yes</a>
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     </div>
                 </div>
@@ -422,6 +419,7 @@
 
         <script type="text/javascript" src="{{ asset('templates/js/traitementMajuscule.js') }}"></script>
         <script type="text/javascript" src="{{ asset('templates/js/perso.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('templates/js/flash.js') }}"></script>
 
         <script type="text/javascript">
                        // Line chart

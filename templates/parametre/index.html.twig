@@ -1,0 +1,37 @@
+{% extends 'parametre/parametre.html.twig' %}
+
+
+{% block content %}
+    <div class="card mb-3" >
+        <div class="card-header">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Paramètre</h2></div>
+        <div class="card-body" >
+            <div class="row">
+                <div class="col-md-2" id="add-modal">
+                    {% include('parametre/new.html.twig') %}
+                </div>
+            </div>
+            <hr>
+            <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
+
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Dénomination</th>
+                    <th>Téléphone</th>
+                    <th>Actif</th>
+                    <th>Vue</th>
+                </tr>
+                </thead>
+                <tbody id="parametre_table">
+                {{ include('parametre/parametre_table.html.twig') }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-footer small text-muted">Hier à 11:59 </div>
+
+{% endblock %}

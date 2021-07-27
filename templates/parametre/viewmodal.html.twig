@@ -1,0 +1,92 @@
+<a style="cursor: pointer"  data-toggle="modal" data-target="#{{ parametre.id }}">
+    <i style="font-size: 20px" class="fa fa-eye "></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade " id="{{ parametre.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
+    <div class="modal-dialog modal-lg" role="document"  >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Détails parametre</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-bordered table" style="background-color: #868e96">
+                    <tbody>
+                    <div class="col-xs-6 col-md-3 col-md-offset-9">
+                        <img width="80%" height="80%" src="data:image/png;base64,{{logo}}" alt="{{ client.slug }}" class="img-circle">
+                        {#'~produit.slug~'.'~produit.url
+                value="{{ asset('uploads/images/produits/'~ chapitre.slug~'.pdf') }}#}
+                    </div>
+                    <tr>
+                        <th>N°</th>
+                        <td>{{ parametre.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dénomination</th>
+                        <td>{{ parametre.denomination }}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone</th>
+                        <td>{{ parametre.telephone }}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td>{{ parametre.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{ parametre.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <td>{{ parametre.ville }}</td>
+                    </tr>
+                    <tr>
+                        <th>IFU</th>
+                        <td>{{ parametre.ifu }}</td>
+                    </tr>
+                    <tr>
+                        <th>RCCM</th>
+                        <td>{{ parametre.rccm }}</td>
+                    </tr>
+                    <tr>
+                        <th>Devise</th>
+                        <td>{{ parametre.devise }}</td>
+                    </tr>
+                    <tr>
+                        <th>Actif</th>
+                        <td>{{ parametre.actif ? 'Actif' : 'Non actif' }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Enregistré le</th>
+                        <td>
+                            {{ parametre.createdOn ? parametre.createdOn |date('d/m/Y H:i:s') : ''  }} <br>
+                            Par {{ parametre.createdBy }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Modifié le</th>
+                        <td>
+                            {{ parametre.editedOn ? parametre.editedOn |date('d/m/Y H:i:s') : ''  }} <br>
+                            Par {{ parametre.editedBy }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row" >
+                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                        <i class="fa fa-chevron-left"></i>
+                        Retour à la liste
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                {#<button type="button" class="btn btn-primary">Imprimer</button>#}
+            </div>
+        </div>
+    </div>
+</div>

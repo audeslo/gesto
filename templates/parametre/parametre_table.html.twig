@@ -1,0 +1,11 @@
+{% for parametre in parametres %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td><a href="{{path('parametre_modification',{'slug' : parametre.slug})}}">{{ parametre.denomination }}</a></td>
+        <td>{{ parametre.telephone }}</td>
+        <td>{{ parametre.actif ? 'Actif' : 'Non actif' }}</td>
+        <td>
+            {% include('parametre/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

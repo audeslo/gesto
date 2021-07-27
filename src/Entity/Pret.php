@@ -56,10 +56,9 @@ class Pret
      */
     private $editedOn;
 
-
-
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdOn;
 

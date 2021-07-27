@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class OperationController
  * @package App\Controller
- * @Route ("/opertions")
  */
 class OperationController extends AbstractController
 {

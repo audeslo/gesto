@@ -1,0 +1,20 @@
+<a href="#" data-toggle="modal" data-target="#{{ avancement.operation.slug }}">
+        {#<i class="fa fa-eraser"></i>#}{{ avancement.operation.libelleop }}</a>
+
+
+<div class="modal fade" id="{{ avancement.operation.slug }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Etes-vous sûrs de bien vouloir <b><em style="color: #c61b3d">annuler</em></b> l'opération (contre-écriture) ?
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ path('avancement_annuler',{'slug' : avancement.operation.slug}) }}" class="btn btn-primary">Oui</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+            </div>
+        </div>
+    </div>
+</div>

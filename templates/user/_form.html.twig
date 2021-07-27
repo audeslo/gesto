@@ -1,56 +1,82 @@
-{#{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}#}
-<hr>
-<div class="row">
+<div class="row" style="margin-left: auto">
 
-    <div class="col-md-5 ">
-        {{ form_label(form.agence) }}
-        {{ form_widget(form.agence) }}
-        {{ form_errors(form.agence) }}
+   <div class="row col-md-12" >
+      <div class="col-md-5 ">
+         {{ form_label(form.agence) }}
+         {{ form_widget(form.agence) }}
+         {{ form_errors(form.agence) }}
 
+      </div>
+      <div class="col-md-5 offset-2">
+         {{ form_label(form.nom) }}
+         {{ form_widget(form.nom) }}
+         {{ form_errors(form.nom) }}
 
+      </div>
+   </div>
 
-        {{ form_label(form.nom) }}
-        {{ form_widget(form.nom) }}
-        {{ form_errors(form.nom) }}
+   <div class="row col-md-12" >
+      <div class="col-md-5 ">
+         {{ form_label(form.prenom) }}
+         {{ form_widget(form.prenom) }}
+         {{ form_errors(form.prenom) }}
+      </div>
+      <div class="col-md-5 offset-2">
+         {{ form_label(form.telephone) }}
+         {{ form_widget(form.telephone) }}
+         {{ form_errors(form.telephone) }}
 
-        {{ form_label(form.prenom) }}
-        {{ form_widget(form.prenom) }}
-        {{ form_errors(form.prenom) }}
+      </div>
+   </div>
+   <div class="row col-md-12" >
+      <div class="col-md-5 ">
+         {{ form_label(form.email) }}
+         {{ form_widget(form.email) }}
+         {{ form_errors(form.email) }}
+      </div>
+      <div class="col-md-5 offset-2">
+         {{ form_label(form.username) }}
+         {{ form_widget(form.username) }}
+         {{ form_errors(form.username) }}
 
-        {{ form_label(form.sexe) }}
-        {{ form_widget(form.sexe, {attr:{class:'d-inline-block'}})  }}
-        {{ form_errors(form.sexe, {attr:{class:'d-inline-block'}})  }}
+      </div>
+   </div>
 
-        {{ form_label(form.telephone) }}
-        {{ form_widget(form.telephone) }}
-        {{ form_errors(form.telephone) }}
-    </div>
+   <div class="row col-md-12" >
+      <div class="col-md-5 ">
+         {{ form_label(form.password) }}
+         {{ form_widget(form.password) }}
+         {{ form_errors(form.password) }}
+      </div>
+      <div class="col-md-5 offset-2">
+         {{ form_widget(form.sexe) }}
+         {{ form_errors(form.sexe) }}
+         {{ form_label(form.roles) }}
+         {{ form_widget(form.roles) }}
+         {{ form_errors(form.roles) }}
 
-    <div class="col-md-5 offset-2">
+      </div>
+   </div>
+   <div class="row col-md-12" >
+      <div class="col-md-5 ">
+         {{ form_label(form.changedpassword) }}
+         {{ form_widget(form.changedpassword) }}
+         {{ form_errors(form.changedpassword) }}
+      </div>
+      <div class="col-md-5 offset-2">
+         {{ form_label(form.enabled) }}
+         {{ form_widget(form.enabled) }}
+         {{ form_errors(form.enabled) }}
+      </div>
+   </div>
 
-        {{ form_label(form.roles) }}
-        {{ form_widget(form.roles) }}
-        {{ form_errors(form.roles) }}
+   {#<div class="row col-md-12" >
+      <div class="col-md-5 ">
+         {{ form_label(form.description) }}
+         {{ form_widget(form.description) }}
+         {{ form_errors(form.description) }}
 
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-        {{ form_errors(form.email) }}
-
-        {{ form_label(form.username) }}
-        {{ form_widget(form.username) }}
-        {{ form_errors(form.username) }}
-
-        {{ form_label(form.password) }}
-        {{ form_widget(form.password) }}
-        {{ form_errors(form.password) }}
-
-
-    </div>
+      </div>
+   </div>#}
 
 </div>
-
-
-

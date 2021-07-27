@@ -73,6 +73,7 @@ class Operation
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="operations")
+     *@ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 
@@ -102,10 +103,6 @@ class Operation
      */
     private $client;
 
-//    /**
-//     * @ORM\ManyToOne(targetEntity=Tontine::class, inversedBy="operations")
-//     */
-//    private $tontine;
 
     /**
      * @ORM\OneToMany(targetEntity=Detailtontine::class, mappedBy="operation")
@@ -137,6 +134,32 @@ class Operation
      * @ORM\JoinColumn(nullable=false)
      */
     private $compte;
+
+    /**
+     * @ORM\Column(type="string", length=16)
+     */
+    private $devise;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Periode::class, inversedBy="operations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $periode;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $cancel;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Operation::class, inversedBy="operation", cascade={"persist", "remove"})
+     */
+    private $operation;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Collecte::class, mappedBy="operation", cascade={"persist", "remove"})
+     */
+    private $collecte;
 
     public function __construct()
     {
@@ -450,6 +473,71 @@ class Operation
     public function setCompte(?Compte $compte): self
     {
         $this->compte = $compte;
+
+        return $this;
+    }
+
+    public function getDevise(): ?string
+    {
+        return $this->devise;
+    }
+
+    public function setDevise(string $devise): self
+    {
+        $this->devise = $devise;
+
+        return $this;
+    }
+
+    public function getPeriode(): ?Periode
+    {
+        return $this->periode;
+    }
+
+    public function setPeriode(?Periode $periode): self
+    {
+        $this->periode = $periode;
+
+        return $this;
+    }
+
+    public function getCancel(): ?bool
+    {
+        return $this->cancel;
+    }
+
+    public function setCancel(?bool $cancel): self
+    {
+        $this->cancel = $cancel;
+
+        return $this;
+    }
+
+    public function getOperation(): ?self
+    {
+        return $this->operation;
+    }
+
+    public function setOperation(?self $operation): self
+    {
+        $this->operation = $operation;
+
+        return $this;
+    }
+
+    public function getCollecte(): ?Collecte
+    {
+        return $this->collecte;
+    }
+
+    public function setCollecte(Collecte $collecte): self
+    {
+        // set the owning side of the relation if necessary
+        if ($collecte->getOperation() !== $this) {
+            $collecte->setOperation($this);
+        }
+
+        $this->collecte = $collecte;
 
         return $this;
     }

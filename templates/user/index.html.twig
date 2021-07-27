@@ -1,64 +1,46 @@
 {% extends 'user/user.html.twig' %}
 
-{% block content %}
 
-    <div class="card mb-3">
+{% block content %}
+    <div class="card mb-3" >
         <div class="card-header">
-            <h2> <i class="glyphicon glyphicon-table" ></i>
-                Liste des utilisateurs</h2></div>
-        <div class="card-body">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Liste des dépatements</h2></div>
+        <div class="card-body" >
             <div class="row">
-                <div class="col-md-2">
-                    <a href="{{ path('user_new') }}" class="btn btn-primary ">
-                        <i class="fa fa-chevron-right"></i>
-                        Nouvel
-                    </a>
+                <div class="col-md-2" id="add-modal">
+                    {#{% include('user/new.html.twig') %}#}
                 </div>
 
-                <div class="offset-8 col-md-2 ">
+                {#<div class="offset-8 col-md-2 ">
                     <a href="#" class="btn btn-success ">
                         <i class="fa fa-print"></i>
                         Imprimer
                     </a>
-                </div>
+                </div>#}
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-8">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>Vue</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Login</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for user in users %}
-                            <tr>
-                                <td>
-                                    {% include('user/viewmodal.html.twig') %}
-                                </td>
-                                <td><a style="color: white"  href="{{ path('user_show' , {'slug' :user.slug }) }}"> {{ user.nom  | upper}} </a> </td>
-                                <td>{{ user.prenom }}</td>
-                                <td>{{ user.username }}</td>
-                                {#<td>
-                                    #}{#<div class="row">
-                                        #}{##}{#<a class=" col-sm-6" href="{{ path('user_show', {'slug': user.slug}) }}">
-                                            <i class="fa fa-edit"></i>
-                                            Détail
-                                        </a>#}{##}{#
-                                    </div>#}{#
-                                </td>#}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
+
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Utilisateur</th>
+                    <th>Identifiant</th>
+                    <th>Dernière Con.</th>
+                    <th>Ip Connexion</th>
+                    <th>Etat</th>
+                    <th>Vue</th>
+                </tr>
+                </thead>
+                <tbody id="user_table">
+                {{ include('user/user_table.html.twig') }}
+                </tbody>
+            </table>
         </div>
     </div>
+
     <div class="card-footer small text-muted">Hier à 11:59 </div>
 
 {% endblock %}

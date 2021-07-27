@@ -35,8 +35,6 @@ class Client
      */
     private $nom;
 
-
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ !")
@@ -93,6 +91,7 @@ class Client
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 
@@ -125,8 +124,8 @@ class Client
 
     /**
      * @var file
-     * @Assert\Image(maxSize = "3M",
-     *     mimeTypesMessage = "Uploadez un fichier JPG ou PNG", maxSizeMessage="Le fichier est trop gros (3Mo)")
+     * @Assert\Image(maxSize = "5M",
+     *     mimeTypesMessage = "Uploadez un fichier JPG ou PNG", maxSizeMessage="Le fichier est trop gros (5Mo)")
      */
     private $file;
 
@@ -185,6 +184,10 @@ class Client
      */
     private $prets;
 
+    /**
+     * @ORM\Column(type="string", length=1, nullable=true)
+     */
+    private $sexe;
 
     /**
      * @ORM\PrePersist()
@@ -759,6 +762,18 @@ class Client
                 $pret->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(?string $sexe): self
+    {
+        $this->sexe = $sexe;
 
         return $this;
     }

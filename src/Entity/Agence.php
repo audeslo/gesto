@@ -54,6 +54,7 @@ class Agence
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 
@@ -102,6 +103,16 @@ class Agence
      */
     private $prets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Avancement::class, mappedBy="agence")
+     */
+    private $avancements;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Collecte::class, mappedBy="agence")
+     */
+    private $collectes;
+
     public function __construct()
     {
         $this->comptes = new ArrayCollection();
@@ -110,6 +121,8 @@ class Agence
         $this->users = new ArrayCollection();
         $this->detailcaisses = new ArrayCollection();
         $this->prets = new ArrayCollection();
+        $this->avancements = new ArrayCollection();
+        $this->collectes = new ArrayCollection();
     }
 
     /**
@@ -433,6 +446,66 @@ class Agence
             // set the owning side to null (unless already changed)
             if ($pret->getAgence() === $this) {
                 $pret->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Avancement[]
+     */
+    public function getAvancements(): Collection
+    {
+        return $this->avancements;
+    }
+
+    public function addAvancement(Avancement $avancement): self
+    {
+        if (!$this->avancements->contains($avancement)) {
+            $this->avancements[] = $avancement;
+            $avancement->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvancement(Avancement $avancement): self
+    {
+        if ($this->avancements->removeElement($avancement)) {
+            // set the owning side to null (unless already changed)
+            if ($avancement->getAgence() === $this) {
+                $avancement->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Collecte[]
+     */
+    public function getCollectes(): Collection
+    {
+        return $this->collectes;
+    }
+
+    public function addCollecte(Collecte $collecte): self
+    {
+        if (!$this->collectes->contains($collecte)) {
+            $this->collectes[] = $collecte;
+            $collecte->setAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollecte(Collecte $collecte): self
+    {
+        if ($this->collectes->removeElement($collecte)) {
+            // set the owning side to null (unless already changed)
+            if ($collecte->getAgence() === $this) {
+                $collecte->setAgence(null);
             }
         }
 

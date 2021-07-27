@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Admin{% endblock %}
+
+{% block nav %}
+    {#{% if actif is same as('accueil') %} class="active" {% endif %}#}
+    {% set actif='operations' %}
+    {{ parent() }}
+    {#{% set actif='parametre' %}
+    {% include 'nav_parm.html.twig' %}#}
+{% endblock %} {#End nav#}
+
+ {% block path %}
+     <li><a href="{{path('Accueil')}}">Opérations</a></li>
+    {# <li><a href="#">Branches</a></li>#}
+     <li class="active">Collectes</li>
+     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.getElementById('cachet').style.display="";
+        function valide(ferme){
+
+            // Contrôle des champs
+            if(document.getElementById('collecte_tontine').value.length < 1){
+                surligneAvecMessage(document.getElementById('collecte_tontine'),
+                    true,'Veuillez renseigner un numéro correct de livret');
+                return false;
+            }else {
+                if(document.getElementById('operation_tontine_montantop').value.length < 1){
+                    surligneAvecMessage(document.getElementById('operation_tontine_montantop'),
+                        true,'Veuillez renseigner un montant pour l\'operation');
+                    return false;
+                }else {
+                    montantOp=document.getElementById('operation_tontine_montantop').value
+                    miseJournaliere=document.getElementById('form_tontine_meconomie').value
+
+                    if((montantOp % miseJournaliere) !==0){ // On calcule le modulo du montantop sur la mise
+                        surligneAvecMessage(document.getElementById('operation_tontine_montantop'),
+                            true,'Le montant de l\'opéraration doit être un multiple de la mise');
+                        return false;
+                    }else {
+                        if(document.getElementById('operation_tontine_dateop_date_day').value.length < 1 ||
+                            document.getElementById('operation_tontine_dateop_date_month').value.length < 1 ||
+                            document.getElementById('operation_tontine_dateop_date_year').value.length < 4
+                        ){
+                            surligneAvecMessage(document.getElementById('operation_tontine_dateop_date_day'),
+                                true,'Veuillez renseigner une date valide');
+                            return false;
+                        }else {
+
+                            restAppoint=document.getElementById('form_tontine_appointrest').value;
+                            if((montantOp/miseJournaliere)>restAppoint){
+                                surligneAvecMessage(document.getElementById('operation_tontine_montantop'),
+                                    true,'Le montant dépasse le nombre d\'appointements restants : '+restAppoint);
+                                return false;
+
+                            }else{
+                                // Requete AJAX pour envoyer les données aux serveur après confirmation
+                                $("body").overhang({
+                                    type: "confirm",
+                                    message: "Voulez-vous vraiment valider l'opération?",
+                                    callback: function (value) {
+                                        var response = value ? "Oui" : "No";
+                                        if(response === 'Oui'){
+                                            $.ajax({
+                                                url: "/operation/collecte/nouvel",
+                                                method: "POST",
+                                                data: $('#form_collecte').serialize(),
+                                                success: function (data) {
+                                                   /* if(typeof data.erreur !== 'undefined'){*/
+                                                        if (ferme === true){
+                                                            $('#form_collecte')[0].reset();
+                                                            $('.close').click();
+                                                            if($('#collecte_table').html(data)){
+                                                                $("body").overhang({
+                                                                    type: "success",
+                                                                    message: "Enregistremnt bien fait!!"
+                                                                });
+                                                                //window.location.reload();
+                                                            }
+                                                        }else { // D'autres enregistrement
+                                                            $("body").overhang({
+                                                                type: "success",
+                                                                message: "Enregistremnt bien fait!!"
+                                                            });
+                                                        }
+                                                    /*}else {
+                                                        $("body").overhang({
+                                                            type: "error",
+                                                            message: data.message,
+                                                            closeConfirm: true
+                                                        });
+                                                    }*/
+
+                                                },
+                                                error: function (data) {
+                                                    $("body").overhang({
+                                                        type: "error",
+                                                        message: "Whoops! Quelque chose ne va pas!",
+                                                        closeConfirm: true
+                                                    });
+                                                }
+
+                                            })/*.then(res => window.location.reload());*/
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        // Remplissage  des champs
+        function remplirChamps() {
+            if( document.getElementById('collecte_tontine').value !== ''
+            ){
+
+                $.ajax({
+                    url: "{{ path('collecte_remplirchamp') }}",
+                    method: "POST",
+                    data: $('#form_collecte').serialize(),
+                    success: function (data) {
+                        //console.log(data);
+                        // Remplir les champ après avoir recuperer la reference
+                        document.getElementById('operation_tontine_nomcomplet').value=data.nomcomplet;
+                        document.getElementById('form_tontine_meconomie').value=data.meconomie;
+                        document.getElementById('form_tontine_ranglivret').value=data.ranglivret;
+                        document.getElementById('form_tontine_numordre').value=data.numordre;
+                        document.getElementById('form_tontine_feuillet').value=data.feuillet;
+                        document.getElementById('form_tontine_appointrest').value=data.appRestant;
+
+                        // Focus dans le champ Montant
+                        document.getElementById('operation_tontine_montantop').focus();
+
+                    },
+
+                })
+                /* });*/
+            }
+
+        }
+
+
+    </script>
+
+    <script>
+        $('select[data-select="true"]').select2(
+            {
+                dropdownParent: $("#myModal"),
+                width: '100%',
+            }
+        );
+    </script>
+
+{% endblock %}

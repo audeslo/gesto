@@ -1,9 +1,9 @@
-<a type="button" class="btn  btn-sm" data-toggle="modal" data-target="#{{ user.slug }}">
-    <i class="glyphicon glyphicon-list"></i>
+<a style="cursor: pointer"  data-toggle="modal" data-target="#{{ user.id }}">
+    <i style="font-size: 20px" class="fa fa-eye "></i>
 </a>
 
 <!-- Modal -->
-<div class="modal fade " id="{{ user.slug}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
+<div class="modal fade " id="{{ user.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: #000000">
     <div class="modal-dialog modal-lg" role="document"  >
         <div class="modal-content">
             <div class="modal-header">
@@ -11,59 +11,56 @@
                 <h4 class="modal-title" id="myModalLabel">Détails user</h4>
             </div>
             <div class="modal-body">
-                <table class="table-bordered table">
+                <table class="table-bordered table" style="background-color: #868e96">
                     <tbody>
                     <tr>
-                        <th>Id</th>
-                        <td>{{ user.id }}</td>
+                        <th>Agence</th>
+                        <td>{{ user.agence }}</td>
                     </tr>
                     <tr>
                         <th>Nom</th>
                         <td>{{ user.nom }}</td>
                     </tr>
                     <tr>
-                        <th>Sexe</th>
-                        <td>{{ user.sexe }}</td>
+                        <th>Prénom</th>
+                        <td>{{ user.prenom }}</td>
                     </tr>
                     <tr>
-                        <th>login</th>
+                        <th>Identifiant</th>
                         <td>{{ user.username }}</td>
                     </tr>
                     <tr>
-                        <th>lastLogin</th>
-                        <td>{{ user.lastLogin ? apprenant.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                        <th>Etat</th>
+                        <td>{{ user.enabled ? 'Actif' : 'Non actif' }}</td>
                     </tr>
-                    <tr>
-                        <th>E-Mail</th>
-                        <td>{{ user.email }}</td>
-                    </tr>
+
                     <tr>
                         <th>Enregistré le</th>
                         <td>
-                            {{ user.createdOn ? user.createdOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            {{ user.createdOn ? user.createdOn |date('d/m/Y H:i:s') : ''  }} <br>
                             Par {{ user.createdBy }}
                         </td>
                     </tr>
+
                     <tr>
-                        <th>Modifié le </th>
+                        <th>Modifié le</th>
                         <td>
-                            {{ user.editedOn ? user.editedOn |date('d-m-Y H:i:s') : ''  }} <br>
+                            {{ user.editedOn ? user.editedOn |date('d/m/Y H:i:s') : ''  }} <br>
                             Par {{ user.editedBy }}
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
                 <div class="row" >
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        <i class="glyphicon glyphicon-chevron-left"></i>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                        <i class="fa fa-chevron-left"></i>
                         Retour à la liste
                     </button>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-primary">Imprimer</button>
+                {#<button type="button" class="btn btn-primary">Imprimer</button>#}
             </div>
         </div>
     </div>

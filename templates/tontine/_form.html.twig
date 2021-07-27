@@ -3,13 +3,13 @@
    <div class="row col-md-12" >
       <div class="col-md-5 ">
          {{ form_label(form.client) }}
-         {{ form_widget(form.client) }}
+         {{ form_widget(form.client)}}
          {{ form_errors(form.client) }}
 
       </div>
       <div class="col-md-5 offset-2">
          {{ form_label(form.compte) }}
-         {{ form_widget(form.compte) }}
+         {{ form_widget(form.compte)}}
          {{ form_errors(form.compte) }}
 
       </div>
@@ -18,7 +18,11 @@
    <div class="row col-md-12" >
       <div class="col-md-5 ">
          {{ form_label(form.meconomie) }}
-         {{ form_widget(form.meconomie) }}
+         {% if solde is defined and solde is not same as (0) %}
+         {{ form_widget(form.meconomie, {'attr': {'readonly':'readonly'}})}}
+         {% else %}
+         {{ form_widget(form.meconomie)}}
+         {% endif %}
          {{ form_errors(form.meconomie) }}
       </div>
       <div class="col-md-5 offset-2">
@@ -36,14 +40,16 @@
       </div>
       <div class="col-md-5 offset-2">
          {{ form_label(form.nbfeuillet) }}
-         {{ form_widget(form.nbfeuillet) }}
+         {{ form_widget(form.nbfeuillet)}}
          {{ form_errors(form.nbfeuillet) }}
       </div>
    </div>
    <div class="row col-md-12" >
       <div class="col-md-5 ">
          {{ form_label(form.nbmaxappoint) }}
-         {{ form_widget(form.nbmaxappoint) }}
+
+            {{ form_widget(form.nbmaxappoint)}}
+
          {{ form_errors(form.nbmaxappoint) }}
       </div>
       <div class="col-md-5 offset-2">

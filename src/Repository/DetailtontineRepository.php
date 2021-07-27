@@ -21,6 +21,31 @@ class DetailtontineRepository extends ServiceEntityRepository
         parent::__construct($registry, Detailtontine::class);
     }
 
+    public function findAllDetailOperation()
+    {
+        return $this->createQueryBuilder('dt')
+            ->select("op.libelleop,op.datecomptabilisation,op.slug,
+            ag.libelle,op.sens, op.cancel, cpt.numcomp, op.dateop,op.nomcomplet,
+            op.montantop, CONCAT(cl.nom,CONCAT(' ',cl.prenoms)) client
+            ")
+            ->join('dt.tontine','tt')
+            ->join('tt.compte','cpt')
+            ->join('dt.operation','op')
+            ->join('op.agence','ag')
+            ->join('op.client','cl')
+            ->andWhere('cpt.type = :val')
+            ->setParameter('val', '01')
+            ->orderBy('op.dateop', 'DESC')
+            ->groupBy('op.libelleop,op.datecomptabilisation,op.slug,
+            ag.libelle,op.sens, op.cancel, cpt.numcomp, op.dateop,op.nomcomplet,
+            op.montantop,client
+            ')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findAllDebit($tontine)
     {
         return $this->createQueryBuilder('d')
@@ -38,7 +63,7 @@ class DetailtontineRepository extends ServiceEntityRepository
         $em=$this->getEntityManager();
         $query=$em->createQuery(
        "SELECT IDENTITY (op.compte) compte,SUM (CASE WHEN op.sens='D' 
-            THEN dt.meconomie ELSE 0 END) debit,SUM(CASE WHEN op.sens='C' 
+            THEN dt.meconomie ELSE 0 END)+ tt.avance debit,SUM(CASE WHEN op.sens='C' 
             THEN dt.meconomie ELSE 0 END) credit,tt.avance,-1*((SUM (CASE WHEN 
             op.sens='D' THEN dt.meconomie ELSE 0 END)-SUM(CASE WHEN op.sens='C' 
 	        THEN dt.meconomie ELSE 0 END)) + tt.avance ) soldecli

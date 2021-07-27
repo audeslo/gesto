@@ -1,66 +1,55 @@
-{#{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - Admin{% endblock %}
 
- {% block path %}
-     <li><a href="index.html">Administration</a></li>
-    #}{# <li><a href="#">Branches</a></li>#}{#
-     <li class="active">Clients</li>
-     #}{#<li><a href="sign-in.html">Sign In Form</a></li>#}{#
- {% endblock %}
-
-{% block content %}
-
-{% endblock %}#}
-
-
-{% extends'base.html.twig' %}
-
-
-
-    {% set var = 'comptes' %}
-
-
 {% block nav %}
+    {{ parent() }}
+    {#{% set actif='parametre' %}
+    {% include 'nav_parm.html.twig' %}#}
+{% endblock %} {#End nav#}
 
-    {% include'nav.html.twig' %}
-
-
-{% endblock %}
-
-{% block content %}
-
-{% endblock %}
+ {% block path %}
+     <li><a href="{{path('Accueil')}}">Administration</a></li>
+    {# <li><a href="#">Branches</a></li>#}
+     <li class="active">Comptes</li>
+     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
+ {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
+        function valide(ferme){
+            $.ajax({
+                url: "/traitement/compte/nouveau",
+                method: "POST",
+                data: $('#form_compte').serialize(),
+                success: function (data) {
+                    if(ferme===true){
+                        $('#form_compte')[0].reset();
+                        $('.close').click();
+                        $('#compte_table').html(data);
+                    }
+                        $("body").overhang({
+                            type: "success",
+                            message: "Enregistremnt bien fait!!"
+                        });
+                },
+
+            });
+        }
+    </script>
+
+    <script>
         $('select[data-select="true"]').select2(
             {
-                width: '100%'
+                dropdownParent: $("#myModal"),
+                width: '100%',
             }
         );
+
+        //$('select[data-disabled="true"]').disabled=false;
+
+
     </script>
-    {#
-        <script>
-            var departement=document.getElementById('client_departement');
-            var commune=document.getElementById('client_commune');
 
-
-            if (!(departement !== null)) {
-            } else {
-                $(document).on('change','#client_departement',function(){
-                    let $field=$(this)
-                    let $form=$field.closest('form')
-                    let data={}
-                    data[$field.attr('name')]=$field.val()
-                    $.post($form.attr('action'),data).then(function(data) {
-                        let  $input = $(data).find('#client_commune')
-                        //language=JQuery-CSS
-                        $('#client_commune').replaceWith($input)
-
-                    })
-                })
-            }
-        </script>#}
 {% endblock %}

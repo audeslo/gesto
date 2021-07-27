@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collecte{% endblock %}
+
+{% block body %}
+    <h1>Collecte</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ collecte.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelleclt</th>
+                <td>{{ collecte.libelleclt }}</td>
+            </tr>
+            <tr>
+                <th>Montantclt</th>
+                <td>{{ collecte.montantclt }}</td>
+            </tr>
+            <tr>
+                <th>Dateclt</th>
+                <td>{{ collecte.dateclt ? collecte.dateclt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedOn</th>
+                <td>{{ collecte.createdOn ? collecte.createdOn|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EditedOn</th>
+                <td>{{ collecte.editedOn ? collecte.editedOn|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ collecte.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('collecte_index') }}">back to list</a>
+
+    <a href="{{ path('collecte_edit', {'id': collecte.id}) }}">edit</a>
+
+    {{ include('collecte/_delete_form.html.twig') }}
+{% endblock %}

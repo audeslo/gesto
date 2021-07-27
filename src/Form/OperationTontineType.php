@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -28,13 +29,12 @@ class OperationTontineType extends AbstractType
                    'readonly'   =>  'readonly'
                 ]
             ))
-            ->add('montantop',MoneyType::class,array(
+            ->add('montantop',IntegerType::class,array(
                 'label'     => 'Montant Opération :',
                 'required'  => false,
-                'currency'  =>  'CFA'
             ))
             ->add('operant',TextType::class,array(
-                'label' => 'Déposant(e) :',
+                'label' => 'Opérant(e) :',
                 'required' => false,
 
             ))

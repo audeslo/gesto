@@ -1,0 +1,26 @@
+{% for avancement in avancements %}
+    <tr>
+        <td>{{ avancement.tontine.reflivret }}</td>
+        <td>
+           {# L'annuation serait possible lorsqu'elle intervient le même jour que l'operation#}
+            {% if avancement.operation.cancel is same as true %}
+                {{ avancement.operation.libelleop }}
+            {% elseif
+                "now"|date('Y-m-d') is same as(avancement.operation.datecomptabilisation|date('Y-m-d'))
+                and avancement.operation.sens is same as ('D')
+            %}
+                {% include('avancement/annuler.html.twig') %}
+            {% else %}
+            {{ avancement.operation.libelleop }}
+            {% endif %}
+        </td>
+        <td>{{ avancement.operation.dateop | date('d/m/Y H:m') }}</td>
+        <td>{{ avancement.operation.montantop | number_format(0,0,' ') }}</td>
+        <td>{{ avancement.operation.sens  }}</td>
+        <td>{{ avancement.operation.client }}</td>
+        <td></td>
+        <td>
+            {#{% include('avancement/viewmodal.html.twig') %}#}
+        </td>
+    </tr>
+{% endfor %}

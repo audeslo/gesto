@@ -34,24 +34,24 @@ class CommuneController extends AbstractController
     /**
      * @Route("/nouvelle", name="commune_nouvelle", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CommuneRepository $communeRepository): Response
     {
         $commune = new Commune();
         $form = $this->createForm(CommuneType::class, $commune);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isXmlHttpRequest() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $commune->setCreatedBy($this->getUser());
             $entityManager->persist($commune);
             $entityManager->flush();
 
-            return $this->redirectToRoute('commune_index');
+            return $this->render('commune/commune_table.html.twig', [
+                'communes' => $communeRepository->findAll()
+            ]);
         }
 
-        return $this->render('commune/new.html.twig', [
-            'commune' => $commune,
-            'form' => $form->createView(),
-        ]);
+        return $this->json(['message' => 'cpas bon'],200);
     }
 
     /**

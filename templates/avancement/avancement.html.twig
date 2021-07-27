@@ -1,0 +1,252 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Admin{% endblock %}
+
+{% block nav %}
+    {{ parent() }}
+    {#{% set actif='parametre' %}
+    {% include 'nav_parm.html.twig' %}#}
+{% endblock %} {#End nav#}
+
+ {% block path %}
+     <li><a href="{{path('Accueil')}}">Opérations</a></li>
+    {# <li><a href="#">Branches</a></li>#}
+     <li class="active">Avancement</li>
+     {#<li><a href="sign-in.html">Sign In Form</a></li>#}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.getElementById('cachet').style.display="none"
+        document.getElementById('cachetSolde').style.display="none"
+        function valide(ferme){
+
+            // Contrôle des champs
+            if(document.getElementById('avancement_tontine').value.length < 1){
+                surligneAvecMessage(document.getElementById('avancement_tontine'),
+                    true,'Veuillez renseigner un numéro correct de livret');
+                return false;
+            }else {
+                if(document.getElementById('operation_tontine_montantop').value.length < 1){
+                    surligneAvecMessage(document.getElementById('operation_tontine_montantop'),
+                        true,'Veuillez renseigner un montant pour l\'operation');
+                    return false;
+                }else {
+                    if(document.getElementById('operation_tontine_operant').value.length < 1){ // On calcule le module du montantop sur la mise
+                        surligneAvecMessage(document.getElementById('operation_tontine_operant'),
+                            true,'Le nom de l\'opérant(e)');
+                        return false;
+                    }else {
+                        montantOperation=document.getElementById('operation_tontine_montantop').value;
+                        montantPlafond=document.getElementById('avancement_temoinplafond').value;
+                        //alert(montantPlafond-montantOperation)
+                        if((montantPlafond-montantOperation)<0){
+                            surligneAvecMessage(document.getElementById('operation_tontine_montantop'),
+                                true,'La valeur de l\'opétation est trop élevée');
+                            return false;
+                        }else {
+                            // Requete AJAX pour envoyer les données aux serveur après confirmation
+                            $("body").overhang({
+                                type: "confirm",
+                                message: "Voulez-vous vraiment valider l'opération?",
+                                callback: function (value) {
+                                    var response = value ? "Oui" : "No";
+                                    if(response === 'Oui'){
+                                        $.ajax({
+                                            url: "{{ path('avancement_nouvel') }}",
+                                            method: "POST",
+                                            data: $('#form_avancement').serialize(),
+                                            success: function (data) {
+                                                console.log(data);
+                                                if (ferme === true){
+                                                    $('#form_avancement')[0].reset();
+                                                    $('.close').click();
+                                                    if($('#avancement_table').html(data)){
+                                                        $("body").overhang({
+                                                            type: "success",
+                                                            message: "Enregistremnt bien fait!!"
+                                                        });
+                                                        //window.location.reload();
+                                                    }
+                                                }else { // D'autres enregistrement
+                                                    $("body").overhang({
+                                                        type: "success",
+                                                        message: "Enregistremnt bien fait!!"
+                                                    });
+                                                }
+                                                /*}else {
+                                                    $("body").overhang({
+                                                        type: "error",
+                                                        message: data.message,
+                                                        closeConfirm: true
+                                                    });
+                                                }*/
+
+                                            },
+                                            error: function (data) {
+                                                $("body").overhang({
+                                                    type: "error",
+                                                    message: "Whoops! Quelque chose ne va pas!",
+                                                    closeConfirm: true
+                                                });
+                                            }
+
+                                        })/*.then(res => window.location.reload());*/
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        // Remplissage  des champs
+        function remplirChamps() {
+            if( document.getElementById('avancement_tontine').value !== ''
+            ){
+
+                $.ajax({
+                    url: "{{ path('avancement_remplirchamp') }}",
+                    method: "POST",
+                    data: $('#form_avancement').serialize(),
+                    success: function (data) {
+                        //console.log(data);
+                        // Remplir les champ après avoir recuperer la reference
+                        document.getElementById('operation_tontine_nomcomplet').value=data.nomcomplet;
+                        document.getElementById('avancement_temoinplafond').value=data.plafond;
+                        document.getElementById('avancement_plafond').value=new Intl.NumberFormat().format(data.plafond);
+
+
+                        // Focus dans le champ Montant
+                        document.getElementById('operation_tontine_montantop').focus();
+
+                    },
+
+                })
+                /* });*/
+            }
+
+        }
+        // Remplissage  des champs
+        function infoResiliation() {
+            if( document.getElementById('resiliation_tontine_tontine').value !== ''
+            ){
+
+                $.ajax({
+                    url: "{{ path('resiliation_info') }}",
+                    method: "POST",
+                    data: $('#form_resiliation').serialize(),
+                    success: function (data) {
+                        //console.log(data);
+
+                        // Remplir les champ après avoir recuperer la reference
+                        document.getElementById('resiliation_tontine_nomcomplet').value=data.nomcomplet;
+                        document.getElementById('resiliation_tontine_solde').value=new Intl.NumberFormat().format(data.solde);
+                        document.getElementById('resiliation_tontine_temoinsolde').value=data.solde;
+                        if(data.solde<0){ // On cache le bouton "Résilier"
+                            document.getElementById('ajout_resiliation').style.display="none"
+                        }else {
+                            document.getElementById('ajout_resiliation').style.display=""
+                        }
+
+
+                    },
+
+                })
+                /* });*/
+            }
+
+        }
+
+        function resilier(ferme){
+
+            // Contrôle des champs
+            if(document.getElementById('resiliation_tontine_tontine').value.length < 1){
+                surligneAvecMessage(document.getElementById('resiliation_tontine_tontine'),
+                    true,'Veuillez renseigner le numéro du livret');
+                return false;
+            }else {
+                if(document.getElementById('resiliation_tontine_temoinsolde').value < 0){
+                    surligneAvecMessage(document.getElementById('resiliation_tontine_solde'),
+                        true,'Le compte ne peut être clôturé');
+
+                }else {
+                    return false;
+                    $("body").overhang({
+                        type: "confirm",
+                        message: "Voulez-vous vraiment valider l'opération?",
+                        callback: function (value) {
+                            var response = value ? "Oui" : "No";
+                            if(response === 'Oui'){
+                                $.ajax({
+                                    url: "{{ path('avancement_nouvel') }}",
+                                    method: "POST",
+                                    data: $('#form_avancement').serialize(),
+                                    success: function (data) {
+                                        console.log(data);
+                                        if (ferme === true){
+                                            $('#form_avancement')[0].reset();
+                                            $('.close').click();
+                                            if($('#avancement_table').html(data)){
+                                                $("body").overhang({
+                                                    type: "success",
+                                                    message: "Enregistremnt bien fait!!"
+                                                });
+                                                //window.location.reload();
+                                            }
+                                        }else { // D'autres enregistrement
+                                            $("body").overhang({
+                                                type: "success",
+                                                message: "Enregistremnt bien fait!!"
+                                            });
+                                        }
+                                        /*}else {
+                                            $("body").overhang({
+                                                type: "error",
+                                                message: data.message,
+                                                closeConfirm: true
+                                            });
+                                        }*/
+
+                                    },
+                                    error: function (data) {
+                                        $("body").overhang({
+                                            type: "error",
+                                            message: "Whoops! Quelque chose ne va pas!",
+                                            closeConfirm: true
+                                        });
+                                    }
+
+                                })/*.then(res => window.location.reload());*/
+                            }
+                        }
+                    });
+                }
+            }
+
+        }
+
+
+ </script>
+
+    <script>
+        $('select[data-select="true"]').select2(
+            {
+                dropdownParent: $("#myModal"),
+                width: '100%',
+            }
+        );
+
+        $('select[data-select="bool"]').select2(
+            {
+                dropdownParent: $("#Resilier"),
+                width: '100%',
+            }
+        );
+    </script>
+
+{% endblock %}

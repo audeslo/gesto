@@ -20,12 +20,12 @@
     <script>
         function valide(ferme){
             $.ajax({
-                url: "/administration/departement/nouveau",
+                url: "/configuration/departement/nouveau",
                 method: "POST",
                 data: $('#form_departement').serialize(),
                 success: function (data) {
                     if(ferme===true){
-                        $('#form_departemnt')[0].reset();
+                        $('#form_departement')[0].reset();
                         $('.close').click();
                         $('#departement_table').html(data);
                     }

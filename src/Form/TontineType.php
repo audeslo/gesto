@@ -57,7 +57,7 @@ class TontineType extends AbstractType
                             'data-select' => 'true'
                         ]
                     ))
-                    ->add('meconomie',MoneyType::class,array(
+                    ->add('meconomie',NumberType::class,array(
                         'label'     => 'Montant Economie :',
                         'required'  => false
                     ))
@@ -112,8 +112,8 @@ class TontineType extends AbstractType
                                 'data-select' => 'true'
                             ]
                         ))
-                        ->add('meconomie',MoneyType::class,array(
-                            'label'     => 'Montant Economie :',
+                        ->add('meconomie',NumberType::class,array(
+                            'label'     => 'Mise Journalière :',
                             'required'  => false
                         ))
                         ->add('ranglivret',IntegerType::class,array(
@@ -158,10 +158,9 @@ class TontineType extends AbstractType
                                 'data-select' => 'true',
                             ]
                         ))
-                        ->add('meconomie',MoneyType::class,array(
-                            'label'     => 'Montant Economie :',
+                        ->add('meconomie',NumberType::class,array(
+                            'label'     => 'Mise journalière :',
                             'required'  => false,
-                            'currency'  =>  'CFA'
                         ))
                         ->add('ranglivret',IntegerType::class,array(
                             'label'     => 'Rang livret :',

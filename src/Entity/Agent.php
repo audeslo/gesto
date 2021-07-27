@@ -123,7 +123,7 @@ class Agent
     private $editedOn;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $createdOn;
 
@@ -134,6 +134,7 @@ class Agent
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="agents")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 

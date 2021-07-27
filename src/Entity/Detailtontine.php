@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=DetailtontineRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Detailtontine
 {
@@ -68,6 +69,26 @@ class Detailtontine
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="detailtontines")
      */
     private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $createdBy;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdOn;
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function datecreated()
+    {
+        $this->setCreatedOn(new \DateTime('now'));
+    }
+
 
     public function getId(): ?int
     {
@@ -191,6 +212,30 @@ class Detailtontine
     public function setRanglivret(int $ranglivret): self
     {
         $this->ranglivret = $ranglivret;
+
+        return $this;
+    }
+
+    public function getCreatedOn(): ?\DateTimeInterface
+    {
+        return $this->createdOn;
+    }
+
+    public function setCreatedOn(\DateTimeInterface $createdOn): self
+    {
+        $this->createdOn = $createdOn;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }

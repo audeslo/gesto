@@ -1,0 +1,12 @@
+{% for periode in periodes %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ periode.debut | date('d-m-Y') }}</td>
+        <td>{{ periode.fin | date('d-m-Y')}}</td>
+        <td><a href="{{path('periode_modification',{'slug' : periode.slug})}}">{{ periode.code }}</a></td>
+        <td>{{ periode.etat }}</td>
+        <td>
+            {% include('periode/viewmodal.html.twig') %}
+        </td>
+    </tr>
+{% endfor %}

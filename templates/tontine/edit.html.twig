@@ -7,7 +7,8 @@
     <h1>Modification de la tontine</h1>
     <div class="col-md-8">
         {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ include('tontine/_form.html.twig') }}
+        <hr>
         <div class="row">
             <div class="col-md-2">
                 <a class="btn btn-default" href="{{ path('tontine_index') }}">

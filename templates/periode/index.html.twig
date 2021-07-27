@@ -1,0 +1,38 @@
+{% extends 'periode/periode.html.twig' %}
+
+
+{% block content %}
+    <div class="card mb-3" >
+        <div class="card-header">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Liste des périodes</h2></div>
+        <div class="card-body" >
+            <div class="row">
+                <div class="col-md-2" id="add-modal">
+                    {% include('periode/new.html.twig') %}
+                </div>
+            </div>
+            <hr>
+            <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
+
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Date debut</th>
+                    <th>Date fin</th>
+                    <th>Code</th>
+                    <th>Etat</th>
+                    <th>Vue</th>
+                </tr>
+                </thead>
+                <tbody id="periode_table">
+                {{ include('periode/periode_table.html.twig') }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-footer small text-muted">Hier à 11:59 </div>
+
+{% endblock %}

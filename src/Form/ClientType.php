@@ -60,7 +60,7 @@ class ClientType extends AbstractType
                         'label'     => 'Nom :',
                         'required'  => false,
                         'attr'      =>[
-                            'oninput'   =>  'premiereLettreMajuscule(this)'
+                            'oninput'   =>  'toutMajuscule(this)'
                         ]
                     ))
                     ->add('prenoms',TextType::class,array(
@@ -70,6 +70,12 @@ class ClientType extends AbstractType
                             'placeholder'    =>  'Saisissez le prénom de l adherent',
                             'oninput'   =>  'premiereLettreMajuscule(this)'
                         ]
+                    ))
+
+                    ->add('sexe', ChoiceType::class, array(
+                        'choices'   => ['Masculin' => 'M', 'Féminin'   =>  'F'],
+                        'expanded'  => true,
+                        'label'     => 'Sexe: ',
                     ))
 
                     ->add('lieu',TextType::class,array(
@@ -145,7 +151,7 @@ class ClientType extends AbstractType
                             'label'     => 'Nom :',
                             'required'  => false,
                             'attr'      =>[
-                                'oninput'   =>  'premiereLettreMajuscule(this)'
+                                'oninput'   =>  'toutMajuscule(this)'
                             ]
                         ))
                         ->add('prenoms',TextType::class,array(
@@ -156,7 +162,11 @@ class ClientType extends AbstractType
                                 'oninput'   =>  'premiereLettreMajuscule(this)'
                             ]
                         ))
-
+                        ->add('sexe', ChoiceType::class, array(
+                            'choices'   => ['Masculin' => 'M', 'Féminin'   =>  'F'],
+                            'expanded'  => true,
+                            'label'     => 'Sexe: ',
+                        ))
                         ->add('lieu',TextType::class,array(
                             'label'     => 'Lieu :',
                             'required'  => false,
@@ -219,7 +229,7 @@ class ClientType extends AbstractType
                             'label'     => 'Nom :',
                             'required'  => false,
                             'attr'      =>[
-                                'oninput'   =>  'premiereLettreMajuscule(this)'
+                                'oninput'   =>  'toutMajuscule(this)'
                             ]
                         ))
                         ->add('prenoms',TextType::class,array(
@@ -230,7 +240,11 @@ class ClientType extends AbstractType
                                 'oninput'   =>  'premiereLettreMajuscule(this)'
                             ]
                         ))
-
+                        ->add('sexe', ChoiceType::class, array(
+                            'choices'   => ['Masculin' => 'M', 'Féminin'   =>  'F'],
+                            'expanded'  => true,
+                            'label'     => 'Sexe: ',
+                        ))
                         ->add('lieu',TextType::class,array(
                             'label'     => 'Lieu :',
                             'required'  => false,

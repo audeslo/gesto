@@ -42,7 +42,7 @@ class AgenceController extends AbstractController
 
         if ($request->isXmlHttpRequest() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            //$agence->setCreatedBy($this->getUser());
+            $agence->setCreatedBy($this->getUser());
             $entityManager->persist($agence);
             $entityManager->flush();
 

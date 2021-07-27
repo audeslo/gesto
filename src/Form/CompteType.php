@@ -27,7 +27,10 @@ class CompteType extends AbstractType
             ->add('type', ChoiceType::class,array(
                 'label'     =>  'Type de compte :',
                 'choices'   =>  array('Tontine' => '01','Epargne'  =>'02',
-                                        'Courant'   => '03')
+                                        'Courant'   => '03'),
+                'attr' => [
+                    'data-disabled' => 'true',
+                ]
             ))
             ->add('datecompt', DateType::class,array(
                 'label' => 'Date comptable :'

@@ -19,10 +19,25 @@ class OperationRepository extends ServiceEntityRepository
         parent::__construct($registry, Operation::class);
     }
 
-    public function findAllOperationTontine()
+    public function findAllAppointement()
     {
         return $this->createQueryBuilder('o')
             ->join('o.compte','cpt')
+            ->andWhere('cpt.type = :val')
+            ->setParameter('val', '01')
+            ->orderBy('o.dateop', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAllAvancement()
+    {
+        return $this->createQueryBuilder('o')
+            ->join('o.compte','cpt')
+            ->join('cpt.tontines','tt')
+            ->join('tt.avancements','avan')
             ->andWhere('cpt.type = :val')
             ->setParameter('val', '01')
             ->orderBy('o.dateop', 'DESC')

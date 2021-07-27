@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+  <title>Dashboard Sign In, Free Admin Template</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width">        
+  <link rel="stylesheet" href="{{ asset('templates/css/templatemo_main.css') }}">
+</head>
+<body>
+  <div id="main-wrapper">
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <div class="logo"><h1>Dashboard - Admin Template</h1></div>
+      </div>   
+    </div>
+    <div class="template-page-wrapper">
+      <form class="form-horizontal templatemo-signin-form" role="form" method="post">
+
+        {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+          <div class="mb-3">
+            Vous êtes connecté sous  {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnecter</a>
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <label for="inputUsername" class="col-md-2 control-label">Nom Util.</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" value="{{ last_username }}" name="username" id="inputUsername" autocomplete="username" required autofocus>
+            </div>
+          </div>              
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <label for="inputPassword" class="col-md-2 control-label">Mot de passe :</label>
+            <div class="col-md-10">
+              <input  class="form-control" type="password" name="password"
+                     id="inputPassword"  autocomplete="current-password" required>
+            </div>
+          </div>
+          <input type="hidden" name="_csrf_token"
+                 value="{{ csrf_token('authenticate') }}"
+          >
+
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <label>
+                    <input type="checkbox" name="_remember_me"> Se Souvenir de moi
+                  </label>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" value="Connecter" class="btn btn-default">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
+{#
+<form >
+
+
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputUsername">Username</label>
+  <input >
+
+
+
+
+  #}
+{#
+  Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+  See https://symfony.com/doc/current/security/remember_me.html
+
+  <div class="checkbox mb-3">
+      <label>
+          <input type="checkbox" name="_remember_me"> Remember me
+      </label>
+  </div>
+  #}{#
+
+
+  <button class="btn btn-lg btn-primary" type="submit">
+    Sign in
+  </button>
+</form>#}

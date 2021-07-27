@@ -100,6 +100,7 @@ class Tontine
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tontines")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 
@@ -120,16 +121,19 @@ class Tontine
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="tontines")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $client;
 
     /**
      * @ORM\ManyToOne(targetEntity=Agence::class, inversedBy="tontines")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $agence;
 
     /**
      * @ORM\ManyToOne(targetEntity=Compte::class, inversedBy="tontines")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $compte;
 
@@ -178,15 +182,33 @@ class Tontine
      */
     private $solde;
 
+    /**
+     * @ORM\Column(type="string", length=16)
+     */
+    private $niveau;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Avancement::class, mappedBy="tontine")
+     */
+    private $avancements;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Collecte::class, mappedBy="tontine", cascade={"persist", "remove"})
+     */
+    private $collecte;
+
     public function __construct()
     {
         $this->setDateinscr(new \DateTime('now'));
         $this->actif=true;
         $this->feuillet=1;
         $this->numordre=0;
+        $this->meconomie=0;
+        $this->nbfeuillet=0;
         $this->avance=0; // Sinon la rêquête de solde va envoyer 0
         $this->detailtontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
+        $this->avancements = new ArrayCollection();
     }
 
 
@@ -642,6 +664,65 @@ class Tontine
     public function setSolde(?int $solde): self
     {
         $this->solde = $solde;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?string
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(string $niveau): self
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Avancement[]
+     */
+    public function getAvancements(): Collection
+    {
+        return $this->avancements;
+    }
+
+    public function addAvancement(Avancement $avancement): self
+    {
+        if (!$this->avancements->contains($avancement)) {
+            $this->avancements[] = $avancement;
+            $avancement->setTontine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvancement(Avancement $avancement): self
+    {
+        if ($this->avancements->removeElement($avancement)) {
+            // set the owning side to null (unless already changed)
+            if ($avancement->getTontine() === $this) {
+                $avancement->setTontine(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCollecte(): ?Collecte
+    {
+        return $this->collecte;
+    }
+
+    public function setCollecte(Collecte $collecte): self
+    {
+        // set the owning side of the relation if necessary
+        if ($collecte->getTontine() !== $this) {
+            $collecte->setTontine($this);
+        }
+
+        $this->collecte = $collecte;
 
         return $this;
     }

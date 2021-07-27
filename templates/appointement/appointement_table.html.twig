@@ -1,0 +1,25 @@
+{% for appointement in appointements %}
+    <tr>
+        <td>{{ appointement.numcomp }}</td>
+        <td>
+           {# L'annuation serait possible lorsqu'elle intervient le même jour que l'operation#}
+            {% if appointement.cancel is same as true %}
+                {{ appointement.libelleop }}
+            {% elseif
+                "now" | date('Y-m-d') is same as(appointement.datecomptabilisation|date('Y-m-d'))
+                and appointement.sens is same as ('C')
+            %}
+                {% include('appointement/annuler.html.twig') %}
+            {% else %}
+            {{ appointement.libelleop }}
+            {% endif %}
+        </td>
+        <td>{{ appointement.dateop | date('d/m/Y H:m') }}</td>
+        <td>{{ appointement.montantop | number_format(0,0,' ') }}</td>
+        <td>{{ appointement.sens  }}</td>
+        <td>{{ appointement.client }}</td>
+        <td>
+            {#{% include('appointement/viewmodal.html.twig') %}#}
+        </td>
+    </tr>
+{% endfor %}

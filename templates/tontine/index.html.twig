@@ -6,19 +6,12 @@
         <div class="card-header">
             <h2>
                 <i class="fa fa-table" ></i>
-                Liste des (livrets) tontines</h2></div>
+                Liste des (livrets de) tontines</h2></div>
         <div class="card-body" >
             <div class="row">
                 <div class="col-md-2" id="add-modal">
                     {% include('tontine/new.html.twig') %}
                 </div>
-
-               {# <div class="offset-8 col-md-2 ">
-                    <a href="#" class="btn btn-success ">
-                        <i class="fa fa-print"></i>
-                        Imprimer
-                    </a>
-                </div>#}
             </div>
             <hr>
             <table class="table table-bordered " id="datatable" width="100%" cellspacing="0">
@@ -27,13 +20,10 @@
                 <tr>
                     <th>N° Compte</th>
                     <th>Client</th>
-                    <th>Référence livret</th>
-                    <th>Avance</th>
-                    <th>Mise Jour</th>
-                    <th>Feuillet</th>
-                    <th>Ordre</th>
+                    <th>Réf livret</th>
+                    <th>M/Jour</th>
                     <th>Solde</th>
-                    <th>Etat</th>
+                    <th>Niveau</th>
                     <th>Vue</th>
                 </tr>
                 </thead>

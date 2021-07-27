@@ -89,6 +89,7 @@ class Compte
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 

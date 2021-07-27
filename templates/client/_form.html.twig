@@ -1,80 +1,86 @@
-{#{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}#}
-<hr>
-<div class="row">
+<div class="row" style="margin-left: auto">
 
-    <div class="col-md-5 ">
-        {{ form_label(form.nom) }}
-        {{ form_widget(form.nom) }}
-        {{ form_errors(form.nom) }}
-
-        {{ form_label(form.prenoms) }}
-        {{ form_widget(form.prenoms) }}
-        {{ form_errors(form.prenoms) }}
-
-        {{ form_label(form.datenais) }}
-        {{ form_widget(form.datenais) }}
-        {{ form_errors(form.datenais) }}
-
-        {{ form_label(form.lieu) }}
-        {{ form_widget(form.lieu) }}
-        {{ form_errors(form.lieu) }}
-    </div>
-
-    <div class="col-md-5 offset-2">
-
-        {{ form_label(form.telephone) }}
-        {{ form_widget(form.telephone) }}
-        {{ form_errors(form.telephone) }}
-
-        {{ form_label(form.profession) }}
-        {{ form_widget(form.profession) }}
-        {{ form_errors(form.profession) }}
-
-        {{ form_label(form.activite) }}
-        {{ form_widget(form.activite) }}
-        {{ form_errors(form.activite) }}
-
-        {{ form_label(form.quartier) }}
-        {{ form_widget(form.quartier) }}
-        {{ form_errors(form.quartier) }}
-
-
-    </div>
-
-</div>
-
-<hr>
-
-<div class="row">
-
-    <div class="col-md-5 ">
-
-        {{ form_label(form.departement) }}
-        {{ form_widget(form.departement) }}
-        {{ form_errors(form.departement) }}
-
-        {{ form_label(form.arrondissement) }}
-        {{ form_widget(form.arrondissement) }}
-        {{ form_errors(form.arrondissement) }}
-
-
-    </div>
-
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom) }}
+            {{ form_errors(form.nom) }}
+        </div>
         <div class="col-md-5 offset-2">
+            {{ form_label(form.prenoms) }}
+            {{ form_widget(form.prenoms) }}
+            {{ form_errors(form.prenoms) }}
+        </div>
+    </div>
 
-
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
+            {{ form_label(form.datenais) }}
+            {{ form_widget(form.datenais) }}
+            {{ form_errors(form.datenais) }}
+        </div>
+        <div class="col-md-5 offset-2">
+            {{ form_label(form.lieu) }}
+            {{ form_widget(form.lieu) }}
+            {{ form_errors(form.lieu) }}
+        </div>
+    </div>
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
+            {{ form_label(form.sexe) }}
+            {{ form_widget(form.sexe) }}
+            {{ form_errors(form.sexe) }}
+        </div>
+        <div class="col-md-5 offset-2">
+            {{ form_label(form.telephone) }}
+            {{ form_widget(form.telephone) }}
+            {{ form_errors(form.telephone) }}
+        </div>
+    </div>
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
+            {{ form_label(form.profession) }}
+            {{ form_widget(form.profession) }}
+            {{ form_errors(form.profession) }}
+        </div>
+        <div class="col-md-5 offset-2">
+            {{ form_label(form.activite) }}
+            {{ form_widget(form.activite) }}
+            {{ form_errors(form.activite) }}
+        </div>
+    </div>
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
+            {{ form_label(form.departement) }}
+            {{ form_widget(form.departement) }}
+            {{ form_errors(form.departement) }}
+        </div>
+        <div class="col-md-5 offset-2">
             {{ form_label(form.commune) }}
             {{ form_widget(form.commune) }}
             {{ form_errors(form.commune) }}
+        </div>
+    </div>
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
+            {{ form_label(form.arrondissement) }}
+            {{ form_widget(form.arrondissement) }}
+            {{ form_errors(form.arrondissement) }}
+        </div>
+        <div class="col-md-5 offset-2">
+            {{ form_label(form.quartier) }}
+            {{ form_widget(form.quartier) }}
+            {{ form_errors(form.quartier) }}
+        </div>
+    </div>
 
+    <div class="row col-md-12" >
+        <div class="col-md-5 ">
             {{ form_label(form.file) }}
             {{ form_widget(form.file) }}
             {{ form_errors(form.file) }}
-
         </div>
-
+        <div class="col-md-5 offset-2">
+        </div>
     </div>
-
+</div>

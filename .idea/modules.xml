@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../ASSIARD/.idea/ASSIARD-PC-ITAZ.iml" filepath="$PROJECT_DIR$/../ASSIARD/.idea/ASSIARD-PC-ITAZ.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gesto.iml" filepath="$PROJECT_DIR$/.idea/gesto.iml" />
     </modules>
   </component>
