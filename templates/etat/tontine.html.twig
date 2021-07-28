@@ -1,0 +1,51 @@
+{% extends 'etat/etat.html.twig' %}
+
+
+{% block content %}
+    <div class="card mb-3" >
+        <div class="card-header">
+            <h2>
+                <i class="fa fa-table" ></i>
+                Etats Tontine</h2></div>
+            <div class="row" >
+                {{ form_start(form, {'attr': {'id':'form_tontine'}})  }}
+                <hr>
+                <div class="row">
+                    <div class="col-md-5 ">
+                        <label for="intervalle">Liste des états:</label>
+
+                        <select name="intervalle" id="intervalle" class="form-control">
+                            <option value=""></option>
+                            <option value="01">Journalière</option>
+                            <option value="02">Par période</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 offset-2">
+                        {{ form_label(form.tontine) }}
+                        {{ form_widget(form.tontine) }}
+                        {{ form_errors(form.tontine) }}
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-5 ">
+                        <label for="datedebut">Date début :</label>
+                        <input name="datedebut" type="date" class="form-control"
+                               id="datedebut"  required="required">
+
+                    </div>
+
+                    <div class="col-md-5 offset-2">
+                        <label for="datefin">Date Fin :</label>
+                        <input name="datefin" type="date" class="form-control"
+                               id="datefin"  required="required">
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+    </div>
+
+    <div class="card-footer small text-muted">Hier à 11:59 </div>
+
+{% endblock %}

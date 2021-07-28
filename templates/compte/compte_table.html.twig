@@ -2,10 +2,14 @@
     <tr>
         <td>{{ compte.numcomp }}</td>
 
+        <td>
+                {{ compte.intitule }}
+
+        </td>{#
         <td><a href="{{ path('compte_modification',{'slug': compte.slug}) }}">
                 {{ compte.intitule }}
             </a>
-        </td>
+        </td>#}
         <td>{{ compte.client }}</td>
         <td>{{ compte.type }}</td>
         <td>{{ compte.solde | number_format(0,0,' ')~' '~compte.devis}}</td>

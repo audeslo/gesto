@@ -175,29 +175,27 @@
                         true,'Le compte ne peut être clôturé');
 
                 }else {
-                    return false;
                     $("body").overhang({
                         type: "confirm",
-                        message: "Voulez-vous vraiment valider l'opération?",
+                        message: "Voulez-vous vraiment résilier ce carnet?",
                         callback: function (value) {
                             var response = value ? "Oui" : "No";
                             if(response === 'Oui'){
                                 $.ajax({
-                                    url: "{{ path('avancement_nouvel') }}",
+                                    url: "{{ path('resiliation_tontine') }}",
                                     method: "POST",
-                                    data: $('#form_avancement').serialize(),
+                                    data: $('#form_resiliation').serialize(),
                                     success: function (data) {
                                         console.log(data);
                                         if (ferme === true){
-                                            $('#form_avancement')[0].reset();
+                                            $('#form_resiliation')[0].reset();
                                             $('.close').click();
-                                            if($('#avancement_table').html(data)){
-                                                $("body").overhang({
-                                                    type: "success",
-                                                    message: "Enregistremnt bien fait!!"
-                                                });
-                                                //window.location.reload();
-                                            }
+                                            $("body").overhang({
+                                                type: "success",
+                                                message: "Résiliation bien faite!!"
+                                            });
+
+                                                window.location.reload();
                                         }else { // D'autres enregistrement
                                             $("body").overhang({
                                                 type: "success",

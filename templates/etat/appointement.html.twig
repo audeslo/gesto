@@ -1,0 +1,335 @@
+<html>
+<head>
+    <style>
+       html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:0 0}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{margin:.67em 0;font-size:2em}mark{color:#000;background:#ff0}small{font-size:80%}sub,sup{position:relative;font-size:75%;line-height:0;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{height:0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;font:inherit;color:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type=checkbox],input[type=radio]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}@media print{*{color:#000!important;text-shadow:none!important;background:transparent!important;-webkit-box-shadow:none!important;box-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100%!important}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}select{background:#fff!important}.navbar{display:none}.table td,.table th{background-color:#fff!important}.btn>.caret,.dropup>.btn>.caret{border-top-color:#000!important}.label{border:1px solid #000}.table{border-collapse:collapse!important}.table-bordered th,.table-bordered td{border:1px solid #ddd!important}}.glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;.glyphicon-cloud-upload:before{content:"\e198"}.glyphicon-tree-conifer:before{content:"\e199"}.glyphicon-tree-deciduous:before{content:"\e200"}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}:before,:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}input,button,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit}a{color:#428bca;text-decoration:none}a:hover,a:focus{color:#2a6496;text-decoration:underline}a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}figure{margin:0}img{vertical-align:middle}.img-responsive,.thumbnail>img,.thumbnail a>img,.carousel-inner>.item>img,.carousel-inner>.item>a>img{display:block;width:100% \9;max-width:100%;height:auto}.img-rounded{border-radius:6px}.img-thumbnail{display:inline-block;width:100% \9;max-width:100%;height:auto;padding:4px;line-height:1.42857143;background-color:#fff;border:1px solid #ddd;border-radius:4px;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.img-circle{border-radius:50%}hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:inherit;font-weight:500;line-height:1.1;color:inherit}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small,.h1 small,.h2 small,.h3 small,.h4 small,.h5 small,.h6 small,h1 .small,h2 .small,h3 .small,h4 .small,h5 .small,h6 .small,.h1 .small,.h2 .small,.h3 .small,.h4 .small,.h5 .small,.h6 .small{font-weight:400;line-height:1;color:#777}h1,.h1,h2,.h2,h3,.h3{margin-top:20px;margin-bottom:10px}h1 small,.h1 small,h2 small,.h2 small,h3 small,.h3 small,h1 .small,.h1 .small,h2 .small,.h2 .small,h3 .small,.h3 .small{font-size:65%}h4,.h4,h5,.h5,h6,.h6{margin-top:10px;margin-bottom:10px}h4 small,.h4 small,h5 small,.h5 small,h6 small,.h6 small,h4 .small,.h4 .small,h5 .small,.h5 .small,h6 .small,.h6 .small{font-size:75%}h1,.h1{font-size:36px}h2,.h2{font-size:30px}h3,.h3{font-size:24px}h4,.h4{font-size:18px}h5,.h5{font-size:14px}h6,.h6{font-size:12px}p{margin:0 0 10px}.lead{margin-bottom:20px;font-size:16px;font-weight:300;line-height:1.4}@media (min-width:768px){.lead{font-size:21px}}small,.small{font-size:85%}cite{font-style:normal}mark,.mark{padding:.2em;background-color:#fcf8e3}.text-left{text-align:left}.text-right{text-align:right}.text-center{text-align:center}.text-justify{text-align:justify}.text-nowrap{white-space:nowrap}.text-lowercase{text-transform:lowercase}.text-uppercase{text-transform:uppercase}.text-capitalize{text-transform:capitalize}.text-muted{color:#777}.text-primary{color:#428bca}a.text-primary:hover{color:#3071a9}.text-success{color:#3c763d}a.text-success:hover{color:#2b542c}.text-info{color:#31708f}a.text-info:hover{color:#245269}.text-warning{color:#8a6d3b}a.text-warning:hover{color:#66512c}.text-danger{color:#a94442}a.text-danger:hover{color:#843534}.bg-primary{color:#fff;background-color:#428bca}a.bg-primary:hover{background-color:#3071a9}.bg-success{background-color:#dff0d8}a.bg-success:hover{background-color:#c1e2b3}.bg-info{background-color:#d9edf7}a.bg-info:hover{background-color:#afd9ee}.bg-warning{background-color:#fcf8e3}a.bg-warning:hover{background-color:#f7ecb5}.bg-danger{background-color:#f2dede}a.bg-danger:hover{background-color:#e4b9b9}.page-header{padding-bottom:9px;margin:40px 0 20px;border-bottom:1px solid #eee}ul,ol{margin-top:0;margin-bottom:10px}ul ul,ol ul,ul ol,ol ol{margin-bottom:0}.list-unstyled{padding-left:0;list-style:none}.list-inline{padding-left:0;margin-left:-5px;list-style:none}.list-inline>li{display:inline-block;padding-right:5px;padding-left:5px}dl{margin-top:0;margin-bottom:20px}dt,dd{line-height:1.42857143}dt{font-weight:700}dd{margin-left:0}@media (min-width:768px){.dl-horizontal dt{float:left;width:160px;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap}.dl-horizontal dd{margin-left:180px}}abbr[title],abbr[data-original-title]{cursor:help;border-bottom:1px dotted #777}.initialism{font-size:90%;text-transform:uppercase}blockquote{padding:10px 20px;margin:0 0 20px;font-size:17.5px;border-left:5px solid #eee}blockquote p:last-child,blockquote ul:last-child,blockquote ol:last-child{margin-bottom:0}blockquote footer,blockquote small,blockquote .small{display:block;font-size:80%;line-height:1.42857143;color:#777}blockquote footer:before,blockquote small:before,blockquote .small:before{content:'\2014 \00A0'}.blockquote-reverse,blockquote.pull-right{padding-right:15px;padding-left:0;text-align:right;border-right:5px solid #eee;border-left:0}.blockquote-reverse footer:before,blockquote.pull-right footer:before,.blockquote-reverse small:before,blockquote.pull-right small:before,.blockquote-reverse .small:before,blockquote.pull-right .small:before{content:''}.blockquote-reverse footer:after,blockquote.pull-right footer:after,.blockquote-reverse small:after,blockquote.pull-right small:after,.blockquote-reverse .small:after,blockquote.pull-right .small:after{content:'\00A0 \2014'}blockquote:before,blockquote:after{content:""}address{margin-bottom:20px;font-style:normal;line-height:1.42857143}code,kbd,pre,samp{font-family:Menlo,Monaco,Consolas,"Courier New",monospace}code{padding:2px 4px;font-size:90%;color:#c7254e;background-color:#f9f2f4;border-radius:4px}kbd{padding:2px 4px;font-size:90%;color:#fff;background-color:#333;border-radius:3px;-webkit-box-shadow:inset 0 -1px 0 rgba(0,0,0,.25);box-shadow:inset 0 -1px 0 rgba(0,0,0,.25)}kbd kbd{padding:0;font-size:100%;-webkit-box-shadow:none;box-shadow:none}pre{display:block;padding:9.5px;margin:0 0 10px;font-size:13px;line-height:1.42857143;color:#333;word-break:break-all;word-wrap:break-word;background-color:#f5f5f5;border:1px solid #ccc;border-radius:4px}pre code{padding:0;font-size:inherit;color:inherit;white-space:pre-wrap;background-color:transparent;border-radius:0}.pre-scrollable{max-height:340px;overflow-y:scroll}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:750px}}@media (min-width:992px){.container{width:970px}}@media (min-width:1200px){.container{width:1170px}}
+
+       .row{margin-right:-15px;margin-left:-15px}
+
+        table{background-color:transparent}  th{text-align:left}
+
+       .table>thead>tr>th,.table>tbody>tr>th,.table>tfoot>tr>th,.table>thead>tr>td,.table>tbody>tr>td,.table>tfoot>tr>td{padding:8px;line-height:1.42857143;vertical-align:top;border-top:1px solid #ddd}  .table>thead>tr>th{vertical-align:bottom;border-bottom:2px solid #ddd}  .table>caption+thead>tr:first-child>th,.table>colgroup+thead>tr:first-child>th,.table>thead:first-child>tr:first-child>th,.table>caption+thead>tr:first-child>td,.table>colgroup+thead>tr:first-child>td,.table>thead:first-child>tr:first-child>td{border-top:0}  .table>tbody+tbody{border-top:2px solid #ddd}  .table .table{background-color:#fff}  .table-condensed>thead>tr>th,.table-condensed>tbody>tr>th,.table-condensed>tfoot>tr>th,.table-condensed>thead>tr>td,.table-condensed>tbody>tr>td,.table-condensed>tfoot>tr>td{padding:5px}
+
+       .table-bordered>thead>tr>th,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>tbody>tr>td,.table-bordered>tfoot>tr>td{border:1px solid #ddd}  .table-bordered>thead>tr>th,.table-bordered>thead>tr>td{border-bottom-width:2px}  .table-striped>tbody>tr:nth-child(odd)>td,.table-striped>tbody>tr:nth-child(odd)>th{background-color:#f9f9f9}  .table-hover>tbody>tr:hover>td,.table-hover>tbody>tr:hover>th{background-color:#f5f5f5}  table col[class*=col-]{position:static;display:table-column;float:none}  table td[class*=col-],table th[class*=col-]{position:static;display:table-cell;float:none}  .table>thead>tr>td.active,.table>tbody>tr>td.active,.table>tfoot>tr>td.active,.table>thead>tr>th.active,.table>tbody>tr>th.active,.table>tfoot>tr>th.active,.table>thead>tr.active>td,.table>tbody>tr.active>td,.table>tfoot>tr.active>td,.table>thead>tr.active>th,.table>tbody>tr.active>th,.table>tfoot>tr.active>th{background-color:#f5f5f5}
+
+       .table>thead>tr>td.success,.table>tbody>tr>td.success,.table>tfoot>tr>td.success,.table>thead>tr>th.success,.table>tbody>tr>th.success,.table>tfoot>tr>th.success,.table>thead>tr.success>td,.table>tbody>tr.success>td,.table>tfoot>tr.success>td,.table>thead>tr.success>th,.table>tbody>tr.success>th,.table>tfoot>tr.success>th{background-color:#dff0d8}  .table-hover>tbody>tr>td.success:hover,.table-hover>tbody>tr>th.success:hover,.table-hover>tbody>tr.success:hover>td,.table-hover>tbody>tr:hover>.success,.table-hover>tbody>tr.success:hover>th{background-color:#d0e9c6}  .table>thead>tr>td.info,.table>tbody>tr>td.info,.table>tfoot>tr>td.info,.table>thead>tr>th.info,.table>tbody>tr>th.info,.table>tfoot>tr>th.info,.table>thead>tr.info>td,.table>tbody>tr.info>td,.table>tfoot>tr.info>td,.table>thead>tr.info>th,.table>tbody>tr.info>th,.table>tfoot>tr.info>th{background-color:#d9edf7}  .table-hover>tbody>tr>td.info:hover,.table-hover>tbody>tr>th.info:hover,.table-hover>tbody>tr.info:hover>td,.table-hover>tbody>tr:hover>.info,.table-hover>tbody>tr.info:hover>th{background-color:#c4e3f3}  .table>thead>tr>td.warning,.table>tbody>tr>td.warning,.table>tfoot>tr>td.warning,.table>thead>tr>th.warning,.table>tbody>tr>th.warning,.table>tfoot>tr>th.warning,.table>thead>tr.warning>td,.table>tbody>tr.warning>td,.table>tfoot>tr.warning>td,.table>thead>tr.warning>th,.table>tbody>tr.warning>th,.table>tfoot>tr.warning>th{background-color:#fcf8e3}  .table-hover>tbody>tr>td.warning:hover,.table-hover>tbody>tr>th.warning:hover,.table-hover>tbody>tr.warning:hover>td,.table-hover>tbody>tr:hover>.warning,.table-hover>tbody>tr.warning:hover>th{background-color:#faf2cc}  .table>thead>tr>td.danger,.table>tbody>tr>td.danger,.table>tfoot>tr>td.danger,.table>thead>tr>th.danger,.table>tbody>tr>th.danger,.table>tfoot>tr>th.danger,.table>thead>tr.danger>td,.table>tbody>tr.danger>td,.table>tfoot>tr.danger>td,.table>thead>tr.danger>th,.table>tbody>tr.danger>th,.table>tfoot>tr.danger>th{background-color:#f2dede}  .table-hover>tbody>tr>td.danger:hover,.table-hover>tbody>tr>th.danger:hover,.table-hover>tbody>tr.danger:hover>td,.table-hover>tbody>tr:hover>.danger,.table-hover>tbody>tr.danger:hover>th{background-color:#ebcccc}@media screen and (max-width:767px){.table-responsive{width:100%;margin-bottom:15px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ddd}  .table-responsive>.table{margin-bottom:0}  .table-responsive>.table>thead>tr>th,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>tbody>tr>td,.table-responsive>.table>tfoot>tr>td{white-space:nowrap}  .table-responsive>.table-bordered{border:0}  .table-responsive>.table-bordered>thead>tr>th:first-child,.table-responsive>.table-bordered>tbody>tr>th:first-child,.table-responsive>.table-bordered>tfoot>tr>th:first-child,.table-responsive>.table-bordered>thead>tr>td:first-child,.table-responsive>.table-bordered>tbody>tr>td:first-child,.table-responsive>.table-bordered>tfoot>tr>td:first-child{border-left:0}  .table-responsive>.table-bordered>thead>tr>th:last-child,.table-responsive>.table-bordered>tbody>tr>th:last-child,.table-responsive>.table-bordered>tfoot>tr>th:last-child,.table-responsive>.table-bordered>thead>tr>td:last-child,.table-responsive>.table-bordered>tbody>tr>td:last-child,.table-responsive>.table-bordered>tfoot>tr>td:last-child{border-right:0}  .table-responsive>.table-bordered>tbody>tr:last-child>th,.table-responsive>.table-bordered>tfoot>tr:last-child>th,.table-responsive>.table-bordered>tbody>tr:last-child>td,.table-responsive>.table-bordered>tfoot>tr:last-child>td{border-bottom:0}}  fieldset{min-width:0;padding:0;margin:0;border:0}  legend{display:block;width:100%;padding:0;margin-bottom:20px;font-size:21px;line-height:inherit;color:#333;border:0;border-bottom:1px solid #e5e5e5}  label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700}  input[type=search]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}  input[type=radio],input[type=checkbox]{margin:4px 0 0;margin-top:1px \9;line-height:normal}  input[type=file]{display:block}  input[type=range]{display:block;width:100%}  select[multiple],select[size]{height:auto}  input[type=file]:focus,input[type=radio]:focus,input[type=checkbox]:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}  output{display:block;padding-top:7px;font-size:14px;line-height:1.42857143;color:#555}  .form-control{display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}  .form-control:focus{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}
+        @page { margin: 180px 50px; }
+        #header { position: fixed; left: 0px; top: -170px; right: 0px; height: 80px; /*background-color: orange;*/ text-align: center }
+        #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 125px; /*background-color: lightblue;*/ }
+        #footer .page:after { content: counter(page, upper-roman); }
+    </style>
+</head>
+<body>
+<div style="margin-top: 15px" id="header" {#style="background-image: url('../../public/templates/images/logo/logo_sunu.png')"#}>
+    {#<img width="60" height="60" src="{{app.request.getSchemeAndHttpHost() ~  asset('templates/images/logo/logo_sunu.png')}}" alt="logosunu" >#}
+    {% if  contrat.createdBy.agence.partenaire.avecentete %}
+
+    <img width="150px;" alt="Logo_sunu" src="data:image/png;base64,{{logo}}" />
+    {#<img width="150px;" src="{{app.request.getSchemeAndHttpHost() ~  asset('templates/images/logo/logo_sunu.png') }}" alt="Logo_SUNU">#}
+</div>
+<div id="footer" >
+    <hr style="margin-bottom: -3px">
+    <div style="text-align: center">
+        Pied de page
+    </div>
+    {#<p class="page">Page </p>#}
+    {% endif %}
+</div>
+<div >
+<div style="margin-top: -80px; padding-bottom: -10px; position: center; width: auto" class="row">
+    <table width="100%" style="font-size: x-small">
+        <tr>
+            <th colspan="4">
+                <p style="text-align: center; border: solid 1px; font-size: x-small">
+                    <u><b>ASSURANCE SUNU VOYAGE</b></u> <br>
+                    <b>Conditions Particulières  N° {{' ' ~ contrat.numpolice ~ contrat.produit.codeproduit}}</b>
+                </p>
+            </th>
+        </tr>
+        <tr><th colspan="4"><p style="text-align: center; text-transform: uppercase"><u>Souscripteur</u></p></th></tr>
+        <tr>
+            <td colspan="2">
+                <u><b>Nom :</b></u> {{ ' ' ~ contrat.nomsouscr }}<br>
+                <u><b>Prénom(s) :</b></u>{{ ' ' ~ contrat.prenomsouscr }}
+            </td>
+            <td colspan="2">
+                {% set formattedString = contrat.telephonesouscr|split('', 2)|join(' ') %}
+                <b>Tél :</b> {{ ' ' ~ formattedString[:5]|replace({' ': ''}) ~' '~ formattedString|slice(5,formattedString|length) }}<br>
+                <b>E-Mail :</b> {{ ' ' ~ contrat.email }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: center; text-transform: uppercase">
+                <b><u>Période de garantie</u></b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Du :</b>
+                {% if contrat.datecreated | date ('d/m/Y') is same as (contrat.datedebut | date ('d/m/Y')) %}
+                {{ ' ' ~ contrat.datecreated | date ('d/m/Y H:m')}}
+                {% else %}
+                {{ ' ' ~ contrat.datedebut | date ('d/m/Y') ~ ' 00:00' }}
+                {% endif %}
+            </td>
+            <td>
+                <b>Au :</b> {{ ' ' ~ contrat.datefin | date('d/m/Y') ~ ' 23:59' }}
+            </td>
+            <td >
+                <b>Durée :</b> {{ ' ' ~ contrat.duree ~ ' jours' }}
+            </td>
+            <td>
+                <b>Zone :</b> {{ ' ' ~ contrat.produit }}
+            </td>
+        </tr>
+        <tr><td colspan="4" style="text-align: center; text-transform: uppercase"><b><u>Assuré(e)</u></b></td></tr>
+        <tr>
+            <td colspan="2">
+                <u><b>Nom :</b></u> {{ ' ' ~ contrat.client.nom }} <br>
+                <u><b>Prénom(s) :</b></u> {{ ' ' ~ contrat.client.prenom }} <br>
+                <b>Date de Naissance :</b> {{ ' ' ~ contrat.client.datenaissance | date('d/m/Y') }}
+            </td>
+            <td colspan="2">
+                <b>Passeport N° :</b> {{ ' ' ~ contrat.numpiece }} <br>
+                <b>Nationalité  :</b> {{ ' ' ~ contrat.nationalite }} <br>
+                {% set formatted = contrat.client.telephone|split('', 2)|join(' ') %}
+                <b>Tél          :</b> {{ ' ' ~formatted[:5]|replace({' ': ''}) ~' '~ formatted|slice(5,formatted|length) }}
+            </td>
+        </tr>
+    </table>
+</div>
+    <div style="border: solid 1px; margin-top: 15px; padding-left: 18px; min-height: available" class="row">
+{#        <p style="text-align: center; text-transform: uppercase"><u> <b>Tableau des garanties et franchises</b></u></p>#}
+        <p style="text-align: center; text-transform: uppercase; font-size: xx-small"><u> <b>Présentations des garanties et limites des capitaux (en FCFA)</b></u></p>
+        <div class="row" style="font-size: 10px;">
+            <table width="100%">
+                {#<thead>
+                    <tr>
+                        <th rowspan="2">RESUME DES GARANTIES</th>
+                        <th>AFRIQUE</th>
+                        <th>SCHENGEN</th>
+                        <th>EUROPE</th>
+                        <th>MONDE ENTIER</th>
+                        <th>MONDIAL PLUS</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5" style="text-align: center">Limites en FCFA</th>
+                    </tr>
+                </thead>#}
+               {# <tbody>
+                <tr>
+                    <td>Transmission de messages urgents</td>
+                    <td colspan="2">Prestation uniquement , franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Livraison de médicaments</td>
+                    <td colspan="2">19 678 000 , franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Information générale</td>
+                    <td colspan="2">Prestation uniquement , franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Transport médical ou rapatriement</td>
+                    <td colspan="2">Prestation uniquement , franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Transport d'une personne dû à l'hospitalisation de l'assuré(e)</td>
+                    <td>Non couvert</td>
+                    <td>Biller Aller-Retour classe économique</td>
+                </tr>
+                <tr>
+                    <td>Séjour d'une personne dû à l'hospitalisation de l'assuré(e)</td>
+                    <td>Non couvert</td>
+                    <td>55 000/jour 10 jours maximum</td>
+                </tr>
+                <tr>
+                    <td>Dépenses médicales à l'étranger + COVID-19</td>
+                    <td colspan="2">19 678 000 , franchise 32 000</td>
+                </tr>
+                <tr>
+                    <td>Quarantaine obligatoire en cas d'infection au COVID-19</td>
+                    <td colspan="2">55 000/jour 10 jours maximum</td>
+                </tr>
+                <tr>
+                    <td>Assistance médicale de premières secours à l'étranger</td>
+                    <td colspan="2">Incluse dans la limite de la prestation</td>
+                </tr>
+                <tr>
+                    <td>Dépenses dentaires</td>
+                    <td>Non couvert</td>
+                    <td>295 000, franchise 32 000 </td>
+                </tr>
+                <tr>
+                    <td>Dépenses pharmaceutiques</td>
+                    <td colspan="2">Incluse dans la limite de la prestation</td>
+                </tr>
+
+                <tr>
+                    <td>Transport ou rapatriement de l'assuré(e) décédé(e)</td>
+                    <td colspan="2">65 500 000,franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Indemnité due à des problèmes avec des bagages enrégistrés (dommages accidentels, perte, vol)</td>
+                    <td>Non couvert</td>
+                    <td>650 000, franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Compensation pour la livraison retardée des bagages</td>
+                    <td>Non couvert</td>
+                    <td>190 000, franchise 4 heures</td>
+                </tr>
+                <tr>
+                    <td>Indemnité due au depart retardé du moyen de transport</td>
+                    <td>Non couvert</td>
+                    <td>190 000, franchise 4 heures</td>
+
+                </tr>
+
+                <tr>
+                    <td>Retour anticipé dû à de sérieux problèmes familiaux</td>
+                    <td colspan="2">Billet de classe équivalente</td>
+                </tr>
+                <tr>
+                    <td>Décès accidentel survenu dans un moyen de transport</td>
+                    <td>Non couvert</td>
+                    <td>9 800 000, franchise 0</td>
+                </tr>
+
+                <tr>
+                    <td>Invalidité accidentelle permanente survenue dans un moyen de transport</td>
+                    <td colspan="2">% de la somme principale selon grille</td>
+                </tr>
+                <tr>
+                    <td>Responsabilité civile due à des dommages matériels causés aux tierces personnes</td>
+                    <td>Non couvert</td>
+                    <td>19 678 000, franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Défense juridique (hors accidents de circulation)</td>
+                    <td> 1 639 000, franchise 0</td>
+                    <td>3 279 000, franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Cautions pour des coûts et dépenses juridiques</td>
+                    <td colspan="2"> 10 030 000, franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Responsabilité civile due aux dommages physiques causés à des tierces personnes</td>
+                    <td>Non couvert</td>
+                    <td>19 678 000, franchise 0</td>
+                </tr>
+                <tr>
+                    <td>Remplacement du passport et du permis de conduire par des documents de voyage provisoires d'urgence</td>
+                    <td>130 000</td>
+                    <td>327 000, franchise 0</td>
+                </tr>
+                </tbody>#}
+
+                <thead>
+                <tr>
+                    <th {#rowspan="2"#}>GARANTIES</th>
+                    {#<th>AFRIQUE</th>#}
+                    <th>LIMITATIONS DES GARANTIES</th>
+                    {# <th>EUROPE</th>   #}
+                    <th>FRANCHISES</th>
+                    {#<th>MONDIAL PLUS</th>#}
+                </tr>
+                {#<tr>
+                        <th colspan="5" style="text-align: center">Limites en FCFA</th>
+                    </tr>#}
+                </thead>
+                    <tbody>
+                            {#<tr >
+                                <th width="50%">
+                                    <p style="text-transform: uppercase">Garanties</p>
+                                </th>
+                                <th width="20%">
+                                    <p style="text-transform: uppercase"> Limitation des garanties</p>
+                                </th>
+                                <th width="30%">
+                                    <p style="text-transform: uppercase">Franchises</p>
+                                </th>
+                            </tr>#}
+                        {% for garantie in listeGaranties %}
+                        <tr>
+                            <td>
+                                {{ garantie.libelle }}
+                            </td>
+                            <td>
+                                {{ garantie.limite }}
+                            </td>
+                            <td>
+                                {{ garantie.franchise }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="border: solid 1px; margin-top: 1px; padding-left: 18px; font-size: xx-small" class="row">
+        {#<p style="text-align: center; text-transform: uppercase"><u>Décompte de Prime</u></p>#}
+        <div class="row">
+            <table width="100%">
+                <tr>
+                    <th width="25%">
+                        <b>Prime Nette :</b> <br> {{contrat.primenette| number_format(0,0,' ') ~ ' ' ~ devise}}
+                    </th>
+                    <th width="25%">
+                        <b>Accessoires :</b> <br>{{contrat.accessoire | number_format(0,0,' ') ~ ' ' ~ devise}}
+                    </th>
+                    <th width="25%">
+                        <b>Taxe :</b> <br> {{contrat.taxe | number_format(0,0,' ') ~ ' ' ~ devise}}
+                    </th>
+                    <th width="25%">
+                        <b>Prime TTC :</b><br>  {{ (contrat.primenette + contrat.accessoire + contrat.taxe) | number_format(0,0,' ')  ~ ' ' ~ devise}}
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+<div class="row">
+    <p style="font-size: xx-small">
+        Sont  annexées aux présentes conditions particulières, les conventions spéciales qui font partie du contrat.
+        Le contrat est valable lors du séjour compris entre la date d'effet et la date d'échéance.
+        Il cessera ses effets de plein droit à la date d'échéance au plus tard à minuit sans autres formalités. <br>
+        Remboursement de la prime, déduction faite de
+        {% if contrat.duree < 30 %}
+            3 000{{' '~ devise }}
+        {% elseif contrat.duree < 32 %}
+            5 000 {{' '~ devise }}
+        {% else %}
+            {{ contrat.produit.fraisresiliation | number_format(0,0,' ') ~' '~ devise }}
+        {% endif %}
+        {#{{ contrat.produit.fraisresiliation ~' '~ devise }}#} de frais  exclusivement en cas de refus du visa
+        (sur justificatifs) dans un délai de 72 heures à compter de la date de départ prévue. Aucun autre remboursement n'est possible.
+    </p>
+    <p style="text-align: center; font-size: xx-small; border: solid 1px; margin-top: -5px">
+        <b>Informations sur l'assistance - Comment nous joindre ?</b> <br>
+        En cas de besoin d'assistance, veuillez joindre <b>MAPFRE ASISTENCIA</b> notre partenaire, <br>
+        <b>Par téléphone(24h/24 et 7j/7) : +33 4 37 37 28 98 (Hors France) ou le 04 37 37 28 98 (depuis la France);  disponible 24h/24 et 7j/7</b>
+         +973 17 21 8919 (Anglais); 8008973919 : Appel gratuit en Arabie Saoudite <br>
+        <b>Par email (24h/24 et 7j/7) : </b> Assitance Directe : afrcosiam@mapfre.com; Remboursements : refund@mapfre.com
+    </p>
+    <p style="font-size: xx-small; padding-bottom: -10px">
+        En apposant sa signature, le titulaire de la police accepte expressément toutes les clauses contenues dans les conditions particulières et générales du présent contrat.
+        <br><br>
+        Contrat produit par : {{ app.user.prenom ~' '~app.user.nom }}
+    </p>
+    <table width="100%" style="font-size: x-small; margin-bottom: -100px">
+        <tr>
+            <th width="35%">Souscripteur/Assuré(e)</th>
+            <th width="30%">Fait à {{ app.user.agence.adresse }}   le {{ dateEdit | date('d/m/Y') }}</th>
+            <th width="35%">Pour SUNU Assurances IARD Bénin</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img src="{{codeQr}}"></td>
+            <td> {% if contrat.createdBy.agence.partenaire.avecentete %}<img width="170px;" alt="signature" src="data:image/png;base64,{{signature}}" /> {% endif %}</td>
+            {#<td><img width="150px;" src="{{app.request.getSchemeAndHttpHost() ~  asset('templates/images/signature/production.jpg') }}" alt="prod"></td>#}
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

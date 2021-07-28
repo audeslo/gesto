@@ -33,8 +33,8 @@ class DetailtontineRepository extends ServiceEntityRepository
             ->join('dt.operation','op')
             ->join('op.agence','ag')
             ->join('op.client','cl')
-            ->andWhere('cpt.type = :val')
-            ->setParameter('val', '01')
+            //->andWhere('cpt.type = :val')
+            //->setParameter('val', '01')
             ->orderBy('op.dateop', 'DESC')
             ->groupBy('op.libelleop,op.datecomptabilisation,op.slug,
             ag.libelle,op.sens, op.cancel, cpt.numcomp, op.dateop,op.nomcomplet,
@@ -63,16 +63,16 @@ class DetailtontineRepository extends ServiceEntityRepository
         $em=$this->getEntityManager();
         $query=$em->createQuery(
        "SELECT IDENTITY (op.compte) compte,SUM (CASE WHEN op.sens='D' 
-            THEN dt.meconomie ELSE 0 END)+ tt.avance debit,SUM(CASE WHEN op.sens='C' 
+            THEN dt.meconomie ELSE 0 END)+ (tt.avance+tt.mtcollecte) debit,SUM(CASE WHEN op.sens='C' 
             THEN dt.meconomie ELSE 0 END) credit,tt.avance,-1*((SUM (CASE WHEN 
             op.sens='D' THEN dt.meconomie ELSE 0 END)-SUM(CASE WHEN op.sens='C' 
-	        THEN dt.meconomie ELSE 0 END)) + tt.avance ) soldecli
+	        THEN dt.meconomie ELSE 0 END)) + (tt.avance+tt.mtcollecte) ) soldecli
        FROM App\Entity\Operation op, App\Entity\Detailtontine dt,
             App\Entity\Tontine tt
        WHERE dt.operation=op
        AND tt=dt.tontine
        AND dt.tontine =:idtontine
-       GROUP BY op.compte,tt.avance"
+       GROUP BY op.compte,tt.avance,tt.mtcollecte"
         )->setParameter('idtontine',$tontine);
         try {
             return $query->getSingleResult();

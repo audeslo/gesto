@@ -1,13 +1,14 @@
 {% for tontine in tontines %}
     <tr>
         <td>{{ tontine.compte.numcomp }}</td>
-        <td><a href="{{path('tontine_modification',{'slug' : tontine.slug})}}">{{ tontine.compte.client }}</a></td>
+        <td>{{ tontine.compte.client }}</td>
+{#        <td><a href="{{path('tontine_modification',{'slug' : tontine.slug})}}" class="js-link">{{ tontine.compte.client }}</a></td>#}
         <td>{{ tontine.reflivret }}</td>
         <td>{{ tontine.meconomie | number_format(0,0,' ')}}</td>
         <td>{{ tontine.solde | number_format(0,0,' ') }}</td>
         <td>
             {% if tontine.niveau is same as ('draft') %}
-            <a href="#" class="btn" data-toggle="modal" data-target="#myModal">
+            <a href="{{path('tontine_validation',{'slug' : tontine.slug})}}" class="js-click">
                 <i class="fa fa-edit"></i>
                 Brouillon
             </a>

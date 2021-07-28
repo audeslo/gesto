@@ -30,11 +30,8 @@
                 </a>
                 <ul class="templatemo-submenu">
                     <li><a href="{{path('appointement_index')}}">Appointements</a></li>
-                    <li><a href="{{path('avancement_index')}}">Avancements</a></li>
-                    <li><a href="{{path('collecte_index')}}">Collecte</a></li>
+                    <li><a href="{{path('avancement_index')}}">Avancements/Rés..</a></li>
                     <li><a href="{{path('tontine_index')}}">Tontine</a></li>
-                    <li><a href="{{ path('compte_index') }}">Comptes</a></li>
-                    <li><a href="{{ path('client_index') }}">Client</a></li>
                     {#     <li><a href="{{ path('client_index') }}">Client</a></li>#}
                    {# <li><a href="{{path('appointement_index')}}">Operations Tontine</a></li>
                     <li><a href="{{path('tontine_index')}}">Tontine</a></li>#}
@@ -49,16 +46,25 @@
                     <i class="fa fa-database fa-3x"></i> Traitements <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
-
-                    <li><a href="{{ path('departement_index') }}">Département</a></li>
-                    <li><a href="{{path('commune_index')}}">Commune</a></li>
-                    <li><a href="{{path('agence_index')}}">Agence</a></li>
+                    <li><a href="{{ path('compte_index') }}">Comptes</a></li>
+                    <li><a href="{{ path('client_index') }}">Client</a></li>
                     <li><a href="{{ path('pret_index') }}">Prêt</a></li>
                 </ul>
             </li>
 
-            <li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>
-            <li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
+            <li class="sub open">
+                <a href="javascript:;">
+
+                    <i class="fa fa-file-pdf-o fa-3x"></i> Etats <div class="pull-right"><span class="caret"></span></div>
+                </a>
+                <ul class="templatemo-submenu">
+                    <li><a href="{{ path('etat_tontine') }}">Tontines</a></li>
+                </ul>
+            </li>
+
+{#            <li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>#}
+            {#<li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>#}
+{#            <li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>#}
             {#<li><a href="{{ path('user_index') }}"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Gestionnaires utilisateurs</a></li>#}
             <li class="sub open">
                 <a href="javascript:;">
@@ -66,7 +72,9 @@
                     <i class="fa fa-cogs"></i> Configurations <div class="pull-right"><span class="caret"></span></div>
                 </a>
                 <ul class="templatemo-submenu">
-
+                    <li><a href="{{ path('departement_index') }}">Département</a></li>
+                    <li><a href="{{path('commune_index')}}">Commune</a></li>
+                    <li><a href="{{path('agence_index')}}">Agence</a></li>
                     <li><a href="{{ path('agent_index') }}">Agent</a></li>
                     <li><a href="{{ path('periode_index') }}">Périodes</a></li>
                     <li><a href="{{ path('user_index') }}">Utilisateurs</a></li>

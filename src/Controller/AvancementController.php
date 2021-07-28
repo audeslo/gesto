@@ -292,7 +292,7 @@ class AvancementController extends AbstractController
 
 
     /**
-     * @Route ("/resiliation/{slug}", name="resiliation_tontine", methods={"POST"})
+     * @Route ("/resiliation", name="resiliation_tontine", methods={"POST"})
      * @param Operation $operationOld
      * @param Request $request
      * @return Response
@@ -306,55 +306,67 @@ class AvancementController extends AbstractController
         $form_resiliation=$this->createForm(ResiliationTontineType::class, $resiliation);
         $form_resiliation->handleRequest($request);
 
-        $tontine=$form_resiliation['tontine']->getData();
+        if($request->isXmlHttpRequest() && $form_resiliation->isSubmitted()){
+            $tontine=$form_resiliation['tontine']->getData();
 
-        // Instatiation opération
-        $operation=new Operation();
-        $operation->setAgence($this->getUser()->getAgence());
-        $operation->setCompte($tontine->getCompte());
-        $operation->setClient($tontine->getClient());
-        $operation->setMontantop($form_resiliation['temoinsolde']->getData());
-        $operation->setDatecomptabilisation(New \DateTime('now'));
-        $operation->setLibelleop($tontine->getReflivret().'Fermeture');
-        $operation->setValide(false);
-        $operation->setSens('D');
-        $operation->setCreatedBy($this->getUser());
-        $operation->setPeriode($dataFromDB->getPeriode());
-        $operation->setDevise($dataFromDB->getDevise());
-        $em->persist($operation);
+            // Instatiation opération
+            $operation=new Operation();
+            $operation->setAgence($this->getUser()->getAgence());
+            $operation->setCompte($tontine->getCompte());
+            $operation->setClient($tontine->getClient());
+            $operation->setMontantop($form_resiliation['temoinsolde']->getData());
+            $operation->setDatecomptabilisation(New \DateTime('now'));
+            $operation->setLibelleop($tontine->getReflivret().'Fermeture');
+            $operation->setValide(false);
+            $operation->setSens('D');
+            $operation->setCreatedBy($this->getUser());
+            $operation->setPeriode($dataFromDB->getPeriode());
+            $operation->setDevise($dataFromDB->getDevise());
+            $em->persist($operation);
 
-        // Opération contratire de l'avancement
-        $newAvancement = new Avancement();
-        $newAvancement->setMontantavan($form_resiliation['temoinsolde']->getData());
-        $newAvancement->setLibelleavan($tontine->getReflivret().'Fermeture');
-        $newAvancement->setDateavan(new \DateTimeImmutable('now'));
-        $newAvancement->setTontine($tontine);
-        $newAvancement->setAgence($this->getUser()->getAgence());
-        $newAvancement->setClient($tontine->getClient());
-        $newAvancement->setCreatedBy($this->getUser());
-        $newAvancement->setOperation($operation);
-        $newAvancement->setResilier(true);
-        $em->persist($newAvancement);
+            // Opération contratire de l'avancement
+            $newAvancement = new Avancement();
+            $newAvancement->setMontantavan($form_resiliation['temoinsolde']->getData());
+            $newAvancement->setLibelleavan($tontine->getReflivret().'Fermeture');
+            $newAvancement->setDateavan(new \DateTimeImmutable('now'));
+            $newAvancement->setTontine($tontine);
+            $newAvancement->setAgence($this->getUser()->getAgence());
+            $newAvancement->setClient($tontine->getClient());
+            $newAvancement->setCreatedBy($this->getUser());
+            $newAvancement->setOperation($operation);
+            $newAvancement->setResilier(true);
+            $newAvancement->setSoldecomp(0);
+            $em->persist($newAvancement);
 
-        $em->flush();
-        // Mise à jour des compte et Tontine
+            $em->flush();
+            // Mise à jour des compte et Tontine
 
-        // Mettre à jour Tontine
-        $em->getRepository('App:Tontine')->clotureTontine($tontine->getId());
+            // Mettre à jour Tontine
+            $em->getRepository('App:Tontine')->clotureTontine($tontine->getId(),
+                $form_resiliation['temoinsolde']->getData());
 
-        // Recuperer le l'etat du compte
-        $etatTontine=$em->getRepository('App:Detailtontine')
-            ->findEtatCompteTontine($tontine->getId());
+            // Recuperer le l'etat du compte
+            $etatTontine=$em->getRepository('App:Detailtontine')
+                ->findEtatCompteTontine($tontine->getId());
 
 
-        //Mise à jour Compte
-        $em->getRepository('App:Compte')
-            ->updateCompte($etatTontine['debit'],$etatTontine['credit'],
-                $etatTontine['soldecli'],$tontine->getCompte()->getId());
+            //Mise à jour Compte
+            $em->getRepository('App:Compte')
+                ->updateCompte(($etatTontine['debit']),
+                    $etatTontine['credit'],
+                    $etatTontine['soldecli'],$tontine->getCompte()->getId());
 
-        $request->getSession()->getFlashBag()->add('success', 'Fermeture bien effectuée.');
+            $request->getSession()->getFlashBag()->add('success', 'Fermeture bien effectuée.');
 
-        return $this->redirectToRoute('avancement_index');
+            return $this-> json([
+                'message'   => 'Cbon !'
+            ], 200);
+            //return $this->redirectToRoute('avancement_index');
+        }
+
+        return $this->json([
+            'message'   => 'Cpas bon'
+        ], 200);
 
 
     }

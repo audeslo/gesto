@@ -43,6 +43,8 @@ class ResiliationTontineType extends AbstractType
                 'class' => Tontine::class,
                 'query_builder' => function (EntityRepository $jc) {
                     return $jc->createQueryBuilder('t')
+                        ->where('t.niveau =:val')
+                        ->setParameter('val','progress')
                         ->orderBy('t.reflivret', 'ASC');
                 },
                 'attr' => [

@@ -92,7 +92,7 @@ class CompteController extends AbstractController
     }
 
     /**
-     * @Route("{slug}/modifications", name="compte_modification", methods={"GET"})
+     * @Route("{slug}/modifications", name="compte_modification", methods={"POST","GET"})
      */
     public function edit(Request $request, Compte $compte): Response
     {

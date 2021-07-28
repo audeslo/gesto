@@ -51,6 +51,7 @@ class AppointementController extends AbstractController
         $form_detail = $this->createForm(DetailtontineType::class, $detailTontine);
         $form_detail->handleRequest($request);
 
+        //dd($detailtontineRepository->findAllDetailOperation());
         return $this->render('appointement/index.html.twig', [
             'appointements' => $detailtontineRepository->findAllDetailOperation(),
             'form_operation' => $form_operation->createView(),

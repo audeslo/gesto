@@ -197,6 +197,11 @@ class Tontine
      */
     private $collecte;
 
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $mtcollecte;
+
     public function __construct()
     {
         $this->setDateinscr(new \DateTime('now'));
@@ -205,6 +210,7 @@ class Tontine
         $this->numordre=0;
         $this->meconomie=0;
         $this->nbfeuillet=0;
+        $this->mtcollecte=0; // Sinon la rêquête de solde va envoyer 0
         $this->avance=0; // Sinon la rêquête de solde va envoyer 0
         $this->detailtontines = new ArrayCollection();
         $this->operations = new ArrayCollection();
@@ -723,6 +729,18 @@ class Tontine
         }
 
         $this->collecte = $collecte;
+
+        return $this;
+    }
+
+    public function getMtcollecte(): ?int
+    {
+        return $this->mtcollecte;
+    }
+
+    public function setMtcollecte(?int $mtcollecte): self
+    {
+        $this->mtcollecte = $mtcollecte;
 
         return $this;
     }

@@ -18,9 +18,42 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        lienurl=null
+        function onClickBrouillon(event){ // Action à executer à chaque click
+            event.preventDefault();
+            const url=this.href;
+            lienurl=this.href;
+            $('#myModal').modal('show'); // On affiche le modal
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                //data: $('#form_tontine').serialize(),
+                success: function (data) {
+                    document.getElementById('tontine_client').value=data.client
+                    document.getElementById('tontine_compte').value=data.compte
+                    /*if(ferme===true){
+                        $('#form_tontine')[0].reset();
+                        $('.close').click();
+                        $('#tontine_table').html(data);
+                        window.location.reload();
+                    }
+                    $("body").overhang({
+                        type: "success",
+                        message: "Enregistremnt bien fait!!"
+                    });*/
+                },
+
+            });
+        }
+        // On recupère tous les "a" qui ont la classe "js-click" et les affecter un event
+        document.querySelectorAll('a.js-click').forEach(function (link){
+            link.addEventListener('click', onClickBrouillon);
+        })
+
         function valide(ferme){
             $.ajax({
-                url: "/tontine/nouveau",
+                url: lienurl,
                 method: "POST",
                 data: $('#form_tontine').serialize(),
                 success: function (data) {

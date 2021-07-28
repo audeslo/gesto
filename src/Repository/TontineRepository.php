@@ -32,16 +32,18 @@ class TontineRepository extends ServiceEntityRepository
             ;
     }
 
-    public function clotureTontine($tontine)
+    public function clotureTontine($tontine,$mtcollecte)
     {
         return $this->createQueryBuilder('t')
             ->update()
             ->set('t.solde', '?1')
-            ->set('t.actif',false)
-            ->set('t.niveau','closed')
+            ->set('t.niveau','?3')
+            ->set('t.mtcollecte','?4')
             ->where('t.id =?2')
             ->setParameter(1, 0)
             ->setParameter(2, $tontine)
+            ->setParameter(3, 'closed')
+            ->setParameter(4, $mtcollecte)
             ->getQuery()
             ->execute()
             ;

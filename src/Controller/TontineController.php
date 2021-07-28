@@ -80,14 +80,7 @@ class TontineController extends AbstractController
     {
         $form = $this->createForm(TontineType::class, $tontine);
         $form->handleRequest($request);
-        $solde=$tontine->getSolde();
         if ($form->isSubmitted() && $form->isValid()) {
-            // enleve la tontine de brouillon
-            if ($tontine->getNiveau()==='draft') {
-                $tontine->setNiveau('progress');
-                // Enregistrer le solde restant
-                $tontine->setAppointrest($tontine->getNbfeuillet()*$tontine->getNbmaxappoint());
-            }
             $tontine->setAppointrest($tontine->getNbfeuillet()
                 *$tontine->getNbmaxappoint());
             $this->getDoctrine()->getManager()->flush();
@@ -115,4 +108,36 @@ class TontineController extends AbstractController
 
         return $this->redirectToRoute('tontine_index');
     }
+
+    /**
+     * @Route("{slug}/reuperation-validation", name="tontine_validation", methods={"GET","POST"})
+     */
+    public function recupereDonnees(Request $request,Tontine $tontine):Response
+    {
+        $form = $this->createForm(TontineType::class, $tontine);
+        $form->handleRequest($request);
+
+        if ($request->isXmlHttpRequest() && $form->isSubmitted()) {
+            // enleve la tontine de brouillon
+            $tontine->setNiveau('progress');
+                // Enregistrer le solde restant
+            $tontine->setAppointrest($tontine->getNbfeuillet()*$tontine->getNbmaxappoint());
+            $tontine->setAppointrest($tontine->getNbfeuillet()
+                *$tontine->getNbmaxappoint());
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->json([
+                'message'   => "C'bon",
+            ],200);
+            //return $this->redirectToRoute('tontine_index');
+        }
+
+        return $this->json([
+            'idTontine'   => $tontine->getId(),
+            'client'   => $tontine->getClient()->getNomcomplet(),
+            'compte'   => $tontine->getNumcomp(),
+        ],200);
+        //],200,['content-type'   => "application/json"],['groups'=>'tontine:read']);
+    }
+
 }

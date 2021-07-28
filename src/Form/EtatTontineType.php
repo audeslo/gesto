@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Detailtontine;
 use App\Entity\Tontine;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -10,7 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DetailtontineType extends AbstractType
+class EtatTontineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,26 +17,23 @@ class DetailtontineType extends AbstractType
             ->add('tontine', EntityType::class, array(
                 'required' => false,
                 'label' => 'Référence (N°) Livret:',
+                'mapped'    => false,
                 'class' => Tontine::class,
                 'query_builder' => function (EntityRepository $jc) {
                     return $jc->createQueryBuilder('t')
-                        ->where('t.niveau =:val')
-                        ->setParameter('val','progress')
                         ->orderBy('t.reflivret', 'ASC');
                 },
                 'attr' => [
-                    'data-select' => 'true',
-                    'onchange'      => 'remplirChamps()'
+                    'data-select' => 'bool',
                 ]
             ))
-            //->add('client')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Detailtontine::class,
+            // Configure your form options here
         ]);
     }
 }
