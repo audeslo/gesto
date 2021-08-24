@@ -53,15 +53,15 @@ class OperationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="operation_show", methods={"GET"})
-     */
-    public function show(Operation $operation): Response
-    {
-        return $this->render('operation/show.html.twig', [
-            'operation' => $operation,
-        ]);
-    }
+//    /**
+//     * @Route("/{id}", name="operation_show", methods={"GET"})
+//     */
+//    public function show(Operation $operation): Response
+//    {
+//        return $this->render('operation/show.html.twig', [
+//            'operation' => $operation,
+//        ]);
+//    }
 
     /**
      * @Route("{slug}/modifications", name="operation_modification", methods={"GET","POST"})

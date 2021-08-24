@@ -157,14 +157,16 @@ class Operation
     private $operation;
 
     /**
-     * @ORM\OneToOne(targetEntity=Collecte::class, mappedBy="operation", cascade={"persist", "remove"})
+     * @ORM\Column(type="integer")
      */
-    private $collecte;
+    private $solde;
+
 
     public function __construct()
     {
         $this->detailtontines = new ArrayCollection();
         $this->dateop = new \DateTime('now');
+        $this->solde =0;
     }
 
     /**
@@ -525,21 +527,17 @@ class Operation
         return $this;
     }
 
-    public function getCollecte(): ?Collecte
+    public function getSolde(): ?int
     {
-        return $this->collecte;
+        return $this->solde;
     }
 
-    public function setCollecte(Collecte $collecte): self
+    public function setSolde(int $solde): self
     {
-        // set the owning side of the relation if necessary
-        if ($collecte->getOperation() !== $this) {
-            $collecte->setOperation($this);
-        }
-
-        $this->collecte = $collecte;
+        $this->solde = $solde;
 
         return $this;
     }
+
 
 }

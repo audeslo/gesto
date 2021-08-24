@@ -193,11 +193,6 @@ class Tontine
     private $avancements;
 
     /**
-     * @ORM\OneToOne(targetEntity=Collecte::class, mappedBy="tontine", cascade={"persist", "remove"})
-     */
-    private $collecte;
-
-    /**
      * @ORM\Column(type="integer", nullable=false)
      */
     private $mtcollecte;
@@ -712,23 +707,6 @@ class Tontine
                 $avancement->setTontine(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCollecte(): ?Collecte
-    {
-        return $this->collecte;
-    }
-
-    public function setCollecte(Collecte $collecte): self
-    {
-        // set the owning side of the relation if necessary
-        if ($collecte->getTontine() !== $this) {
-            $collecte->setTontine($this);
-        }
-
-        $this->collecte = $collecte;
 
         return $this;
     }

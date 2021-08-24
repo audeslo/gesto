@@ -16,6 +16,7 @@
         "doctrine/orm": "^2.9",
         "dompdf/dompdf": "^1.0",
         "jonasarts/tcpdf-bundle": "^4.0",
+        "league/csv": "^9.7",
         "oro/doctrine-extensions": "^2.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",

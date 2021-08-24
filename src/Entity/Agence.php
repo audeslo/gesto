@@ -108,10 +108,6 @@ class Agence
      */
     private $avancements;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Collecte::class, mappedBy="agence")
-     */
-    private $collectes;
 
     public function __construct()
     {
@@ -482,33 +478,5 @@ class Agence
         return $this;
     }
 
-    /**
-     * @return Collection|Collecte[]
-     */
-    public function getCollectes(): Collection
-    {
-        return $this->collectes;
-    }
 
-    public function addCollecte(Collecte $collecte): self
-    {
-        if (!$this->collectes->contains($collecte)) {
-            $this->collectes[] = $collecte;
-            $collecte->setAgence($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCollecte(Collecte $collecte): self
-    {
-        if ($this->collectes->removeElement($collecte)) {
-            // set the owning side to null (unless already changed)
-            if ($collecte->getAgence() === $this) {
-                $collecte->setAgence(null);
-            }
-        }
-
-        return $this;
-    }
 }
